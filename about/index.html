@@ -130,6 +130,15 @@ s.setAttribute('data-timestamp', +new Date());
 
 // disqus scripts
 
+var disqus_shortname = 'shesong';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('body')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+
 
 // dropdown scripts
 $(".dropdown").click(function(event) {
