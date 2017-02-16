@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-16T06:33:10.610Z</updated>
+  <updated>2017-02-16T06:36:27.438Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2017/02/13/hello-world/"/>
     <id>http://www.shesong.org/2017/02/13/hello-world/</id>
     <published>2017-02-13T15:53:25.602Z</published>
-    <updated>2017-02-16T06:33:10.610Z</updated>
+    <updated>2017-02-16T06:36:27.438Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
@@ -40,7 +40,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<p><span class="math">\[ 5050=\sum_{i=1}^100 i \]</span></p>
+<p><span class="math">\[ 5050=\sum_{i=1}^{100} i \]</span></p>
 ]]></content>
     
     <summary type="html">
