@@ -54,10 +54,11 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-17T01:45:44.666Z</updated>
+    <updated>2017-02-17T02:06:31.083Z</updated>
     
     <content type="html"><![CDATA[<p>##Algorithm Overview</p>
-<p>###Problem Definition<br>Suppose:  </p>
+<p>###Problem Definition</p>
+<p>Suppose:  </p>
 <ul>
 <li>Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ with elements $ a(i,k) $ for $ 0\leq i&lt;I $ and $ 0\leq k&lt;I $.</li>
 <li>Column Vector $ \mathcal{B} $ has dimension $ I\times 1 $ with elements $ b(k,0) $ for $ 0\leq k&lt;I $.</li>
@@ -67,9 +68,10 @@
     <summary type="html">
     
       &lt;p&gt;##Algorithm Overview&lt;/p&gt;
-&lt;p&gt;###Problem Definition&lt;br&gt;Suppose:  &lt;/p&gt;
+&lt;p&gt;###Problem Definition&lt;/p&gt;
+&lt;p&gt;Suppose:  &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ wi
+&lt;li&gt;Square Matrix $ \mathcal{A} $ has dimension $ I\times I 
     
     </summary>
     
