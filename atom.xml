@@ -59,29 +59,24 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-17T14:47:07.265Z</updated>
+    <updated>2017-02-17T14:52:41.518Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="algorithm-overview">Algorithm Overview</h2>
-<h3 id="problem-definition">Problem Definition</h3>
-<p>Suppose:</p>
+    <content type="html"><![CDATA[<h2 id="Algorithm-Overview"><a href="#Algorithm-Overview" class="headerlink" title="Algorithm Overview"></a>Algorithm Overview</h2><h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h3><p>Suppose:  </p>
 <ul>
-<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
-<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
+<li>Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ with elements $ a(i,k) $ for $ 0\leq i&lt;I $ and $ 0\leq k&lt;I $.</li>
+<li>Column Vector $ \mathcal{B} $ has dimension $ I\times 1 $ with elements $ b(k,0) $ for $ 0\leq k&lt;I $.</li>
 </ul>
 <p>We then find:</p>
 <ul>
-<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
-<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
+<li>Column Vector $ \mathcal{C}=\mathcal{A}\times\mathcal{B} $ has dimension $ I\times 1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=\sum\limits_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
+<li>We split $ \mathcal{A} $ and $ \mathcal{B} $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase \textbf{MapReduce}.</li>
 </ul>
+<p>hh</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;algorithm-overview&quot;&gt;Algorithm Overview&lt;/h2&gt;
-&lt;h3 id=&quot;problem-definition&quot;&gt;Problem Definition&lt;/h3&gt;
-&lt;p&gt;Suppose:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Square 
+      &lt;h2 id=&quot;Algorithm-Overview&quot;&gt;&lt;a href=&quot;#Algorithm-Overview&quot; class=&quot;headerlink&quot; title=&quot;Algorithm Overview&quot;&gt;&lt;/a&gt;Algorithm Overview&lt;/h2&gt;&lt;h3 id=&quot;P
     
     </summary>
     
