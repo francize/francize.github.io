@@ -116,11 +116,6 @@
 <li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
 <li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
 </ul>
-<p>We then find:</p>
-<ul>
-<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
-<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
-</ul>
 
 
   </article>
@@ -222,7 +217,24 @@ $(document).click(function(){
 var path = "/search.xml";
 searchFunc(path, 'local-search-input', 'local-search-result');
 
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>
