@@ -58,4 +58,39 @@
     
   </entry>
   
+  <entry>
+    <title>A MapReduce Algorithm for Matrix-Vector Multiplication</title>
+    <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
+    <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
+    <published>2016-10-17T01:35:24.000Z</published>
+    <updated>2017-02-17T01:41:41.886Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="algorithm-overview">Algorithm Overview</h1>
+<h2 id="problem-definition">Problem Definition</h2>
+<p>Suppose:</p>
+<ul>
+<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
+<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;algorithm-overview&quot;&gt;Algorithm Overview&lt;/h1&gt;
+&lt;h2 id=&quot;problem-definition&quot;&gt;Problem Definition&lt;/h2&gt;
+&lt;p&gt;Suppose:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Square 
+    
+    </summary>
+    
+      <category term="Distributed Computing" scheme="http://www.shesong.org/categories/Distributed-Computing/"/>
+    
+    
+      <category term="MapReduce" scheme="http://www.shesong.org/tags/MapReduce/"/>
+    
+      <category term="Matrix Multiplication" scheme="http://www.shesong.org/tags/Matrix-Multiplication/"/>
+    
+  </entry>
+  
 </feed>

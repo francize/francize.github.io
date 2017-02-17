@@ -44,6 +44,35 @@
         
     </entry>
     
+    <entry>
+      <title><![CDATA[A MapReduce Algorithm for Matrix-Vector Multiplication]]></title>
+      <url>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</url>
+      <content type="html"><![CDATA[<h1 id="algorithm-overview">Algorithm Overview</h1>
+<h2 id="problem-definition">Problem Definition</h2>
+<p>Suppose:</p>
+<ul>
+<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
+<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Distributed Computing </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MapReduce </tag>
+            
+            <tag> Matrix Multiplication </tag>
+            
+        </tags>
+        
+    </entry>
+    
   
   
 </search>
