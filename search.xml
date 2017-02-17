@@ -7,24 +7,15 @@
       <title><![CDATA[Hello World]]></title>
       <url>http://www.shesong.org/2017/02/13/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<p><span class="math">\[ 5050=\sum_{i=1}^{100} i \]</span></p>
+<p>$$ 5050=\sum_{i=1}^{100} i $$</p>
 ]]></content>
       
         <categories>
@@ -47,60 +38,57 @@
     <entry>
       <title><![CDATA[A MapReduce Algorithm for Matrix-Vector Multiplication]]></title>
       <url>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</url>
-      <content type="html"><![CDATA[<h2 id="algorithm-overview">Algorithm Overview</h2>
-<h3 id="problem-definition">Problem Definition</h3>
-<p>Suppose:</p>
+      <content type="html"><![CDATA[<h2 id="Algorithm-Overview"><a href="#Algorithm-Overview" class="headerlink" title="Algorithm Overview"></a>Algorithm Overview</h2><h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h3><p>Suppose:  </p>
 <ul>
-<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
-<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
+<li>Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ with elements $ a(i,k) $ for $ 0\leq i&lt;I $ and $ 0\leq k&lt;I $.</li>
+<li>Column Vector $ \mathcal{B} $ has dimension $ I\times 1 $ with elements $ b(k,0) $ for $ 0\leq k&lt;I $.</li>
 </ul>
 <p>We then find:</p>
 <ul>
-<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
-<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
+<li>Column Vector $ \mathcal{C}=\mathcal{A}\times\mathcal{B} $ has dimension $ I\times 1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=\sum\limits_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
+<li>We split $ \mathcal{A} $ and $ \mathcal{B} $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase \textbf{MapReduce}.</li>
 </ul>
-<h3 id="notation">Notation</h3>
-<table>
+<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><table>
 <thead>
-<tr class="header">
-<th align="center">Notation</th>
-<th align="left">Description</th>
+<tr>
+<th style="text-align:center">Notation</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">$ I $</td>
-<td align="left">the dimension of square matrix or column vector</td>
+<tr>
+<td style="text-align:center">$ I $</td>
+<td style="text-align:left">the dimension of square matrix or column vector</td>
 </tr>
-<tr class="even">
-<td align="center">$ =(a_{i,k})^{II} $</td>
-<td align="left">square matrix</td>
+<tr>
+<td style="text-align:center">$ \mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times I} $</td>
+<td style="text-align:left">square matrix</td>
 </tr>
-<tr class="odd">
-<td align="center">$ =(b_{k,0})^{I1} $</td>
-<td align="left">column vector</td>
+<tr>
+<td style="text-align:center">$ \mathcal{B}=(b_{k,0})\in\mathbb{R}^{I\times 1} $</td>
+<td style="text-align:left">column vector</td>
 </tr>
-<tr class="even">
-<td align="center">$ =(c_{i,0})^{I1} $</td>
-<td align="left">column vector</td>
+<tr>
+<td style="text-align:center">$ \mathcal{C}=(c_{i,0})\in\mathbb{R}^{I\times 1} $</td>
+<td style="text-align:left">column vector</td>
 </tr>
-<tr class="odd">
-<td align="center">$ IB $</td>
-<td align="left">the number of rows per $  $ block and $  $ block.</td>
+<tr>
+<td style="text-align:center">$ IB $</td>
+<td style="text-align:left">the number of rows per $ \mathcal{A} $ block and $ \mathcal{C} $ block.</td>
 </tr>
-<tr class="even">
-<td align="center">$ KB $</td>
-<td align="left">the number of columns per $  $ block.</td>
+<tr>
+<td style="text-align:center">$ KB $</td>
+<td style="text-align:left">the number of columns per $ \mathcal{A} $ block.</td>
 </tr>
-<tr class="odd">
-<td align="center">$ NIB $</td>
-<td align="left">the number of $  $ row and $  $ row partitions = $ (I-1)/IB+1 $.</td>
+<tr>
+<td style="text-align:center">$ NIB $</td>
+<td style="text-align:left">the number of $ \mathcal{A} $ row and $ \mathcal{C} $ row partitions = $ (I-1)/IB+1 $.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="example">Example</h3>
-<ul>
-<li>Naive Method: <span class="math">\[ \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 4\\ 2 &amp; 3 &amp; 4 &amp; 1\\ 3 &amp; 4 &amp; 1 &amp; 2\\ 4 &amp; 3 &amp; 2 &amp; 1\\\end{bmatrix}\times \begin{bmatrix}1\\3\\2\\4\end{bmatrix} =\begin{bmatrix}29\\23\\25\\21 \end{bmatrix} \]</span></li>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ul>
+<li>Naive Method: $$ \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 4\ 2 &amp; 3 &amp; 4 &amp; 1\ 3 &amp; 4 &amp; 1 &amp; 2\ 4 &amp; 3 &amp; 2 &amp; 1\\\end{bmatrix}\times \begin{bmatrix}1\\3\\2\\4\end{bmatrix} =\begin{bmatrix}29\\23\\25\\21 \end{bmatrix} $$</li>
+<li>Block Strategy: $$ \left[\begin{array}{cc|cc}1 &amp; 2 &amp; 3 &amp; 4\\2 &amp; 3 &amp; 4 &amp; 1\\\hline3 &amp; 4 &amp; 1 &amp; 2\ 4 &amp; 3 &amp; 2 &amp; 1\\\end{array}\right]\times<br>  \left[\begin{array}{c}1\\3\\\hline2\\4\end{array}\right]=<br>  \left[\begin{array}{c}7\\11\\\hline 15\\13\end{array}\right]+<br>  \left[\begin{array}{c}22\\12\\\hline 10\\8\end{array}\right]=<br>  \left[\begin{array}{c}29\\23\\\hline 25\\21\end{array}\right] $$</li>
 </ul>
 ]]></content>
       
