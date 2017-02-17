@@ -109,59 +109,55 @@
     <div class="picture-container">
       
     </div>
-    <h2 id="algorithm-overview">Algorithm Overview</h2>
-<h3 id="problem-definition">Problem Definition</h3>
-<p>Suppose:</p>
+    <h2 id="Algorithm-Overview"><a href="#Algorithm-Overview" class="headerlink" title="Algorithm Overview"></a>Algorithm Overview</h2><h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h3><p>Suppose:  </p>
 <ul>
-<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
-<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
+<li>Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ with elements $ a(i,k) $ for $ 0\leq i&lt;I $ and $ 0\leq k&lt;I $.</li>
+<li>Column Vector $ \mathcal{B} $ has dimension $ I\times 1 $ with elements $ b(k,0) $ for $ 0\leq k&lt;I $.</li>
 </ul>
 <p>We then find:</p>
 <ul>
-<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
-<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
+<li>Column Vector $ \mathcal{C}=\mathcal{A}\times\mathcal{B} $ has dimension $ I\times 1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=\sum\limits_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
+<li>We split $ \mathcal{A} $ and $ \mathcal{B} $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase \textbf{MapReduce}.</li>
 </ul>
-<h3 id="notation">Notation</h3>
-<table>
+<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><table>
 <thead>
-<tr class="header">
-<th align="left">Notation</th>
-<th align="left">Description</th>
+<tr>
+<th style="text-align:left">Notation</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">$ I $</td>
-<td align="left">the dimension of square matrix or column vector</td>
+<tr>
+<td style="text-align:left">$ I $</td>
+<td style="text-align:left">the dimension of square matrix or column vector</td>
 </tr>
-<tr class="even">
-<td align="left">$ =(a_{i,k})^{II} $</td>
-<td align="left">square matrix</td>
+<tr>
+<td style="text-align:left">$ \mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times I} $</td>
+<td style="text-align:left">square matrix</td>
 </tr>
-<tr class="odd">
-<td align="left">$ =(b_{k,0})^{I1} $</td>
-<td align="left">column vector</td>
+<tr>
+<td style="text-align:left">$ \mathcal{B}=(b_{k,0})\in\mathbb{R}^{I\times 1} $</td>
+<td style="text-align:left">column vector</td>
 </tr>
-<tr class="even">
-<td align="left">$ =(c_{i,0})^{I1} $</td>
-<td align="left">column vector</td>
+<tr>
+<td style="text-align:left">$ \mathcal{C}=(c_{i,0})\in\mathbb{R}^{I\times 1} $</td>
+<td style="text-align:left">column vector</td>
 </tr>
-<tr class="odd">
-<td align="left">$ IB $</td>
-<td align="left">the number of rows per $  $ block and $  $ block.</td>
+<tr>
+<td style="text-align:left">$ IB $</td>
+<td style="text-align:left">the number of rows per $ \mathcal{A} $ block and $ \mathcal{C} $ block.</td>
 </tr>
-<tr class="even">
-<td align="left">$ KB $</td>
-<td align="left">the number of columns per $  $ block.</td>
+<tr>
+<td style="text-align:left">$ KB $</td>
+<td style="text-align:left">the number of columns per $ \mathcal{A} $ block.</td>
 </tr>
-<tr class="odd">
-<td align="left">$ NIB $</td>
-<td align="left">the number of $  $ row and $  $ row partitions = $ (I-1)/IB+1 $.</td>
+<tr>
+<td style="text-align:left">$ NIB $</td>
+<td style="text-align:left">the number of $ \mathcal{A} $ row and $ \mathcal{C} $ row partitions = $ (I-1)/IB+1 $.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="example">Example</h3>
-
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3>
 
   </article>
   </script>
