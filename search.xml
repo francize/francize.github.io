@@ -47,7 +47,7 @@
 <h3 id="problem-definition">Problem Definition</h3>
 <p>Suppose:</p>
 <ul>
-<li>Square Matrix <span>$\mathcal{A}$</span><!-- Has MathJax --> has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
+<li>Square Matrix (  ) has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
 <li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
 </ul>
 <p>We then find:</p>
