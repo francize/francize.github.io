@@ -109,13 +109,57 @@
     <div class="picture-container">
       
     </div>
-    <p>##Algorithm Overview</p>
-<p>###Problem Definition</p>
-<p>Suppose:  </p>
+    <h2 id="algorithm-overview">Algorithm Overview</h2>
+<h3 id="problem-definition">Problem Definition</h3>
+<p>Suppose:</p>
 <ul>
-<li>Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ with elements $ a(i,k) $ for $ 0\leq i&lt;I $ and $ 0\leq k&lt;I $.</li>
-<li>Column Vector $ \mathcal{B} $ has dimension $ I\times 1 $ with elements $ b(k,0) $ for $ 0\leq k&lt;I $.</li>
+<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
+<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
 </ul>
+<p>We then find:</p>
+<ul>
+<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
+<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
+</ul>
+<h3 id="notation">Notation</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Notation</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">$ I $</td>
+<td align="left">the dimension of square matrix or column vector</td>
+</tr>
+<tr class="even">
+<td align="center">$ =(a_{i,k})^{II} $</td>
+<td align="left">square matrix</td>
+</tr>
+<tr class="odd">
+<td align="center">$ =(b_{k,0})^{I1} $</td>
+<td align="left">column vector</td>
+</tr>
+<tr class="even">
+<td align="center">$ =(c_{i,0})^{I1} $</td>
+<td align="left">column vector</td>
+</tr>
+<tr class="odd">
+<td align="center">$ IB $</td>
+<td align="left">the number of rows per $  $ block and $  $ block.</td>
+</tr>
+<tr class="even">
+<td align="center">$ KB $</td>
+<td align="left">the number of columns per $  $ block.</td>
+</tr>
+<tr class="odd">
+<td align="center">$ NIB $</td>
+<td align="left">the number of $  $ row and $  $ row partitions = $ (I-1)/IB+1 $.</td>
+</tr>
+</tbody>
+</table>
 
 
   </article>
