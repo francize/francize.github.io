@@ -113,13 +113,13 @@
 <h3 id="problem-definition">Problem Definition</h3>
 <p>Suppose:</p>
 <ul>
-<li>Square Matrix \(  \) has dimension \( II \) with elements $ a(i,k) $ for \( 0i&lt;I \) and \( 0k&lt;I \).</li>
-<li>Column Vector (  ) has dimension ( I1 ) with elements $ b(k,0) $ for ( 0k&lt;I ).</li>
+<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
+<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
 </ul>
 <p>We then find:</p>
 <ul>
-<li>Column Vector ( = ) has dimension ( I1 ) with elements $ c(i,0) $ defined as: ( c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) ).</li>
-<li>We split (  ) and (  ) into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase <strong>MapReduce</strong>.</li>
+<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
+<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
 </ul>
 <p>Notation:</p>
 <ul>
