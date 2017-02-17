@@ -38,57 +38,60 @@
     <entry>
       <title><![CDATA[A MapReduce Algorithm for Matrix-Vector Multiplication]]></title>
       <url>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</url>
-      <content type="html"><![CDATA[<h2 id="Algorithm-Overview"><a href="#Algorithm-Overview" class="headerlink" title="Algorithm Overview"></a>Algorithm Overview</h2><h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h3><p>Suppose:  </p>
+      <content type="html"><![CDATA[<h2 id="algorithm-overview">Algorithm Overview</h2>
+<h3 id="problem-definition">Problem Definition</h3>
+<p>Suppose:</p>
 <ul>
-<li>Square Matrix $ \mathcal{A} $ has dimension $ I\times I $ with elements $ a(i,k) $ for $ 0\leq i&lt;I $ and $ 0\leq k&lt;I $.</li>
-<li>Column Vector $ \mathcal{B} $ has dimension $ I\times 1 $ with elements $ b(k,0) $ for $ 0\leq k&lt;I $.</li>
+<li>Square Matrix $  $ has dimension $ II $ with elements $ a(i,k) $ for $ 0i&lt;I $ and $ 0k&lt;I $.</li>
+<li>Column Vector $  $ has dimension $ I1 $ with elements $ b(k,0) $ for $ 0k&lt;I $.</li>
 </ul>
 <p>We then find:</p>
 <ul>
-<li>Column Vector $ \mathcal{C}=\mathcal{A}\times\mathcal{B} $ has dimension $ I\times 1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=\sum\limits_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
-<li>We split $ \mathcal{A} $ and $ \mathcal{B} $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase \textbf{MapReduce}.</li>
+<li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
+<li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
 </ul>
-<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><table>
+<h3 id="notation">Notation</h3>
+<table>
 <thead>
-<tr>
-<th style="text-align:center">Notation</th>
-<th style="text-align:left">Description</th>
+<tr class="header">
+<th align="left">Notation</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">$ I $</td>
-<td style="text-align:left">the dimension of square matrix or column vector</td>
+<tr class="odd">
+<td align="left">$ I $</td>
+<td align="left">the dimension of square matrix or column vector</td>
 </tr>
-<tr>
-<td style="text-align:center">$ \mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times I} $</td>
-<td style="text-align:left">square matrix</td>
+<tr class="even">
+<td align="left">$ =(a_{i,k})^{II} $</td>
+<td align="left">square matrix</td>
 </tr>
-<tr>
-<td style="text-align:center">$ \mathcal{B}=(b_{k,0})\in\mathbb{R}^{I\times 1} $</td>
-<td style="text-align:left">column vector</td>
+<tr class="odd">
+<td align="left">$ =(b_{k,0})^{I1} $</td>
+<td align="left">column vector</td>
 </tr>
-<tr>
-<td style="text-align:center">$ \mathcal{C}=(c_{i,0})\in\mathbb{R}^{I\times 1} $</td>
-<td style="text-align:left">column vector</td>
+<tr class="even">
+<td align="left">$ =(c_{i,0})^{I1} $</td>
+<td align="left">column vector</td>
 </tr>
-<tr>
-<td style="text-align:center">$ IB $</td>
-<td style="text-align:left">the number of rows per $ \mathcal{A} $ block and $ \mathcal{C} $ block.</td>
+<tr class="odd">
+<td align="left">$ IB $</td>
+<td align="left">the number of rows per $  $ block and $  $ block.</td>
 </tr>
-<tr>
-<td style="text-align:center">$ KB $</td>
-<td style="text-align:left">the number of columns per $ \mathcal{A} $ block.</td>
+<tr class="even">
+<td align="left">$ KB $</td>
+<td align="left">the number of columns per $  $ block.</td>
 </tr>
-<tr>
-<td style="text-align:center">$ NIB $</td>
-<td style="text-align:left">the number of $ \mathcal{A} $ row and $ \mathcal{C} $ row partitions = $ (I-1)/IB+1 $.</td>
+<tr class="odd">
+<td align="left">$ NIB $</td>
+<td align="left">the number of $  $ row and $  $ row partitions = $ (I-1)/IB+1 $.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ul>
-<li>Naive Method: $$ \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 4\ 2 &amp; 3 &amp; 4 &amp; 1\ 3 &amp; 4 &amp; 1 &amp; 2\ 4 &amp; 3 &amp; 2 &amp; 1\\\end{bmatrix}\times \begin{bmatrix}1\\3\\2\\4\end{bmatrix} =\begin{bmatrix}29\\23\\25\\21 \end{bmatrix} $$</li>
-<li>Block Strategy: $$ \left[\begin{array}{cc|cc}1 &amp; 2 &amp; 3 &amp; 4\\2 &amp; 3 &amp; 4 &amp; 1\\\hline3 &amp; 4 &amp; 1 &amp; 2\ 4 &amp; 3 &amp; 2 &amp; 1\\\end{array}\right]\times<br>  \left[\begin{array}{c}1\\3\\\hline2\\4\end{array}\right]=<br>  \left[\begin{array}{c}7\\11\\\hline 15\\13\end{array}\right]+<br>  \left[\begin{array}{c}22\\12\\\hline 10\\8\end{array}\right]=<br>  \left[\begin{array}{c}29\\23\\\hline 25\\21\end{array}\right] $$</li>
+<h3 id="example">Example</h3>
+<ul>
+<li>Naive Method: <span class="math">\[ \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 4\\ 2 &amp; 3 &amp; 4 &amp; 1\\ 3 &amp; 4 &amp; 1 &amp; 2\\ 4 &amp; 3 &amp; 2 &amp; 1\\\end{bmatrix}\times \begin{bmatrix}1\\3\\2\\4\end{bmatrix} =\begin{bmatrix}29\\23\\25\\21 \end{bmatrix} \]</span></li>
 </ul>
 ]]></content>
       
