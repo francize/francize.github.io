@@ -55,45 +55,6 @@
 <li>Column Vector $ = $ has dimension $ I1 $ with elements $ c(i,0) $ defined as: $ c(i,0)=_{k=0}^{I-1} a(i,k)*b(k,0) $.</li>
 <li>We split $  $ and $  $ into blocks (sub-matrices) small enough so that a pair of blocks can be multiplied in memory on a single node in the cluster and the computation only includes one phase .</li>
 </ul>
-<h3 id="notation">Notation</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Notation</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">$ I $</td>
-<td align="left">the dimension of square matrix or column vector</td>
-</tr>
-<tr class="even">
-<td align="center">$ =(a_{i,k})^{II} $</td>
-<td align="left">square matrix</td>
-</tr>
-<tr class="odd">
-<td align="center">$ =(b_{k,0})^{I1} $</td>
-<td align="left">column vector</td>
-</tr>
-<tr class="even">
-<td align="center">$ =(c_{i,0})^{I1} $</td>
-<td align="left">column vector</td>
-</tr>
-<tr class="odd">
-<td align="center">$ IB $</td>
-<td align="left">the number of rows per $  $ block and $  $ block.</td>
-</tr>
-<tr class="even">
-<td align="center">$ KB $</td>
-<td align="left">the number of columns per $  $ block.</td>
-</tr>
-<tr class="odd">
-<td align="center">$ NIB $</td>
-<td align="left">the number of $  $ row and $  $ row partitions = $ (I-1)/IB+1 $.</td>
-</tr>
-</tbody>
-</table>
 ]]></content>
       
         <categories>
