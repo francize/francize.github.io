@@ -59,12 +59,12 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-18T16:20:59.135Z</updated>
+    <updated>2017-02-18T16:26:50.933Z</updated>
     
     <content type="html"><![CDATA[<p>未完成，待续</p>
 <h2 id="算法概要">算法概要</h2>
 <h3 id="问题定义">问题定义</h3>
-<p>假设矩阵 <span class="math inline">\(\mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times K}\)</span>，其中 <span class="math inline">\(0\leq i&lt;I\)</span>，<span class="math inline">\(0\leq k&lt;K\)</span>；向量 <span class="math inline">\(\mathcal{B}=b_{k,0}\in\mathbb{R}^{K\times 1}\)</span>，其中 <span class="math inline">\(0\leq k&lt;I\)</span>。</p>
+<p>假设有矩阵 <span class="math inline">\(\mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times K}\)</span>，其中 <span class="math inline">\(0\leq i&lt;I\)</span>，<span class="math inline">\(0\leq k&lt;K\)</span>；向量 <span class="math inline">\(\mathcal{B}=(b_{k,0})\in\mathbb{R}^{K\times 1}\)</span>，其中 <span class="math inline">\(0\leq k&lt;K\)</span>。我们作矩阵乘向量运算，可得向量<span class="math inline">\(\mathcal{C}=\mathcal{A}\times\mathcal{B}=(c_{i,0})=\sum\limits_{k=0}^{I-1}a(i,k)*b(k,0)\in\mathbb{R}^{I\times 1}\)</span>。</p>
 <ul>
 <li>Square Matrix <span class="math inline">\(\mathcal{A}\)</span> has dimension <span class="math inline">\(I\times I\)</span> with elements <span class="math inline">\(a(i,k)\)</span> for <span class="math inline">\(0\leq i&lt;I\)</span> and <span class="math inline">\(0\leq k&lt;I\)</span>.</li>
 <li>Column Vector <span class="math inline">\(\mathcal{B}\)</span> has dimension <span class="math inline">\(I\times 1\)</span> with elements <span class="math inline">\(b(k,0)\)</span> for <span class="math inline">\(0\leq k&lt;I\)</span>.</li>
@@ -100,7 +100,7 @@
       &lt;p&gt;未完成，待续&lt;/p&gt;
 &lt;h2 id=&quot;算法概要&quot;&gt;算法概要&lt;/h2&gt;
 &lt;h3 id=&quot;问题定义&quot;&gt;问题定义&lt;/h3&gt;
-&lt;p&gt;假设矩阵 &lt;span class=&quot;math inline&quot;&gt;\(\mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\t
+&lt;p&gt;假设有矩阵 &lt;span class=&quot;math inline&quot;&gt;\(\mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\
     
     </summary>
     
