@@ -59,7 +59,7 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-20T06:59:55.220Z</updated>
+    <updated>2017-02-20T07:25:01.216Z</updated>
     
     <content type="html"><![CDATA[<p>未完成，待续</p>
 <h2 id="算法概要">算法概要</h2>
@@ -70,7 +70,6 @@
 <p>矩阵 <span class="math inline">\(\mathcal{A}=\left[\begin{array}{cc|cc}a_{00} &amp; a_{01} &amp; a_{02} &amp; a_{03}\\a_{10} &amp; a_{11} &amp; a_{12} &amp; a_{13}\\\hline a_{20} &amp; a_{21} &amp; a_{22} &amp; a_{23}\\a_{30} &amp; a_{31} &amp; a_{32} &amp; a_{33}\\\hline a_{40} &amp; a_{41} &amp; a_{42} &amp; a_{43}\\a_{50} &amp; a_{51} &amp; a_{52} &amp; a_{53}\\\end{array}\right]\)</span> 被分成 <span class="math inline">\(3\times 2\)</span> 个块，记为 <span class="math inline">\(\mathcal{A}=\left[\begin{array}{cc}\mathbf{A}_{00} &amp; \mathbf{A}_{01}\\\mathbf{A}_{10} &amp; \mathbf{A}_{11}\\\mathbf{A}_{20} &amp; \mathbf{A}_{21}\\\end{array}\right]\)</span>。</p>
 <p>向量 <span class="math inline">\(\mathcal{B}=\left[\begin{array}{c}b_{00}\\b_{10}\\\hline b_{20}\\b_{30}\end{array}\right]\)</span> 被分为 <span class="math inline">\(2\times 1\)</span> 个块，记为 <span class="math inline">\(\mathcal{B}=\left[\begin{array}{c}\mathbf{B}_{00}\\\mathbf{B}_{10}\end{array}\right]\)</span>。</p>
 <p>则矩阵 <span class="math inline">\(\mathcal{C}=\mathcal{A}\mathcal{B}=\left[\begin{array}{c}\mathbf{A}_{00}\mathbf{B}_{00}+\mathbf{A}_{01}\mathbf{B}_{10}\\\mathbf{A}_{10}\mathbf{B}_{00}+\mathbf{A}_{11}\mathbf{B}_{10}\\\mathbf{A}_{20}\mathbf{B}_{00}+\mathbf{A}_{21}\mathbf{B}_{10}\end{array}\right]\)</span>，此时 <span class="math inline">\(I=6,K=4,IB=2,KB=2,NIB=3\)</span>。</p>
-<h2 id="伪代码">伪代码</h2>
 ]]></content>
     
     <summary type="html">
