@@ -59,7 +59,7 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-20T12:47:20.479Z</updated>
+    <updated>2017-02-20T12:49:43.763Z</updated>
     
     <content type="html"><![CDATA[<h2 id="算法概要">算法概要</h2>
 <h3 id="问题定义">问题定义</h3>
@@ -75,7 +75,6 @@
 <h3 id="算法分析">算法分析</h3>
 <p>考虑最糟糕的情形，若矩阵 <span class="math inline">\(\mathcal{A}\)</span> 是稠密的而且无0元素，Mapper需要发送 <span class="math inline">\(I*K\)</span> 个中间对。同理对于向量 <span class="math inline">\(\mathcal{B}\)</span>，Mapper需要发送 <span class="math inline">\(NIB*K\)</span> 个中间对。即在最坏的情况下，会有 <span class="math inline">\(K*(I+NIB)\)</span> 个中间对在sorf和shuffle阶段传输。</p>
 <h3 id="伪代码">伪代码</h3>
-<h3 id="源代码">源代码</h3>
 ]]></content>
     
     <summary type="html">
