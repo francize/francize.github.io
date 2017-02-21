@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-21T06:21:10.816Z</updated>
+  <updated>2017-02-21T06:25:04.591Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-21T06:21:10.816Z</updated>
+    <updated>2017-02-21T06:25:04.591Z</updated>
     
     <content type="html"><![CDATA[<h3 id="问题定义">问题定义</h3>
 <p>假设有矩阵 <span class="math inline">\(\mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times K}\)</span>，其中 <span class="math inline">\(i\in[0,I),k\in[0,K)\)</span>，向量 <span class="math inline">\(\mathcal{B}=(b_{k,0})\in\mathbb{R}^{K\times 1}\)</span>，其中 <span class="math inline">\(k\in[0,K)\)</span>。我们作矩阵乘向量运算，可得向量 <span class="math inline">\(\mathcal{C}=\mathcal{A}\mathcal{B}=(c_{i,0})\in\mathbb{R}^{I\times 1}\)</span>，其中 <span class="math inline">\(c_{i,0}=\sum\limits_{k=0}^{K-1}a_{i,k}b_{k,0}\)</span>。当矩阵大到一定程度时，一台服务器由于内存限制已经无法处理。在此我们考虑基于分块的大矩阵乘法，并在Hadoop平台上实现该算法。</p>
@@ -40,18 +40,18 @@
 <hr>
 <h3 id="伪代码">伪代码</h3>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/21/58ab9b4b72b77.png" alt="Mapper.png">
-<p class="caption">Mapper.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/21/58ab9b4b72b77.png">
+
 </div>
 <p>注意到Mapper发送的key是个复合key，它由3个元素组成，分别是 <span class="math inline">\((ib,\, kb,\, m)\)</span>，其中 <span class="math inline">\(ib\)</span> 和 <span class="math inline">\(kb\)</span> 分别表示块中元素的行、列下标，而 <span class="math inline">\(m=0\)</span> 表示数据来自矩阵 <span class="math inline">\(\mathcal{A}\)</span>，<span class="math inline">\(m=1\)</span> 来自向量 <span class="math inline">\(\mathcal{B}\)</span>。</p>
 <p>在sort和shuffle阶段，复合key必须有序，如按升序则先排 <span class="math inline">\(ib\)</span>，然后 <span class="math inline">\(kb\)</span>，最后 <span class="math inline">\(m\)</span>。同时，Partitioner需按等式 <span class="math inline">\(r=ib\pmod R\)</span> 来将中间对分发到各个Reducer中（<span class="math inline">\(R\)</span> 是Reducer的个数）。以上排序和划分复合key保证了每个Reducer都依据公式（1）接收到对应的 <span class="math inline">\(\mathbf{A}\)</span> 块和 <span class="math inline">\(\mathbf{B}\)</span> 块的数据。</p>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/21/58ab9b4b741c9.png" alt="Redcuer.png">
-<p class="caption">Redcuer.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/21/58ab9b4b741c9.png">
+
 </div>
 <p>注意在Reducer阶段，我们只需要为矩阵 <span class="math inline">\(\mathcal{A}\)</span> 和向量 <span class="math inline">\(\mathcal{C}\)</span> 开辟内存空间。</p>
 <hr>
-<h3 id="源代码">源代码</h3>
+<h3 id="源码">源码</h3>
 <p>相关代码可参考 <a href="https://github.com/francize/Matrix-Vector-Multiplication" class="uri" target="_blank" rel="external">https://github.com/francize/Matrix-Vector-Multiplication</a>。</p>
 <hr>
 <h3 id="参考">参考</h3>
