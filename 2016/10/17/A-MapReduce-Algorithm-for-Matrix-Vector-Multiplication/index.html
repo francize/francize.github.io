@@ -119,10 +119,22 @@
 <p>则矩阵 <span class="math inline">\(\mathcal{C}=\mathcal{A}\mathcal{B}=\left[\begin{array}{c}\mathbf{C}_{00}\\\mathbf{C}_{10}\\\mathbf{C}_{20}\end{array}\right]=\left[\begin{array}{c}\mathbf{A}_{00}\mathbf{B}_{00}\\\mathbf{A}_{10}\mathbf{B}_{00}\\\mathbf{A}_{20}\mathbf{B}_{00}\end{array}\right]+\left[\begin{array}{c}\mathbf{A}_{01}\mathbf{B}_{10}\\\mathbf{A}_{11}\mathbf{B}_{10}\\\mathbf{A}_{21}\mathbf{B}_{10}\end{array}\right]=\left[\begin{array}{c}\mathbf{A}_{00}\mathbf{B}_{00}+\mathbf{A}_{01}\mathbf{B}_{10}\\\mathbf{A}_{10}\mathbf{B}_{00}+\mathbf{A}_{11}\mathbf{B}_{10}\\\mathbf{A}_{20}\mathbf{B}_{00}+\mathbf{A}_{21}\mathbf{B}_{10}\end{array}\right]\)</span>，此时 <span class="math inline">\(I=6,K=4,IB=2,KB=2,NIB=3,NKB=2\)</span>。</p>
 <p>我们令 <span class="math inline">\(0\leq ib&lt;NIB\)</span> 和 <span class="math inline">\(0\leq kb&lt;NKB\)</span> 表示某个块的下标，如当 <span class="math inline">\(ib=1,\,kb=1\)</span> 时，则 <span class="math inline">\(\mathbf{A}_{ib,kb}=\left[\begin{array}{cc}a_{22} &amp; a_{23}\\a_{32} &amp; a_{33}\end{array}\right]\)</span>，<span class="math inline">\(\mathbf{B}_{kb,0}=\left[\begin{array}{c}b_{20}\\b_{30}\end{array}\right]\)</span>。</p>
 <h3 id="在mapreduce上实现分块算法">在MapReduce上实现分块算法</h3>
-<p>我们只用一个MapRedcue阶段来实现算法。Mappper负责读取数据，并按照分块的策略发送分块，注意的是矩阵和向量分别存储于两个不同的输入路径且同时作为Mapper的输入数据。每个Reducers接收到Mapper发送的分块后，根据分块算法计算对应分块乘积的结果。例如，Reducer接收到块 <span class="math inline">\(\mathbf{A}_{ib,kb}\)</span> 和 <span class="math inline">\(\mathbf{B}_{kb,0}\)</span>，其中 <span class="math inline">\(0\leq kb&lt; NKB\)</span>，并按以下顺序重新组织：<span class="math display">\[\mathbf{A}_{ib,0}\,\,\mathbf{B}_{0,0}\,\,\mathbf{A}_{ib,1}\,\,\mathbf{B}_{1,0}\,\,\cdots \mathbf{A}_{ib,NKB-1}\,\,\mathbf{B}_{NKB-1,0}\]</span> Reducer将每两个块 <span class="math inline">\(\mathbf{A}\)</span> 和 <span class="math inline">\(\mathbf{B}\)</span> 相乘并累加结果，即 <span class="math inline">\(\sum\limits_{kb=0}^{KB-1}\mathbf{A}_{ib,kb}\mathbf{B}_{kb,0}\)</span>。</p>
+<p>我们只用一个MapRedcue阶段来实现算法。Mappper负责读取数据，并按照分块的策略发送分块，注意的是矩阵和向量分别存储于两个不同的输入路径且同时作为Mapper的输入数据。每个Reducers接收到Mapper发送的分块后，根据分块算法计算对应分块乘积的结果。例如，Reducer接收到块 <span class="math inline">\(\mathbf{A}_{ib,kb}\)</span> 和 <span class="math inline">\(\mathbf{B}_{kb,0}\)</span>，其中 <span class="math inline">\(0\leq kb&lt; NKB\)</span>，并按以下顺序重新组织：<span class="math display">\[\begin{align}\mathbf{A}_{ib,0}\,\,\mathbf{B}_{0,0}\,\,\mathbf{A}_{ib,1}\,\,\mathbf{B}_{1,0}\,\,\cdots \mathbf{A}_{ib,NKB-1}\,\,\mathbf{B}_{NKB-1,0}\end{align}\]</span> Reducer将每两个块 <span class="math inline">\(\mathbf{A}\)</span> 和 <span class="math inline">\(\mathbf{B}\)</span> 相乘并累加结果，即 <span class="math inline">\(\sum\limits_{kb=0}^{KB-1}\mathbf{A}_{ib,kb}\mathbf{B}_{kb,0}\)</span>。</p>
 <h3 id="算法分析">算法分析</h3>
 <p>考虑最糟糕的情形，若矩阵 <span class="math inline">\(\mathcal{A}\)</span> 是稠密的而且无0元素，Mapper需要发送 <span class="math inline">\(I*K\)</span> 个中间对。同理对于向量 <span class="math inline">\(\mathcal{B}\)</span>，Mapper需要发送 <span class="math inline">\(NIB*K\)</span> 个中间对。即在最坏的情况下，会有 <span class="math inline">\(K*(I+NIB)\)</span> 个中间对在sorf和shuffle阶段传输。</p>
 <h3 id="伪代码">伪代码</h3>
+<div class="figure">
+<img src="https://ooo.0o0.ooo/2017/02/21/58ab9b4b72b77.png" alt="Mapper.png">
+<p class="caption">Mapper.png</p>
+</div>
+<p>注意到Mapper发送的key是个复合key，它由3个元素组成，分别是 <span class="math inline">\((ib,\, kb,\, m)\)</span>，其中 <span class="math inline">\(ib\)</span> 和 <span class="math inline">\(kb\)</span> 分别表示块中元素的行、列下标，而 <span class="math inline">\(m=0\)</span> 表示数据来自矩阵 <span class="math inline">\(\mathcal{A}\)</span>，<span class="math inline">\(m=1\)</span> 来自向量 <span class="math inline">\(\mathcal{B}\)</span>。</p>
+<p>在sort和shuffle阶段，复合key必须有序，如按升序则先排 <span class="math inline">\(ib\)</span>，然后 <span class="math inline">\(kb\)</span>，最后 <span class="math inline">\(m\)</span>。同时，Partitioner需按等式 <span class="math inline">\(r=ib\pmod R\)</span> 来将中间对分发到各个Reducer中（<span class="math inline">\(R\)</span> 是Reducer的个数）。以上排序和划分复合key保证了每个Reducer都依据公式（1）接收到对应的 <span class="math inline">\(\mathbf{A}\)</span> 块和 <span class="math inline">\(\mathbf{B}\)</span> 块的数据。</p>
+<div class="figure">
+<img src="https://ooo.0o0.ooo/2017/02/21/58ab9b4b741c9.png" alt="Redcuer.png">
+<p class="caption">Redcuer.png</p>
+</div>
+<p>注意在Reducer阶段，我们只需要为矩阵 <span class="math inline">\(\mathcal{A}\)</span> 和向量 <span class="math inline">\(\mathcal{C}\)</span> 开辟内存空间。</p>
+<h3 id="源代码">源代码</h3>
 
 
   </article>
