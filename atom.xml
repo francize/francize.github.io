@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-21T02:33:29.894Z</updated>
+  <updated>2017-02-21T06:19:31.446Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/"/>
     <id>http://www.shesong.org/2016/10/17/A-MapReduce-Algorithm-for-Matrix-Vector-Multiplication/</id>
     <published>2016-10-17T01:35:24.000Z</published>
-    <updated>2017-02-21T02:33:29.894Z</updated>
+    <updated>2017-02-21T06:19:31.446Z</updated>
     
     <content type="html"><![CDATA[<h3 id="问题定义">问题定义</h3>
 <p>假设有矩阵 <span class="math inline">\(\mathcal{A}=(a_{i,k})\in\mathbb{R}^{I\times K}\)</span>，其中 <span class="math inline">\(i\in[0,I),k\in[0,K)\)</span>，向量 <span class="math inline">\(\mathcal{B}=(b_{k,0})\in\mathbb{R}^{K\times 1}\)</span>，其中 <span class="math inline">\(k\in[0,K)\)</span>。我们作矩阵乘向量运算，可得向量 <span class="math inline">\(\mathcal{C}=\mathcal{A}\mathcal{B}=(c_{i,0})\in\mathbb{R}^{I\times 1}\)</span>，其中 <span class="math inline">\(c_{i,0}=\sum\limits_{k=0}^{K-1}a_{i,k}b_{k,0}\)</span>。当矩阵大到一定程度时，一台服务器由于内存限制已经无法处理。在此我们考虑基于分块的大矩阵乘法，并在Hadoop平台上实现该算法。</p>
@@ -52,13 +52,13 @@
 <p>注意在Reducer阶段，我们只需要为矩阵 <span class="math inline">\(\mathcal{A}\)</span> 和向量 <span class="math inline">\(\mathcal{C}\)</span> 开辟内存空间。</p>
 <hr>
 <h3 id="源代码">源代码</h3>
-<p>相关代码可参考 <a href="https://github.com/francize/Matrix-Vector-Multiplication" class="uri" target="_blank" rel="external">https://github.com/francize/Matrix-Vector-Multiplication</a>。</p>
+<p>相关代码可参考 <a href="https://github.com/francize/Matrix-Vector-Multiplication" class="uri" target="_blank" rel="external">https://github.com/francize/Matrix-Vector-Multiplication</a>{:target=“_blank“}。</p>
 <hr>
 <h3 id="参考">参考</h3>
 <ol style="list-style-type: decimal">
-<li><a href="http://www.norstad.org/matrix-multiply/" class="uri" target="_blank" rel="external">http://www.norstad.org/matrix-multiply/</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Block_matrix" class="uri" target="_blank" rel="external">https://en.wikipedia.org/wiki/Block_matrix</a></li>
-<li><a href="https://vangjee.wordpress.com/2012/03/30/implementing-rawcomparator-will-speed-up-your-hadoop-mapreduce-mr-jobs-2/" target="_blank" rel="external">关于实现rawcomparator</a></li>
+<li><a href="http://www.norstad.org/matrix-multiply/" class="uri" target="_blank" rel="external">http://www.norstad.org/matrix-multiply/</a>{:target=“_blank“}</li>
+<li><a href="https://en.wikipedia.org/wiki/Block_matrix" class="uri" target="_blank" rel="external">https://en.wikipedia.org/wiki/Block_matrix</a>{:target=“_blank“}</li>
+<li><a href="https://vangjee.wordpress.com/2012/03/30/implementing-rawcomparator-will-speed-up-your-hadoop-mapreduce-mr-jobs-2/" target="_blank" rel="external">关于实现rawcomparator</a>{:target=“_blank“}</li>
 </ol>
 ]]></content>
     
