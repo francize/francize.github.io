@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-25T08:20:18.682Z</updated>
+  <updated>2017-02-25T08:26:39.949Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/"/>
     <id>http://www.shesong.org/2017/02/22/社区发现综述简介/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-02-25T08:20:18.682Z</updated>
+    <updated>2017-02-25T08:26:39.949Z</updated>
     
     <content type="html"><![CDATA[<h2 id="研究现状">1 研究现状</h2>
 <p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
@@ -47,10 +47,10 @@
 <table>
 <colgroup>
 <col width="15%">
-<col width="31%">
+<col width="32%">
 <col width="18%">
 <col width="17%">
-<col width="15%">
+<col width="16%">
 </colgroup>
 <thead>
 <tr class="header">
