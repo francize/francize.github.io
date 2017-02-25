@@ -172,13 +172,8 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <li><strong>贪心策略（Greedy techniques）</strong> 有两个比较经典的算法，分别是
 <ul>
 <li>Fast greedy算法（<em>CNN算法</em>）[13]</li>
-<li>Multilevel算法（<em>Fast-Unfolding算法</em>）[14]</li>
+<li>Multilevel算法（<em>Fast-Unfolding算法</em>）[14]：Fast-Unfolding算法可以Spark中实现，已有现成的代码。[15]</li>
 </ul></li>
-</ul>
-<blockquote>
-<p>Fast-Unfolding算法可以Spark中实现，已有现成的代码。[15]</p>
-</blockquote>
-<ul>
 <li><strong>模拟退火（Simulated annealing）</strong></li>
 <li><strong>极值优化（Extremal optimization）</strong></li>
 <li><strong>谱优化（Spectral optimization）</strong></li>
@@ -196,11 +191,8 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <p>基于统计推断的方法包括观察到的数据集和对模型的假设。如果数据集是图，模型假设对节点之间如何联系的描述就要符合真实的图结构。[10] [11]</p>
 <ul>
 <li><strong>生成模型（Generative models）</strong></li>
-<li><strong>判别模型（Blockmodeling, model selection and information theory）</strong></li>
+<li><strong>判别模型（Blockmodeling, model selection and information theory）</strong>：赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[12]</li>
 </ul>
-<blockquote>
-<p>赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[12]</p>
-</blockquote>
 <hr>
 <h2 id="社区发现算法特征">3 社区发现算法特征</h2>
 <h3 id="优化目标">3.1 优化目标</h3>
