@@ -160,6 +160,11 @@ blockquote {
 	margin-bottom: 16px;
 	line-height: 1.6;
 	word-wrap: break-word;
+	display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 40px;
+    -webkit-margin-end: 40px;
     p {
 		display: block;
 		-webkit-margin-before: 1em;
