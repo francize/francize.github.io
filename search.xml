@@ -25,26 +25,89 @@
 <hr>
 <h2 id="复杂网络上的社区发现">2 复杂网络上的社区发现</h2>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png" alt="复杂网络上的社区发现.png">
-<p class="caption">复杂网络上的社区发现.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png">
+
 </div>
 <table>
+<colgroup>
+<col width="16%">
+<col width="33%">
+<col width="27%">
+<col width="12%">
+<col width="10%">
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">算法</th>
-<th align="left">优化目标</th>
-<th align="left">计算复杂度</th>
-<th align="left">适用情况</th>
-<th align="left">局限</th>
+<th>算法</th>
+<th>优化目标</th>
+<th>计算复杂度</th>
+<th>适用情况</th>
+<th>局限</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Q modularity</td>
-<td align="left">最大化Q-modularity</td>
-<td align="left">$</td>
-<td align="left">V</td>
-<td align="left">^2$</td>
+<td>Q modularity</td>
+<td>最大化Q-modularity</td>
+<td><span class="math inline">\(\mid V\mid^2\)</span></td>
+<td>无向无权多分量</td>
+<td>不适合小网络</td>
+</tr>
+<tr class="even">
+<td>Edge-Betweenness</td>
+<td>最小化社区间连边的betweenness</td>
+<td><span class="math inline">\(\mid V\mid\mid E\mid^2\)</span></td>
+<td>有向有权多分量</td>
+<td>慢</td>
+</tr>
+<tr class="odd">
+<td>Leading Eigenvector</td>
+<td>对拉普拉斯矩阵第二小特征根对应的特征向量聚类</td>
+<td><span class="math inline">\(\mid V\mid^2+\mid E\mid\)</span></td>
+<td>无向无权多分量</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Fast Greedy</td>
+<td>使用社区合并算法来快速搜索最大Q-modularity</td>
+<td><span class="math inline">\(\mid E\mid\log\mid V\mid\)</span></td>
+<td>无向有权多分量</td>
+<td>不适合小网络</td>
+</tr>
+<tr class="odd">
+<td>Multi Level</td>
+<td>使用社区展开算法来快速搜索最大Q-modularity</td>
+<td><span class="math inline">\(\mid V\mid\)</span></td>
+<td>无向有权多分量</td>
+<td>不适合小网络</td>
+</tr>
+<tr class="even">
+<td>Walk Trap</td>
+<td>最大化社区间的流距离</td>
+<td><span class="math inline">\(\mid E\mid\mid V\mid^2\)</span></td>
+<td>无向有权多分量</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Label Propagation</td>
+<td>每个节点取邻居中最流行的标签，迭代式收敛</td>
+<td><span class="math inline">\(\mid V\mid+\mid E\mid\)</span></td>
+<td>无向有权多分量</td>
+<td>结果不稳定</td>
+</tr>
+<tr class="even">
+<td>Info map</td>
+<td>最小化随机流的编码长度</td>
+<td><span class="math inline">\(\mid V\mid(\mid V\mid+\mid E\mid)\)</span></td>
+<td>有向有权单分量</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Role-based community</td>
+<td>划分出在流中地位类似的节点</td>
+<td><span class="math inline">\(\mid V\mid^3\)</span></td>
+<td>有向有权单分量</td>
+<td>结果不稳定</td>
 </tr>
 </tbody>
 </table>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-25T07:00:07.706Z</updated>
+  <updated>2017-02-25T07:16:22.771Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/"/>
     <id>http://www.shesong.org/2017/02/22/社区发现综述简介/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-02-25T07:00:07.706Z</updated>
+    <updated>2017-02-25T07:16:22.771Z</updated>
     
     <content type="html"><![CDATA[<h2 id="研究现状">1 研究现状</h2>
 <p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
@@ -41,26 +41,89 @@
 <hr>
 <h2 id="复杂网络上的社区发现">2 复杂网络上的社区发现</h2>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png" alt="复杂网络上的社区发现.png">
-<p class="caption">复杂网络上的社区发现.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png">
+
 </div>
 <table>
+<colgroup>
+<col width="16%">
+<col width="33%">
+<col width="27%">
+<col width="12%">
+<col width="10%">
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">算法</th>
-<th align="left">优化目标</th>
-<th align="left">计算复杂度</th>
-<th align="left">适用情况</th>
-<th align="left">局限</th>
+<th>算法</th>
+<th>优化目标</th>
+<th>计算复杂度</th>
+<th>适用情况</th>
+<th>局限</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Q modularity</td>
-<td align="left">最大化Q-modularity</td>
-<td align="left">$</td>
-<td align="left">V</td>
-<td align="left">^2$</td>
+<td>Q modularity</td>
+<td>最大化Q-modularity</td>
+<td><span class="math inline">\(\mid V\mid^2\)</span></td>
+<td>无向无权多分量</td>
+<td>不适合小网络</td>
+</tr>
+<tr class="even">
+<td>Edge-Betweenness</td>
+<td>最小化社区间连边的betweenness</td>
+<td><span class="math inline">\(\mid V\mid\mid E\mid^2\)</span></td>
+<td>有向有权多分量</td>
+<td>慢</td>
+</tr>
+<tr class="odd">
+<td>Leading Eigenvector</td>
+<td>对拉普拉斯矩阵第二小特征根对应的特征向量聚类</td>
+<td><span class="math inline">\(\mid V\mid^2+\mid E\mid\)</span></td>
+<td>无向无权多分量</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Fast Greedy</td>
+<td>使用社区合并算法来快速搜索最大Q-modularity</td>
+<td><span class="math inline">\(\mid E\mid\log\mid V\mid\)</span></td>
+<td>无向有权多分量</td>
+<td>不适合小网络</td>
+</tr>
+<tr class="odd">
+<td>Multi Level</td>
+<td>使用社区展开算法来快速搜索最大Q-modularity</td>
+<td><span class="math inline">\(\mid V\mid\)</span></td>
+<td>无向有权多分量</td>
+<td>不适合小网络</td>
+</tr>
+<tr class="even">
+<td>Walk Trap</td>
+<td>最大化社区间的流距离</td>
+<td><span class="math inline">\(\mid E\mid\mid V\mid^2\)</span></td>
+<td>无向有权多分量</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Label Propagation</td>
+<td>每个节点取邻居中最流行的标签，迭代式收敛</td>
+<td><span class="math inline">\(\mid V\mid+\mid E\mid\)</span></td>
+<td>无向有权多分量</td>
+<td>结果不稳定</td>
+</tr>
+<tr class="even">
+<td>Info map</td>
+<td>最小化随机流的编码长度</td>
+<td><span class="math inline">\(\mid V\mid(\mid V\mid+\mid E\mid)\)</span></td>
+<td>有向有权单分量</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Role-based community</td>
+<td>划分出在流中地位类似的节点</td>
+<td><span class="math inline">\(\mid V\mid^3\)</span></td>
+<td>有向有权单分量</td>
+<td>结果不稳定</td>
 </tr>
 </tbody>
 </table>
