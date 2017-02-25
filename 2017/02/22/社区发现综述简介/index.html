@@ -109,118 +109,171 @@
     <div class="picture-container">
       
     </div>
-    <h1 id="1-研究现状"><a href="#1-研究现状" class="headerlink" title="1 研究现状"></a>1 研究现状</h1><p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
+    <h2 id="研究现状">1 研究现状</h2>
+<p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
 <p>传统社区用于发现网络中<strong>紧密链接的聚类结构</strong>，根据节点链接紧密特性定义聚类中节点的相似性。当网络中不存在社区结构或存在其它结构时，传统社区发现方法不能有效识别网络的真实结构。</p>
-<p>近来研究者提出采用一些<strong>概率生成模型</strong>，可发现网络中传统社区及之外的更多类型的聚类结构，该类聚类方法假设同类节点与它类具有相同的链接概率。基于该假设可刻画多种类型网络结构，如  </p>
+<p>近来研究者提出采用一些<strong>概率生成模型</strong>，可发现网络中传统社区及之外的更多类型的聚类结构，该类聚类方法假设同类节点与它类具有相同的链接概率。基于该假设可刻画多种类型网络结构，如</p>
 <ul>
 <li><em>同类节点链接紧密、与异类节点链接稀疏的结构</em>(传统社区)；</li>
 <li><em>与同类节点链接稀疏、与异类节点链接紧密的结构</em>(二分图或多分图)；</li>
 <li><em>星型链接模式结构</em>。</li>
 </ul>
 <p>因此，该类方法可发现比传统社区更广义的聚类结构，以下统称为“<strong>广义社区</strong>”结构，发现这种结构的方法为广义社区发现方法。</p>
-<p>传统社区发现的问题[2,3]：</p>
+<p>传统社区发现的问题：</p>
 <ul>
 <li>传统社区发现识别的聚类结构不准确。许多流行的传统社区发现方法基于模块度函数求解社区结构，存在分辨率和尺度问题，如社区发现结果易淹没小的社区。因此，该类方法的聚类结果不能反映实际网络的聚类事实。</li>
 <li>传统社区发现在网络潜在结构不存在紧密链接子图结构时可能失效，也不能发现网络潜在的其它类型结构。在线社交平台的网络结构规律复杂，我们很难获取关于网络的先验知识，不知道网络是传统社区结构、二分图结构或其它多种类型结构的混合。大多传统社区发现方法假设网络中存在链接紧密的子图结构，且只能发现此类结构。</li>
 <li>传统社区发现不能在发现网络社区结构的同时，识别出类间的交互规律：传统社区发现方法的目的是将网络节点按照链接紧密性聚类，不能提供社区间链接模式，不易于网络结构可视化及直观了解网络交互规律。</li>
 </ul>
 <hr>
-<h1 id="2-复杂网络上的社区发现"><a href="#2-复杂网络上的社区发现" class="headerlink" title="2 复杂网络上的社区发现"></a>2 复杂网络上的社区发现</h1><p><img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png" alt="复杂网络上的社区发现.png"></p>
-<h2 id="2-1-传统算法-Traditional-methods"><a href="#2-1-传统算法-Traditional-methods" class="headerlink" title="2.1 传统算法 (Traditional methods)"></a>2.1 传统算法 (Traditional methods)</h2><h3 id="2-1-1-图分割-Graph-partitioning"><a href="#2-1-1-图分割-Graph-partitioning" class="headerlink" title="2.1.1 图分割 (Graph partitioning)"></a>2.1.1 图分割 (Graph partitioning)</h3><p>社区可以看做密集子图结构，使用图分割算法来解决。图分割问题的目标是把图中的节点分成gg个预定大小的群组，这些群组之间的边数目最小，这个问题是NP-hard 的。</p>
+<h2 id="复杂网络上的社区发现">2 复杂网络上的社区发现</h2>
+<div class="figure">
+<img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png" alt="复杂网络上的社区发现.png">
+<p class="caption">复杂网络上的社区发现.png</p>
+</div>
+<h3 id="传统算法-traditional-methods">2.1 传统算法 (Traditional methods)</h3>
+<h4 id="图分割-graph-partitioning">2.1.1 图分割 (Graph partitioning)</h4>
+<p>社区可以看做密集子图结构，使用图分割算法来解决。图分割问题的目标是把图中的节点分成gg个预定大小的群组，这些群组之间的边数目最小，这个问题是NP-hard 的。</p>
 <ul>
-<li><strong>K-L算法（Kernighan-Lin algorithm）</strong>通过基于贪婪优化的启发式过程把网络分解为2个规模已知的社区。该算法为网络的划分引入一个增益函数，定义为两个社区内部的边数与两个社区边数之间的差，寻求Q的最大划分办法。[^Brian et al. 1970]</li>
-<li><strong>谱二分法（spectral bisection method）</strong>早期的分割都是二分图，社区发现也是基于二分的，遇到多分的情况就把其中一个子图再分割。比较经典的有谱二分法，利用拉普拉斯矩阵的第二小特征值$\lambda_2$对社区二分类，这其实是属于谱方法的一种特例。[^Barnes et al. 1982]</li>
-<li><strong>最大流（maximum flows）</strong>基于最大流的算法是G.W.Flake提出的。他给网络加了虚拟源节点ss和终点节点tt，并证明了经过最大流算法之后，包含源点ss的社区恰好满足社区内节点链接比与社区外的链接要多的性质。[^Flake et al. 2000] [^Flake et al. 2002]</li>
-<li><strong>多层次图分割（level-structure partitioning）</strong>[^Pothen et al. 1997]</li>
+<li><strong>K-L算法（Kernighan-Lin algorithm）</strong>通过基于贪婪优化的启发式过程把网络分解为2个规模已知的社区。该算法为网络的划分引入一个增益函数，定义为两个社区内部的边数与两个社区边数之间的差，寻求Q的最大划分办法。[1]</li>
+<li><strong>谱二分法（spectral bisection method）</strong>早期的分割都是二分图，社区发现也是基于二分的，遇到多分的情况就把其中一个子图再分割。比较经典的有谱二分法，利用拉普拉斯矩阵的第二小特征值<span class="math inline">\(\lambda_2\)</span>对社区二分类，这其实是属于谱方法的一种特例。[2]</li>
+<li><strong>最大流（maximum flows）</strong>基于最大流的算法是G.W.Flake提出的。他给网络加了虚拟源节点ss和终点节点tt，并证明了经过最大流算法之后，包含源点ss的社区恰好满足社区内节点链接比与社区外的链接要多的性质。[3] [4]</li>
+<li><strong>多层次图分割（level-structure partitioning）</strong>[5]</li>
 </ul>
-<h3 id="2-1-2-聚类-Clustering"><a href="#2-1-2-聚类-Clustering" class="headerlink" title="2.1.2 聚类 (Clustering)"></a>2.1.2 聚类 (Clustering)</h3><p>当社区的边非常密集，数目远大于点时，图分割可能就不太好使了，这时候社区发现可能更接近于聚类。我们把社区发现看做一组内容相似的物体集合，使用聚类算法。和图中的社区发现相比，图中的社区点与点之间可以用边来表示联系的紧密，而聚类中的社区，需要定义点之间的相似度，比如说根据邻接关系定义：$$d_{ij}=\sqrt{\sum_{k\neq i,j}(a_{ik}-a_{jk})^2}$$其中$\mathbf{A}=(a_{ij})$为邻接矩阵，$i$和$j$的邻居越多，节点相似度越高。 聚类算法和网络发现（聚类相关的）算法可以很容易地互相转化。另外，社区发现可以是局部的，而聚类是全网络的。</p>
+<h4 id="聚类-clustering">2.1.2 聚类 (Clustering)</h4>
+<p>当社区的边非常密集，数目远大于点时，图分割可能就不太好使了，这时候社区发现可能更接近于聚类。我们把社区发现看做一组内容相似的物体集合，使用聚类算法。和图中的社区发现相比，图中的社区点与点之间可以用边来表示联系的紧密，而聚类中的社区，需要定义点之间的相似度，比如说根据邻接关系定义：<span class="math display">\[d_{ij}=\sqrt{\sum_{k\neq i,j}(a_{ik}-a_{jk})^2}\]</span>其中<span class="math inline">\(\mathbf{A}=(a_{ij})\)</span>为邻接矩阵，<span class="math inline">\(i\)</span>和<span class="math inline">\(j\)</span>的邻居越多，节点相似度越高。 聚类算法和网络发现（聚类相关的）算法可以很容易地互相转化。另外，社区发现可以是局部的，而聚类是全网络的。</p>
 <ul>
-<li><strong>层次聚类（hierarchical clustering）</strong>层次聚类假设社区是存在层次结构的（其实不一定额，可能是中心结构），计算网络中每一对节点的相似度。 然后分为凝聚法和分裂法两种：[^Friedman et al. 2001]<ul>
+<li><strong>层次聚类（hierarchical clustering）</strong>层次聚类假设社区是存在层次结构的（其实不一定额，可能是中心结构），计算网络中每一对节点的相似度。 然后分为凝聚法和分裂法两种：[6]
+<ul>
 <li><em>凝聚法（Agglomerative algorithms）</em>：根据相似度从强到弱连接相应节点对，形成树状图（Dendrogram），根据需求对树状图进行横切，获得社区结构。</li>
 <li><em>分裂法（Divisive algorithms）</em>：找出相互关联最弱的节点，并删除他们之间的边，通过这样的反复操作将网络划分为越来越小的组件，连通的网络构成社区。</li>
-</ul>
-</li>
-<li><strong>划分聚类（Partitional clustering）</strong>像k-means就很好，可以使用上面的相似度来聚类 。[^MacQueen 1967]</li>
-<li><strong>谱聚类（Spectral clustering）</strong>图分割中的如 Ratio Cut和Normalized Cut其实和谱聚类是等价的（见参考3），所以谱聚类也能用在社区发现上。</li>
+</ul></li>
+<li><strong>划分聚类（Partitional clustering）</strong>像k-means就很好，可以使用上面的相似度来聚类 。[7]</li>
+<li><strong>谱聚类（Spectral clustering）</strong>图分割中的如 Ratio Cut和Normalized Cut其实和谱聚类是等价的，所以谱聚类也能用在社区发现上。</li>
 <li><strong>局部聚类</strong></li>
 </ul>
-<h2 id="2-2-分裂方法（Divisive-algorithms）"><a href="#2-2-分裂方法（Divisive-algorithms）" class="headerlink" title="2.2 分裂方法（Divisive algorithms）"></a>2.2 分裂方法（Divisive algorithms）</h2><p>这里的分裂法和层次聚类中的类似，区别是前者不计算节点相似度，而是删除是两个社区之间的关联边，这些边上的两点的相似度不一定很低。其中最著名的算法就是<strong>Girvan-Newman算法</strong>，根据以下假设：社区之间所存在的少数几个连接应该是社区间通信的瓶颈，是社区间通信时通信流量的必经之路。如果我们考虑网络中某种形式的通信并且寻找到具有最高通信流量（比如最小路径条数）的边，该边就应该是连接不同社区的通道。Girvan-Newman算法就是这样，迭代删除<strong>边介数（Edge Betweenness）</strong>最大的边。[^Girvan et al. 2002]</p>
-<h2 id="2-3-基于模块度的方法（Modularity-based-methods）"><a href="#2-3-基于模块度的方法（Modularity-based-methods）" class="headerlink" title="2.3 基于模块度的方法（Modularity-based methods）"></a>2.3 基于模块度的方法（Modularity-based methods）</h2><blockquote>
+<h3 id="分裂方法divisive-algorithms">2.2 分裂方法（Divisive algorithms）</h3>
+<p>这里的分裂法和层次聚类中的类似，区别是前者不计算节点相似度，而是删除是两个社区之间的关联边，这些边上的两点的相似度不一定很低。其中最著名的算法就是<strong>Girvan-Newman算法</strong>，根据以下假设：社区之间所存在的少数几个连接应该是社区间通信的瓶颈，是社区间通信时通信流量的必经之路。如果我们考虑网络中某种形式的通信并且寻找到具有最高通信流量（比如最小路径条数）的边，该边就应该是连接不同社区的通道。Girvan-Newman算法就是这样，迭代删除<strong>边介数（Edge Betweenness）</strong>最大的边。[8]</p>
+<h3 id="基于模块度的方法modularity-based-methods">2.3 基于模块度的方法（Modularity-based methods）</h3>
+<blockquote>
 <p>Newman在自己2006年的文章里也证明了Modularity其实是对模块度矩阵进行一个谱分析。这也体现了Modularity方法的普适性和良好的可解释性。</p>
 </blockquote>
-<p>模块度不仅仅作为优化的目标函数提出，它也是目前是最流行的用来衡量社区结果好坏的标准之一（它的提出被称作社区发现研究历史上的里程碑)。我们知道，社区是节点有意识地紧密联系所造成的，它内部边的紧密程度总比一个随机的网络图来的紧密一些，模块度的定义就是基于此，它表示所有被划分到同一个社区的边所占的比例，再减除掉完全随机情况时被划分到同一个社区的边所占的比例：<br>$$ \begin{align}<br>Q=\frac{1}{2M}\sum_{ij}(a_{i,j}-\frac{k_ik_j}{2M})\delta(C_i,C_j)=\frac{1}{2M}\sum_{ij}b_{ij}\delta(C_i,C_j)<br>\end{align} $$<br>其中$\mathbf{A}=(a_{ij})$是网络的邻接矩阵，$M$是整个图中边的数目，$k_i$ 是顶点$i$的度数，$C_i$表示节点$i$所属的社区，如果两个节点属于同一个社区，则$\delta$取值1，否则为0。注意公式（1） 的意义，$\frac{a_{ij}}{2M}$是两个顶点之间连接的概率，如果我们保持一个网络的度分布但对其连边进行随机洗牌，任意一对节点在洗牌后存在连接的概率为$\frac{k_ik_j}{(2M)^2}$。上式中括号表达的就是节点之间的实际连边概率高于期待值的程度。另$\mathbf{B}=(b_{ij})_{N\times N}$也称为<strong>模块度矩阵</strong>（Modularity matrix）。</p>
-<p>公式还可以写成另一种形式：<br>$$ \begin{align}<br>Q=\sum_{i=1}^{n_c}(e_{ii}-a_i^2)<br>\end{align} $$<br>其中 $e_{ij}=\sum\limits_{vw}\frac{a_{vw}}{2M}\delta(C_i, C_j)$，且 $e_{ii}$ 是每个社团内区$i$内部顶点之间的连边数占整个网络边数的比例，$a_i=\frac{k_i}{2M}=\sum_je_{ij}$意味着一端与社团 $i$ 中顶点相连的连边的比例，$n_c$ 是整个网络中社区的数量。</p>
-<p>在实际计算里，上式要求对社区及其内部节点进行遍历，这个计算复杂度是很大的。Newman(2006) [^Newman 2006]对上式进行了化简，得到矩阵表达如下：<br>$$ \begin{align}<br>Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\frac{1}{2M}{\rm Tr}(\mathbf{S}^{\rm T}\mathbf{B}\mathbf{S})<br>\end{align} $$<br>其中$S$是$N\times n_c$的矩阵，且如果顶点$i$属于社区$r$则$S_{ir}$是1，否则为0.</p>
+<p>模块度[9]不仅仅作为优化的目标函数提出，它也是目前是最流行的用来衡量社区结果好坏的标准之一（它的提出被称作社区发现研究历史上的里程碑)。我们知道，社区是节点有意识地紧密联系所造成的，它内部边的紧密程度总比一个随机的网络图来的紧密一些，模块度的定义就是基于此，它表示所有被划分到同一个社区的边所占的比例，再减除掉完全随机情况时被划分到同一个社区的边所占的比例： <span class="math display">\[ \begin{align}
+Q=\frac{1}{2M}\sum_{ij}(a_{i,j}-\frac{k_ik_j}{2M})\delta(C_i,C_j)=\frac{1}{2M}\sum_{ij}b_{ij}\delta(C_i,C_j)
+\end{align} \]</span> 其中<span class="math inline">\(\mathbf{A}=(a_{ij})\)</span>是网络的邻接矩阵，<span class="math inline">\(M\)</span>是整个图中边的数目，<span class="math inline">\(k_i\)</span> 是顶点<span class="math inline">\(i\)</span>的度数，<span class="math inline">\(C_i\)</span>表示节点<span class="math inline">\(i\)</span>所属的社区，如果两个节点属于同一个社区，则<span class="math inline">\(\delta\)</span>取值1，否则为0。注意公式（1） 的意义，<span class="math inline">\(\frac{a_{ij}}{2M}\)</span>是两个顶点之间连接的概率，如果我们保持一个网络的度分布但对其连边进行随机洗牌，任意一对节点在洗牌后存在连接的概率为<span class="math inline">\(\frac{k_ik_j}{(2M)^2}\)</span>。上式中括号表达的就是节点之间的实际连边概率高于期待值的程度。另<span class="math inline">\(\mathbf{B}=(b_{ij})_{N\times N}\)</span>也称为<strong>模块度矩阵</strong>（Modularity matrix）。</p>
+<p>公式还可以写成另一种形式： <span class="math display">\[ \begin{align}
+Q=\sum_{i=1}^{n_c}(e_{ii}-a_i^2)
+\end{align} \]</span> 其中 <span class="math inline">\(e_{ij}=\sum\limits_{vw}\frac{a_{vw}}{2M}\delta(C_i, C_j)\)</span>，且 <span class="math inline">\(e_{ii}\)</span> 是每个社团内区<span class="math inline">\(i\)</span>内部顶点之间的连边数占整个网络边数的比例，<span class="math inline">\(a_i=\frac{k_i}{2M}=\sum_je_{ij}\)</span>意味着一端与社团 <span class="math inline">\(i\)</span> 中顶点相连的连边的比例，<span class="math inline">\(n_c\)</span> 是整个网络中社区的数量。</p>
+<p>在实际计算里，上式要求对社区及其内部节点进行遍历，这个计算复杂度是很大的。Newman(2006) [16]对上式进行了化简，得到矩阵表达如下： <span class="math display">\[ \begin{align}
+Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\frac{1}{2M}{\rm Tr}(\mathbf{S}^{\rm T}\mathbf{B}\mathbf{S})
+\end{align} \]</span> 其中<span class="math inline">\(S\)</span>是<span class="math inline">\(N\times n_c\)</span>的矩阵，且如果顶点<span class="math inline">\(i\)</span>属于社区<span class="math inline">\(r\)</span>则<span class="math inline">\(S_{ir}\)</span>是1，否则为0.</p>
 <p>模块度的一个优点是好坏与社区中点的数目无关。模块度真是个好东西，第一次对社区这个模糊的概念提出了量化的衡量标准（不过据说对于小粒度的不太准）。所以对模块度的算法优化多种多样，从贪心到模拟退火等应有尽有。</p>
 <ul>
-<li><strong>贪心策略（Greedy techniques）</strong> 有两个比较经典的算法，分别是<ul>
-<li>Fast greedy算法（CNN算法）[^Clauset et al. 2004]</li>
-<li>Multilevel算法（Fast-Unfolding算法）[^Blondel et al. 2008]<blockquote>
-<p>Fast-Unfolding算法可以Spark中实现，已有现成的代码。<a href="[基于GraphX的社区发现算法FastUnfolding分布式实现](http://bbs.pinggu.org/thread-3614747-1-1.html){:target=&quot;_blank&quot;}">^GraphX</a></p>
-</blockquote>
-</li>
-</ul>
-</li>
+<li><strong>贪心策略（Greedy techniques）</strong> 有两个比较经典的算法，分别是
+<ul>
+<li>Fast greedy算法（CNN算法）[13]</li>
+<li>Multilevel算法（Fast-Unfolding算法）[14] &gt; Fast-Unfolding算法可以Spark中实现，已有现成的代码。[15]</li>
+</ul></li>
 <li><strong>模拟退火（Simulated annealing）</strong></li>
 <li><strong>极值优化（Extremal optimization）</strong></li>
 <li><strong>谱优化（Spectral optimization）</strong></li>
 </ul>
-<h2 id="2-2-4-谱方法（Spectral-Algorithms）"><a href="#2-2-4-谱方法（Spectral-Algorithms）" class="headerlink" title="2.2.4 谱方法（Spectral Algorithms）"></a>2.2.4 谱方法（Spectral Algorithms）</h2><p>基于谱分析的社区算法基于如下事实，在同一个社区内的节点，它在拉普拉斯矩阵中的特征向量近似。将节点对应的矩阵特征向量（与特征值和特征向量有关的都叫谱）看成空间坐标，将网络节点映射到多维向量空间去，然后就可以运用传统的聚类算法将它们聚集成社团。这种方法不可避免的要计算矩阵的特征值，开销很大，但是因为能直接使用很多传统的向量聚类的成果，灵活性很高。</p>
-<h2 id="2-5-动态算法（Dynamic-Algorithms）"><a href="#2-5-动态算法（Dynamic-Algorithms）" class="headerlink" title="2.5 动态算法（Dynamic Algorithms）"></a>2.5 动态算法（Dynamic Algorithms）</h2><p>自旋模型和同步算法应该是物理学家提出来的算法，话说物理学家在社区发现领域十分活跃，发了不少论文。随机游走是基于以下思想：如果存在很强的社区结构，那么随机游走器（random walker)会在社区内部停留更长的时间，因为社区内部的边密度比较高。</p>
+<h3 id="谱方法spectral-algorithms">2.2.4 谱方法（Spectral Algorithms）</h3>
+<p>基于谱分析的社区算法基于如下事实，在同一个社区内的节点，它在拉普拉斯矩阵中的特征向量近似。将节点对应的矩阵特征向量（与特征值和特征向量有关的都叫谱）看成空间坐标，将网络节点映射到多维向量空间去，然后就可以运用传统的聚类算法将它们聚集成社团。这种方法不可避免的要计算矩阵的特征值，开销很大，但是因为能直接使用很多传统的向量聚类的成果，灵活性很高。</p>
+<h3 id="动态算法dynamic-algorithms">2.5 动态算法（Dynamic Algorithms）</h3>
+<p>自旋模型和同步算法应该是物理学家提出来的算法，话说物理学家在社区发现领域十分活跃，发了不少论文。随机游走是基于以下思想：如果存在很强的社区结构，那么随机游走器（random walker)会在社区内部停留更长的时间，因为社区内部的边密度比较高。</p>
 <ul>
 <li><strong>自旋模型（Spin models）</strong></li>
 <li><strong>随机游走（Random walk）</strong></li>
 <li><strong>同步算法（Synchronization）</strong></li>
 </ul>
-<h2 id="2-6-基于统计推断的算法（Methods-based-on-statistical-inference）"><a href="#2-6-基于统计推断的算法（Methods-based-on-statistical-inference）" class="headerlink" title="2.6 基于统计推断的算法（Methods based on statistical inference）"></a>2.6 基于统计推断的算法（Methods based on statistical inference）</h2><p>基于统计推断的方法包括观察到的数据集和对模型的假设。如果数据集是图，模型假设对节点之间如何联系的描述就要符合真实的图结构。[^柴变芳 2012] [^柴变芳 2015]</p>
+<h3 id="基于统计推断的算法methods-based-on-statistical-inference">2.6 基于统计推断的算法（Methods based on statistical inference）</h3>
+<p>基于统计推断的方法包括观察到的数据集和对模型的假设。如果数据集是图，模型假设对节点之间如何联系的描述就要符合真实的图结构。[10] [11]</p>
 <ul>
 <li><strong>生成模型（Generative models）</strong></li>
-<li><strong>判别模型（Blockmodeling, model selection and information theory）</strong><blockquote>
-<p>赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[^Info Map]</p>
-</blockquote>
-</li>
+<li><strong>判别模型（Blockmodeling, model selection and information theory）</strong> &gt; 赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[12]</li>
 </ul>
 <hr>
-<h1 id="3-社区发现算法特征"><a href="#3-社区发现算法特征" class="headerlink" title="3 社区发现算法特征"></a>3 社区发现算法特征</h1><h2 id="3-1-优化目标"><a href="#3-1-优化目标" class="headerlink" title="3.1 优化目标"></a>3.1 优化目标</h2><p>有一些社区发现算法比如谱方法，K-L算法，以及基于最大流的社区发现方法等，给出明确的的目标函数，并提出算法来最优化目标函数。 常用的优化目标函数有：</p>
-<h3 id="3-1-1-Normailized-Cut、Ratio-Cut和conductance"><a href="#3-1-1-Normailized-Cut、Ratio-Cut和conductance" class="headerlink" title="3.1.1 Normailized Cut、Ratio Cut和conductance"></a>3.1.1 Normailized Cut、Ratio Cut和conductance</h3><p>记$\pi=(C_1,C_2,\cdots,C_K)$表示网络的社区，同时满足$C_i\bigcap C_j=\emptyset,\, \bigcup_{i=1}^KC_i=V$，<strong>规范化割集标准（Normailized Cut</strong>）和<strong>比例割集标准（Ratio Cut）</strong>定义为：<br>$$ \begin{align}<br>Ratio\, Cut(\pi)=\frac{1}{K}\sum_{i=1}^K\frac{cut(C_i,\overline{C_i})}{|C_i|}<br>\end{align} $$<br>$$ \begin{align}<br>Normailized\, Cut(\pi)=\frac{1}{K}\sum_{i=1}^K\frac{cut(C_i,\overline{C_i})}{vol(C_i)}, vol(C_i)=\sum_{v\in C_i}k_v<br>\end{align} $$</p>
-<p>其中 $cut(C_i,\overline{C_i})$ 表示两者之间的联系数目。两个目标函数的目标是使得社区之间的边数量最小化的同时，避免出现类似于只包含1个成员的小社区。</p>
-<p>连通度(conductance)也是类似的定义:<br>$$ \begin{align}<br>Conductance(C_i)=\frac{cut(C_i,\overline{C_i})}{\min\{vol(C_i),vol(\overline{C_i})\}}<br>\end{align} $$</p>
-<h3 id="3-1-2-Kernighan-Lin-object"><a href="#3-1-2-Kernighan-Lin-object" class="headerlink" title="3.1.2 Kernighan-Lin object"></a>3.1.2 Kernighan-Lin object</h3><p>K-L目标函数旨在使两个相同大小的社区之间的边联系最小：<br>$$ \begin{align}<br>KL_{obj}(C_1,\ldots,C_k)=\sum_{i\neq j}A(C_i,C_j)<br>\end{align} $$<br>其中$A(C_i,C_j)=\sum_{u\in C_i,v\in C_j}A(u,v), |C_1|=|C_2|=\ldots=|C_k|$</p>
-<h3 id="3-1-3-Modularity"><a href="#3-1-3-Modularity" class="headerlink" title="3.1.3 Modularity"></a>3.1.3 Modularity</h3><p>模块度已在2.3节提过。</p>
-<h2 id="3-2-粒度控制（社区数目可不可控）"><a href="#3-2-粒度控制（社区数目可不可控）" class="headerlink" title="3.2 粒度控制（社区数目可不可控）"></a>3.2 粒度控制（社区数目可不可控）</h2><p>对于有层次的社区发现算法来说的，比如某些二分社区算法，是通过不断递归的划分子社区来获得预定的社区数目。而某些算法，像层次聚类和MCL（Markov clustering），基于概率模型的社区发现算法等，允许用户通过调节参数来间接控制输出社区的数目。</p>
+<h2 id="社区发现算法特征">3 社区发现算法特征</h2>
+<h3 id="优化目标">3.1 优化目标</h3>
+<p>有一些社区发现算法比如谱方法，K-L算法，以及基于最大流的社区发现方法等，给出明确的的目标函数，并提出算法来最优化目标函数。 常用的优化目标函数有：</p>
+<h4 id="normailized-cutratio-cut和conductance">3.1.1 Normailized Cut、Ratio Cut和conductance</h4>
+<p>记<span class="math inline">\(\pi=(C_1,C_2,\cdots,C_K)\)</span>表示网络的社区，同时满足<span class="math inline">\(C_i\bigcap C_j=\emptyset,\, \bigcup_{i=1}^KC_i=V\)</span>，<strong>规范化割集标准（Normailized Cut</strong>）和<strong>比例割集标准（Ratio Cut）</strong>定义为： <span class="math display">\[ \begin{align}
+Ratio\, Cut(\pi)=\frac{1}{K}\sum_{i=1}^K\frac{cut(C_i,\overline{C_i})}{|C_i|}
+\end{align} \]</span> <span class="math display">\[ \begin{align}
+Normailized\, Cut(\pi)=\frac{1}{K}\sum_{i=1}^K\frac{cut(C_i,\overline{C_i})}{vol(C_i)}, vol(C_i)=\sum_{v\in C_i}k_v
+\end{align} \]</span></p>
+<p>其中 <span class="math inline">\(cut(C_i,\overline{C_i})\)</span> 表示两者之间的联系数目。两个目标函数的目标是使得社区之间的边数量最小化的同时，避免出现类似于只包含1个成员的小社区。</p>
+<p>连通度(conductance)也是类似的定义: <span class="math display">\[ \begin{align}
+Conductance(C_i)=\frac{cut(C_i,\overline{C_i})}{\min\{vol(C_i),vol(\overline{C_i})\}}
+\end{align} \]</span></p>
+<h4 id="kernighan-lin-object">3.1.2 Kernighan-Lin object</h4>
+<p>K-L目标函数旨在使两个相同大小的社区之间的边联系最小： <span class="math display">\[ \begin{align}
+KL_{obj}(C_1,\ldots,C_k)=\sum_{i\neq j}A(C_i,C_j)
+\end{align} \]</span> 其中<span class="math inline">\(A(C_i,C_j)=\sum_{u\in C_i,v\in C_j}A(u,v), |C_1|=|C_2|=\ldots=|C_k|\)</span></p>
+<h4 id="modularity">3.1.3 Modularity</h4>
+<p>模块度已在2.3节提过。</p>
+<h3 id="粒度控制社区数目可不可控">3.2 粒度控制（社区数目可不可控）</h3>
+<p>对于有层次的社区发现算法来说的，比如某些二分社区算法，是通过不断递归的划分子社区来获得预定的社区数目。而某些算法，像层次聚类和MCL（Markov clustering），基于概率模型的社区发现算法等，允许用户通过调节参数来间接控制输出社区的数目。</p>
 <p>另一些算法，像模块度优化算法，它的社区数目是由优化函数决定的，不需要用户来设定社区的数目。</p>
-<h2 id="3-3-规模"><a href="#3-3-规模" class="headerlink" title="3.3 规模"></a>3.3 规模</h2><p>很多算法在设计的时候，并没有特别地考虑伸缩性，在面对整个Web以及大型社交网络时动辄百万甚至千万个点时效果不佳。比如G-N算法，需要计算即通过每条边的最短路径数目（edge betweeness)，复杂度相当高，像谱聚类算法，能处理10K个点和70M条边就不错了。</p>
+<h3 id="规模">3.3 规模</h3>
+<p>很多算法在设计的时候，并没有特别地考虑伸缩性，在面对整个Web以及大型社交网络时动辄百万甚至千万个点时效果不佳。比如G-N算法，需要计算即通过每条边的最短路径数目（edge betweeness)，复杂度相当高，像谱聚类算法，能处理10K个点和70M条边就不错了。</p>
 <p>所以，有些算法比如Shingling算法等，使用的方法相对简单，从而能适合大规模的社区发现的运行要求。</p>
-<h2 id="3-4-重叠社区"><a href="#3-4-重叠社区" class="headerlink" title="3.4 重叠社区"></a>3.4 重叠社区</h2><p>很多社区发现算法，比如图分割算法，将整个网络划分为多个独立的社区结构。但是在现实中，许多网络并不存在绝对的彼此独立的社团结构，相反，它们是由许多彼此重叠互相关联的社团构成，比如说在社交网络中，一个人根据兴趣的不同，有可能属于多个不同的小组等。所以，很多类似派系过滤算法（CPM - Clique Percolation Method）[^Palla et al. 2005]这样旨在发现重叠社区的算法也被不断地提出来。</p>
-<h2 id="3-5-评价标准"><a href="#3-5-评价标准" class="headerlink" title="3.5 评价标准"></a>3.5 评价标准</h2><h3 id="3-5-1-准确率，召回率，F1值"><a href="#3-5-1-准确率，召回率，F1值" class="headerlink" title="3.5.1 准确率，召回率，F1值"></a>3.5.1 准确率，召回率，F1值</h3><p>一个大规模数据集合中检索文档的时，可把文档分成四组：系统检索到的相关文档（A），系统检索到的不相关文档（B），相关但是系统没有检索到的文档（C），不相关且没有被系统检索到的文档（D）： 准确度定义为：<br>$$ \begin{align}<br>pr=\frac{A}{A+C}<br>\end{align} $$</p>
-<p>召回率定义为：<br>$$ \begin{align}<br>rc=\frac{A}{A+B}<br>\end{align} $$</p>
-<p>F-measure是准确率和召回率协调之后的结果，定义为：<br>$$ \begin{align}<br>PWF=\frac{2\times pr \times rc}{pr+rc}<br>\end{align} $$</p>
+<h3 id="重叠社区">3.4 重叠社区</h3>
+<p>很多社区发现算法，比如图分割算法，将整个网络划分为多个独立的社区结构。但是在现实中，许多网络并不存在绝对的彼此独立的社团结构，相反，它们是由许多彼此重叠互相关联的社团构成，比如说在社交网络中，一个人根据兴趣的不同，有可能属于多个不同的小组等。所以，很多类似派系过滤算法（CPM - Clique Percolation Method）[17]这样旨在发现重叠社区的算法也被不断地提出来。</p>
+<h3 id="评价标准">3.5 评价标准</h3>
+<h4 id="准确率召回率f1值">3.5.1 准确率，召回率，F1值</h4>
+<p>一个大规模数据集合中检索文档的时，可把文档分成四组：系统检索到的相关文档（A），系统检索到的不相关文档（B），相关但是系统没有检索到的文档（C），不相关且没有被系统检索到的文档（D）： 准确度定义为： <span class="math display">\[ \begin{align}
+pr=\frac{A}{A+C}
+\end{align} \]</span></p>
+<p>召回率定义为： <span class="math display">\[ \begin{align}
+rc=\frac{A}{A+B}
+\end{align} \]</span></p>
+<p>F-measure是准确率和召回率协调之后的结果，定义为： <span class="math display">\[ \begin{align}
+PWF=\frac{2\times pr \times rc}{pr+rc}
+\end{align} \]</span></p>
 <p>同理，社区也可以用这个概念。</p>
-<h3 id="3-5-2-平均聚类纯度（average-cluster-purity）"><a href="#3-5-2-平均聚类纯度（average-cluster-purity）" class="headerlink" title="3.5.2 平均聚类纯度（average cluster purity）"></a>3.5.2 平均聚类纯度（average cluster purity）</h3><p>假设算法发现了$C=\{C_1,\ldots,C_K\}$个社区，我们假设社区$C_i$有$n_i$个点，，每个点分别为$\{v_{1,i},\ldots,v_{n_i,i}\}$。令$M_{l,i}$为$v_{l,i}$真实归属的社区的标签，平均聚类纯度为定义为：<br>$$ \begin{align}<br>ACP=\frac{1}{k}\sum_{i=1}^k\sum_{l=1}^{n_i}\frac{\delta(dom_i\in M_{l,i})}{n_i}<br>\end{align} $$<br>即社区$C_i$中主要标签的点占社区所有点的数目比例。</p>
-<h3 id="3-5-3-互信息"><a href="#3-5-3-互信息" class="headerlink" title="3.5.3 互信息"></a>3.5.3 互信息</h3><p>首先来回顾熵的定义,在一个分布内包含的信息为熵：<br>$$ \begin{align}<br>H(X)=-\sum_{x \in X}p(x)\log p(x)<br>\end{align} $$</p>
-<p><strong>互信息（mutual information)</strong>描述了两个分布之间的相关性：<br>$$ \begin{align}<br>I(X;Y)=H(X)-H(X|Y)=\sum_{y \in Y}\sum_{x \in X}p(x,y)\log(\frac{p(x,y)}{p(x)p(y)})<br>\end{align} $$</p>
-<p>但事实上，对于一个划分$X$，任何一个从$X$派生的划分$Y$都和$X$有相同的互信息，尽管这些划分都不尽相同。在这种情况下条件熵$H(X|Y)$都近乎为0，这也导致了互信息$I(X;Y)$几乎等于$H(X)$。为了避免这种情况，Danon et al.提出了归一化互信息（normalized mutual information），直到现在都使用得非常广泛：[^Danon et al. 2005]<br>$$ \begin{align}<br>I_{norm}(\mathcal{X},\mathcal{Y})=\frac{2I(X;Y)}{H(X)+H(Y)}<br>\end{align} $$</p>
-<p>所谓两个事件相关性的量化度量，就是在了解其中一个$Y$的前提下，对消除另一个$X$不确定性所提供的信息量。 规范化的互信息定义为<br>$$ \begin{align}<br>NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}<br>\end{align} $$</p>
-<p>我们将划分当做一个结点落在社区的概率分布，然后计算社区划分结果和真实情况的NMI值，具体例子见参考《社会计算:社区发现和社会媒体挖掘》[^社会计算].</p>
+<h4 id="平均聚类纯度average-cluster-purity">3.5.2 平均聚类纯度（average cluster purity）</h4>
+<p>假设算法发现了<span class="math inline">\(C=\{C_1,\ldots,C_K\}\)</span>个社区，我们假设社区<span class="math inline">\(C_i\)</span>有<span class="math inline">\(n_i\)</span>个点，，每个点分别为<span class="math inline">\(\{v_{1,i},\ldots,v_{n_i,i}\}\)</span>。令<span class="math inline">\(M_{l,i}\)</span>为<span class="math inline">\(v_{l,i}\)</span>真实归属的社区的标签，平均聚类纯度为定义为： <span class="math display">\[ \begin{align}
+ACP=\frac{1}{k}\sum_{i=1}^k\sum_{l=1}^{n_i}\frac{\delta(dom_i\in M_{l,i})}{n_i}
+\end{align} \]</span> 即社区<span class="math inline">\(C_i\)</span>中主要标签的点占社区所有点的数目比例。</p>
+<h4 id="互信息">3.5.3 互信息</h4>
+<p>首先来回顾熵的定义,在一个分布内包含的信息为熵： <span class="math display">\[ \begin{align}
+H(X)=-\sum_{x \in X}p(x)\log p(x)
+\end{align} \]</span></p>
+<p><strong>互信息（mutual information)</strong>描述了两个分布之间的相关性： <span class="math display">\[ \begin{align}
+I(X;Y)=H(X)-H(X|Y)=\sum_{y \in Y}\sum_{x \in X}p(x,y)\log(\frac{p(x,y)}{p(x)p(y)})
+\end{align} \]</span></p>
+<p>但事实上，对于一个划分<span class="math inline">\(X\)</span>，任何一个从<span class="math inline">\(X\)</span>派生的划分<span class="math inline">\(Y\)</span>都和<span class="math inline">\(X\)</span>有相同的互信息，尽管这些划分都不尽相同。在这种情况下条件熵<span class="math inline">\(H(X|Y)\)</span>都近乎为0，这也导致了互信息<span class="math inline">\(I(X;Y)\)</span>几乎等于<span class="math inline">\(H(X)\)</span>。为了避免这种情况，Danon et al.提出了归一化互信息（normalized mutual information），直到现在都使用得非常广泛：[19] <span class="math display">\[ \begin{align}
+I_{norm}(\mathcal{X},\mathcal{Y})=\frac{2I(X;Y)}{H(X)+H(Y)}
+\end{align} \]</span></p>
+<p>所谓两个事件相关性的量化度量，就是在了解其中一个<span class="math inline">\(Y\)</span>的前提下，对消除另一个<span class="math inline">\(X\)</span>不确定性所提供的信息量。 规范化的互信息定义为 <span class="math display">\[ \begin{align}
+NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
+\end{align} \]</span></p>
+<p>我们将划分当做一个结点落在社区的概率分布，然后计算社区划分结果和真实情况的NMI值，具体例子见参考《社会计算:社区发现和社会媒体挖掘》[18].</p>
 <hr>
-<p>[^Brian et al. 1970]: <a href="http://ieeexplore.ieee.org/abstract/document/6771089/" target="_blank" rel="external">Kernighan, Brian W., and Shen Lin. “An efficient heuristic procedure for partitioning graphs.” The Bell system technical journal 49.2 (1970): 291-307.</a>{:target=”_blank”}</p>
-<p>[^Barnes et al. 1982]: <a href="http://epubs.siam.org/doi/abs/10.1137/0603056?journalCode=sjamdu" target="_blank" rel="external">Barnes, Earl R. “An algorithm for partitioning the nodes of a graph.” SIAM Journal on Algebraic Discrete Methods 3.4 (1982): 541-550.</a>{:target=”_blank”}</p>
-<p>[^Flake et al. 2000]: <a href="http://dl.acm.org/citation.cfm?id=347121" target="_blank" rel="external">Flake, Gary William, Steve Lawrence, and C. Lee Giles. “Efficient identification of web communities.” Proceedings of the sixth ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2000.</a>{:target=”_blank”}</p>
-<p>[^Flake et al. 2002]: <a href="http://ieeexplore.ieee.org/abstract/document/989932/" target="_blank" rel="external">Flake, Gary William, et al. “Self-organization and identification of web communities.” Computer 35.3 (2002): 66-70.</a>{:target=”_blank”}</p>
-<p>[^Pothen et al. 1997]: <a href="http://link.springer.com/chapter/10.1007/978-94-011-5412-3_12" target="_blank" rel="external">Pothen, Alex. “Graph partitioning algorithms with applications to scientific computing.” Parallel Numerical Algorithms. Springer Netherlands, 1997. 323-368.</a>{:target=”_blank”}</p>
-<p>[^Friedman et al. 2001]: <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf" target="_blank" rel="external">Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. The elements of statistical learning. Vol. 1. Springer, Berlin: Springer series in statistics, 2001.</a>{:target=”_blank”}</p>
-<p>[^MacQueen 1967]: <a href="https://projecteuclid.org/euclid.bsmsp/1200512992" target="_blank" rel="external">MacQueen, James. “Some methods for classification and analysis of multivariate observations.” Proceedings of the fifth Berkeley symposium on mathematical statistics and probability. Vol. 1. No. 14. 1967.</a>{:target=”_blank”}</p>
-<p>[^Girvan et al. 2002]: <a href="http://www.pnas.org/content/99/12/7821.short" target="_blank" rel="external">Girvan, Michelle, and Mark EJ Newman. “Community structure in social and biological networks.” Proceedings of the national academy of sciences 99.12 (2002): 7821-7826.</a>{:target=”_blank”}</p>
-<p>[^Newman et al. 2004]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.69.026113" target="_blank" rel="external">Newman, Mark EJ, and Michelle Girvan. “Finding and evaluating community structure in networks.” Physical review E 69.2 (2004): 026113.</a>{:target=”_blank”}</p>
-<p>[^柴变芳 2012]: <a href="http://www.cnki.com.cn/Article/CJFDTotal-JSJA201208000.htm" target="_blank" rel="external">柴变芳, 贾彩燕, and 于剑. “基于统计推理的社区发现模型综述.” 计算机科学 2012 年 08 (2012): 1-7+.</a>{:target=”_blank”}</p>
-<p>[^柴变芳 2015]: <a href="http://cdmd.cnki.com.cn/Article/CDMD-10004-1015611891.htm" target="_blank" rel="external">柴变芳. 基于生成模型的大规模网络广义社区发现方法研究. Diss. 北京交通大学, 2015.</a>{:target=”_blank”}</p>
-<p>[^Info Map]: <a href="http://www.mapequation.org/assets/publications/RosvallBergstromPNAS2008Full.pdf" target="_blank" rel="external">Rosvall, Martin, and Carl T. Bergstrom. “Maps of random walks on complex networks reveal community structure.” Proceedings of the National Academy of Sciences 105.4 (2008): 1118-1123.</a>{:target=”_blank”}</p>
-<p>[^Clauset et al. 2004]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.066111" target="_blank" rel="external">Clauset, Aaron, Mark EJ Newman, and Cristopher Moore. “Finding community structure in very large networks.” Physical review E 70.6 (2004): 066111.</a>{:target=”_blank”}</p>
-<p>[^Blondel et al. 2008]: <a href="https://arxiv.org/abs/0803.0476v2" target="_blank" rel="external">Blondel, Vincent D., et al. “Fast unfolding of communities in large networks.” Journal of statistical mechanics: theory and experiment 2008.10 (2008): P10008.</a>{:target=”_blank”}</p>
-<p>[^Newman 2006]: <a href="http://www.pnas.org/content/103/23/8577.short" target="_blank" rel="external">Newman, Mark EJ. “Modularity and community structure in networks.” Proceedings of the national academy of sciences 103.23 (2006): 8577-8582.</a>{:target=”_blank”}</p>
-<p>[^Palla et al. 2005]: <a href="http://www.nature.com/nature/journal/v435/n7043/abs/nature03607.html" target="_blank" rel="external">Palla, Gergely, et al. “Uncovering the overlapping community structure of complex networks in nature and society.” Nature 435.7043 (2005): 814-818.</a>{:target=”_blank”}</p>
-<p>[^社会计算]: <a href="https://github.com/rexwong/dp/wiki/%E7%A4%BE%E4%BC%9A%E8%AE%A1%E7%AE%97-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%AA%92%E4%BD%93%E6%8C%96%E6%8E%98" target="_blank" rel="external">LeiTang, and HuanLin. 社会计算:社区发现和社会媒体挖掘. 机械工业出版社, 2013.</a>{:target=”_blank”}</p>
-<p>[^Danon et al. 2005]: <a href="http://iopscience.iop.org/article/10.1088/1742-5468/2005/09/P09008/meta" target="_blank" rel="external">Danon, Leon, et al. “Comparing community structure identification.” Journal of Statistical Mechanics: Theory and Experiment 2005.09 (2005): P09008.</a>{:target=”_blank”}</p>
+<h2 id="参考文献">参考文献</h2>
+<ul>
+<li>[1]: <a href="http://ieeexplore.ieee.org/abstract/document/6771089/" target="_blank" rel="external">Kernighan, Brian W., and Shen Lin. “An efficient heuristic procedure for partitioning graphs.” The Bell system technical journal 49.2 (1970): 291-307.</a></li>
+<li>[2]: <a href="http://epubs.siam.org/doi/abs/10.1137/0603056?journalCode=sjamdu" target="_blank" rel="external">Barnes, Earl R. “An algorithm for partitioning the nodes of a graph.” SIAM Journal on Algebraic Discrete Methods 3.4 (1982): 541-550.</a></li>
+<li>[3]: <a href="http://dl.acm.org/citation.cfm?id=347121" target="_blank" rel="external">Flake, Gary William, Steve Lawrence, and C. Lee Giles. “Efficient identification of web communities.” Proceedings of the sixth ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2000.</a></li>
+<li>[4]: <a href="http://ieeexplore.ieee.org/abstract/document/989932/" target="_blank" rel="external">Flake, Gary William, et al. “Self-organization and identification of web communities.” Computer 35.3 (2002): 66-70.</a></li>
+<li>[5]: <a href="http://link.springer.com/chapter/10.1007/978-94-011-5412-3_12" target="_blank" rel="external">Pothen, Alex. “Graph partitioning algorithms with applications to scientific computing.” Parallel Numerical Algorithms. Springer Netherlands, 1997. 323-368.</a></li>
+<li>[6]: <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf" target="_blank" rel="external">Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. The elements of statistical learning. Vol. 1. Springer, Berlin: Springer series in statistics, 2001.</a></li>
+<li>[7]: <a href="https://projecteuclid.org/euclid.bsmsp/1200512992" target="_blank" rel="external">MacQueen, James. “Some methods for classification and analysis of multivariate observations.” Proceedings of the fifth Berkeley symposium on mathematical statistics and probability. Vol. 1. No. 14. 1967.</a></li>
+<li>[8]: <a href="http://www.pnas.org/content/99/12/7821.short" target="_blank" rel="external">Girvan, Michelle, and Mark EJ Newman. “Community structure in social and biological networks.” Proceedings of the national academy of sciences 99.12 (2002): 7821-7826.</a></li>
+<li>[9]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.69.026113" target="_blank" rel="external">Newman, Mark EJ, and Michelle Girvan. “Finding and evaluating community structure in networks.” Physical review E 69.2 (2004): 026113.</a></li>
+<li>[10]: <a href="http://www.cnki.com.cn/Article/CJFDTotal-JSJA201208000.htm" target="_blank" rel="external">柴变芳, 贾彩燕, and 于剑. “基于统计推理的社区发现模型综述.” 计算机科学 2012 年 08 (2012): 1-7+.</a></li>
+<li>[11]: <a href="http://cdmd.cnki.com.cn/Article/CDMD-10004-1015611891.htm" target="_blank" rel="external">柴变芳. 基于生成模型的大规模网络广义社区发现方法研究. Diss. 北京交通大学, 2015.</a></li>
+<li>[12]: <a href="http://www.mapequation.org/assets/publications/RosvallBergstromPNAS2008Full.pdf" target="_blank" rel="external">Rosvall, Martin, and Carl T. Bergstrom. “Maps of random walks on complex networks reveal community structure.” Proceedings of the National Academy of Sciences 105.4 (2008): 1118-1123.</a></li>
+<li>[13]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.066111" target="_blank" rel="external">Clauset, Aaron, Mark EJ Newman, and Cristopher Moore. “Finding community structure in very large networks.” Physical review E 70.6 (2004): 066111.</a></li>
+<li>[14]: <a href="https://arxiv.org/abs/0803.0476v2" target="_blank" rel="external">Blondel, Vincent D., et al. “Fast unfolding of communities in large networks.” Journal of statistical mechanics: theory and experiment 2008.10 (2008): P10008.</a></li>
+<li>[15]: <a href="http://bbs.pinggu.org/thread-3614747-1-1.html" target="_blank" rel="external">基于GraphX的社区发现算法FastUnfolding分布式实现</a></li>
+<li>[16]: <a href="http://www.pnas.org/content/103/23/8577.short" target="_blank" rel="external">Newman, Mark EJ. “Modularity and community structure in networks.” Proceedings of the national academy of sciences 103.23 (2006): 8577-8582.</a></li>
+<li>[17]: <a href="http://www.nature.com/nature/journal/v435/n7043/abs/nature03607.html" target="_blank" rel="external">Palla, Gergely, et al. “Uncovering the overlapping community structure of complex networks in nature and society.” Nature 435.7043 (2005): 814-818.</a></li>
+<li>[18]: <a href="https://github.com/rexwong/dp/wiki/%E7%A4%BE%E4%BC%9A%E8%AE%A1%E7%AE%97-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%AA%92%E4%BD%93%E6%8C%96%E6%8E%98" target="_blank" rel="external">LeiTang, and HuanLin. 社会计算:社区发现和社会媒体挖掘. 机械工业出版社, 2013.</a></li>
+<li>[19]: <a href="http://iopscience.iop.org/article/10.1088/1742-5468/2005/09/P09008/meta" target="_blank" rel="external">Danon, Leon, et al. “Comparing community structure identification.” Journal of Statistical Mechanics: Theory and Experiment 2005.09 (2005): P09008.</a></li>
+</ul>
 
 
   </article>
