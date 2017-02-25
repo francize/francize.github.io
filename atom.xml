@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-25T08:26:39.949Z</updated>
+  <updated>2017-02-25T08:31:30.432Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/"/>
     <id>http://www.shesong.org/2017/02/22/社区发现综述简介/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-02-25T08:26:39.949Z</updated>
+    <updated>2017-02-25T08:31:30.432Z</updated>
     
     <content type="html"><![CDATA[<h2 id="研究现状">1 研究现状</h2>
 <p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
@@ -201,8 +201,7 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 Ratio\, Cut(\pi)=\frac{1}{K}\sum_{i=1}^K\frac{cut(C_i,\overline{C_i})}{|C_i|}
 \end{align} \]</span> <span class="math display">\[ \begin{align}
 Normailized\, Cut(\pi)=\frac{1}{K}\sum_{i=1}^K\frac{cut(C_i,\overline{C_i})}{vol(C_i)}, vol(C_i)=\sum_{v\in C_i}k_v
-\end{align} \]</span></p>
-<p>其中 <span class="math inline">\(cut(C_i,\overline{C_i})\)</span> 表示两者之间的联系数目。两个目标函数的目标是使得社区之间的边数量最小化的同时，避免出现类似于只包含1个成员的小社区。</p>
+\end{align} \]</span> 其中 <span class="math inline">\(cut(C_i,\overline{C_i})\)</span> 表示两者之间的联系数目。两个目标函数的目标是使得社区之间的边数量最小化的同时，避免出现类似于只包含1个成员的小社区。</p>
 <p>连通度(conductance)也是类似的定义: <span class="math display">\[ \begin{align}
 Conductance(C_i)=\frac{cut(C_i,\overline{C_i})}{\min\{vol(C_i),vol(\overline{C_i})\}}
 \end{align} \]</span></p>
@@ -224,14 +223,11 @@ KL_{obj}(C_1,\ldots,C_k)=\sum_{i\neq j}A(C_i,C_j)
 <h4 id="准确率召回率f1值">3.5.1 准确率，召回率，F1值</h4>
 <p>一个大规模数据集合中检索文档的时，可把文档分成四组：系统检索到的相关文档（A），系统检索到的不相关文档（B），相关但是系统没有检索到的文档（C），不相关且没有被系统检索到的文档（D）： 准确度定义为： <span class="math display">\[ \begin{align}
 pr=\frac{A}{A+C}
-\end{align} \]</span></p>
-<p>召回率定义为： <span class="math display">\[ \begin{align}
+\end{align} \]</span> 召回率定义为： <span class="math display">\[ \begin{align}
 rc=\frac{A}{A+B}
-\end{align} \]</span></p>
-<p>F-measure是准确率和召回率协调之后的结果，定义为： <span class="math display">\[ \begin{align}
+\end{align} \]</span> F-measure是准确率和召回率协调之后的结果，定义为： <span class="math display">\[ \begin{align}
 PWF=\frac{2\times pr \times rc}{pr+rc}
-\end{align} \]</span></p>
-<p>同理，社区也可以用这个概念。</p>
+\end{align} \]</span> 同理，社区也可以用这个概念。</p>
 <h4 id="平均聚类纯度average-cluster-purity">3.5.2 平均聚类纯度（average cluster purity）</h4>
 <p>假设算法发现了<span class="math inline">\(C=\{C_1,\ldots,C_K\}\)</span>个社区，我们假设社区<span class="math inline">\(C_i\)</span>有<span class="math inline">\(n_i\)</span>个点，，每个点分别为<span class="math inline">\(\{v_{1,i},\ldots,v_{n_i,i}\}\)</span>。令<span class="math inline">\(M_{l,i}\)</span>为<span class="math inline">\(v_{l,i}\)</span>真实归属的社区的标签，平均聚类纯度为定义为： <span class="math display">\[ \begin{align}
 ACP=\frac{1}{k}\sum_{i=1}^k\sum_{l=1}^{n_i}\frac{\delta(dom_i\in M_{l,i})}{n_i}
@@ -242,14 +238,11 @@ H(X)=-\sum_{x \in X}p(x)\log p(x)
 \end{align} \]</span></p>
 <p><strong>互信息（mutual information)</strong>描述了两个分布之间的相关性： <span class="math display">\[ \begin{align}
 I(X;Y)=H(X)-H(X|Y)=\sum_{y \in Y}\sum_{x \in X}p(x,y)\log(\frac{p(x,y)}{p(x)p(y)})
-\end{align} \]</span></p>
-<p>但事实上，对于一个划分<span class="math inline">\(X\)</span>，任何一个从<span class="math inline">\(X\)</span>派生的划分<span class="math inline">\(Y\)</span>都和<span class="math inline">\(X\)</span>有相同的互信息，尽管这些划分都不尽相同。在这种情况下条件熵<span class="math inline">\(H(X|Y)\)</span>都近乎为0，这也导致了互信息<span class="math inline">\(I(X;Y)\)</span>几乎等于<span class="math inline">\(H(X)\)</span>。为了避免这种情况，Danon et al.提出了归一化互信息（normalized mutual information），直到现在都使用得非常广泛：[19] <span class="math display">\[ \begin{align}
+\end{align} \]</span> 但事实上，对于一个划分<span class="math inline">\(X\)</span>，任何一个从<span class="math inline">\(X\)</span>派生的划分<span class="math inline">\(Y\)</span>都和<span class="math inline">\(X\)</span>有相同的互信息，尽管这些划分都不尽相同。在这种情况下条件熵<span class="math inline">\(H(X|Y)\)</span>都近乎为0，这也导致了互信息<span class="math inline">\(I(X;Y)\)</span>几乎等于<span class="math inline">\(H(X)\)</span>。为了避免这种情况，Danon et al.提出了归一化互信息（normalized mutual information），直到现在都使用得非常广泛：[19] <span class="math display">\[ \begin{align}
 I_{norm}(\mathcal{X},\mathcal{Y})=\frac{2I(X;Y)}{H(X)+H(Y)}
-\end{align} \]</span></p>
-<p>所谓两个事件相关性的量化度量，就是在了解其中一个<span class="math inline">\(Y\)</span>的前提下，对消除另一个<span class="math inline">\(X\)</span>不确定性所提供的信息量。 规范化的互信息定义为 <span class="math display">\[ \begin{align}
+\end{align} \]</span> 所谓两个事件相关性的量化度量，就是在了解其中一个<span class="math inline">\(Y\)</span>的前提下，对消除另一个<span class="math inline">\(X\)</span>不确定性所提供的信息量。 规范化的互信息定义为 <span class="math display">\[ \begin{align}
 NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
-\end{align} \]</span></p>
-<p>我们将划分当做一个结点落在社区的概率分布，然后计算社区划分结果和真实情况的NMI值，具体例子见参考《社会计算:社区发现和社会媒体挖掘》[18].</p>
+\end{align} \]</span> 我们将划分当做一个结点落在社区的概率分布，然后计算社区划分结果和真实情况的NMI值，具体例子见参考《社会计算:社区发现和社会媒体挖掘》[18].</p>
 <hr>
 <h2 id="参考文献">参考文献</h2>
 <ul>
