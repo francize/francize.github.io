@@ -25,7 +25,7 @@
 <hr>
 <h2 id="复杂网络上的社区发现">2 复杂网络上的社区发现</h2>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/24/58af8e6a537f0.png">
+<img src="https://ooo.0o0.ooo/2017/02/25/58b14aea858ce.png">
 
 </div>
 <h3 id="传统算法-traditional-methods">2.1 传统算法 (Traditional methods)</h3>
@@ -68,7 +68,7 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <ul>
 <li><strong>贪心策略（Greedy techniques）</strong> 有两个比较经典的算法，分别是
 <ul>
-<li>Fast greedy算法（<em>CNN算法</em>）[13]</li>
+<li>Fast greedy算法（<em>CNM算法</em>）[13]</li>
 <li>Multilevel算法（<em>Fast-Unfolding算法</em>）[14]：Fast-Unfolding算法可以Spark中实现。[15]</li>
 </ul></li>
 <li><strong>模拟退火（Simulated annealing）</strong></li>
