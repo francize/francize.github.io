@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-25T03:23:32.400Z</updated>
+  <updated>2017-02-25T05:26:25.540Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/"/>
     <id>http://www.shesong.org/2017/02/22/社区发现综述简介/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-02-25T03:23:32.400Z</updated>
+    <updated>2017-02-25T05:26:25.540Z</updated>
     
     <content type="html"><![CDATA[<h2 id="研究现状">1 研究现状</h2>
 <p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
@@ -84,9 +84,14 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <ul>
 <li><strong>贪心策略（Greedy techniques）</strong> 有两个比较经典的算法，分别是
 <ul>
-<li>Fast greedy算法（CNN算法）[13]</li>
-<li>Multilevel算法（Fast-Unfolding算法）[14] &gt; Fast-Unfolding算法可以Spark中实现，已有现成的代码。[15]</li>
+<li>Fast greedy算法（<em>CNN算法</em>）[13]</li>
+<li>Multilevel算法（<em>Fast-Unfolding算法</em>）[14]</li>
 </ul></li>
+</ul>
+<blockquote>
+<p>Fast-Unfolding算法可以Spark中实现，已有现成的代码。[15]</p>
+</blockquote>
+<ul>
 <li><strong>模拟退火（Simulated annealing）</strong></li>
 <li><strong>极值优化（Extremal optimization）</strong></li>
 <li><strong>谱优化（Spectral optimization）</strong></li>
@@ -104,8 +109,11 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <p>基于统计推断的方法包括观察到的数据集和对模型的假设。如果数据集是图，模型假设对节点之间如何联系的描述就要符合真实的图结构。[10] [11]</p>
 <ul>
 <li><strong>生成模型（Generative models）</strong></li>
-<li><strong>判别模型（Blockmodeling, model selection and information theory）</strong> &gt; 赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[12]</li>
+<li><strong>判别模型（Blockmodeling, model selection and information theory）</strong></li>
 </ul>
+<blockquote>
+<p>赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[12]</p>
+</blockquote>
 <hr>
 <h2 id="社区发现算法特征">3 社区发现算法特征</h2>
 <h3 id="优化目标">3.1 优化目标</h3>
