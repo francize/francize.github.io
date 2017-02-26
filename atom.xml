@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shesong.org/"/>
-  <updated>2017-02-25T09:14:46.151Z</updated>
+  <updated>2017-02-26T07:21:24.825Z</updated>
   <id>http://www.shesong.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/"/>
     <id>http://www.shesong.org/2017/02/22/社区发现综述简介/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-02-25T09:14:46.151Z</updated>
+    <updated>2017-02-26T07:21:24.825Z</updated>
     
     <content type="html"><![CDATA[<h2 id="研究现状">1 研究现状</h2>
 <p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
@@ -109,6 +109,7 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <blockquote>
 <p>赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[12]</p>
 </blockquote>
+<h3 id="相关算法的比较-20">2.7 相关算法的比较 [20]</h3>
 <table>
 <colgroup>
 <col width="14%">
@@ -265,6 +266,7 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
 <li>[17]: <a href="http://www.nature.com/nature/journal/v435/n7043/abs/nature03607.html" target="_blank" rel="external">Palla, Gergely, et al. “Uncovering the overlapping community structure of complex networks in nature and society.” Nature 435.7043 (2005): 814-818.</a></li>
 <li>[18]: <a href="https://github.com/rexwong/dp/wiki/%E7%A4%BE%E4%BC%9A%E8%AE%A1%E7%AE%97-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%AA%92%E4%BD%93%E6%8C%96%E6%8E%98" target="_blank" rel="external">LeiTang, and HuanLin. 社会计算:社区发现和社会媒体挖掘. 机械工业出版社, 2013.</a></li>
 <li>[19]: <a href="http://iopscience.iop.org/article/10.1088/1742-5468/2005/09/P09008/meta" target="_blank" rel="external">Danon, Leon, et al. “Comparing community structure identification.” Journal of Statistical Mechanics: Theory and Experiment 2005.09 (2005): P09008.</a></li>
+<li>[20]: <a href="http://wiki.swarma.net/index.php?title=%E7%BD%91%E7%BB%9C%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86%E7%AE%97%E6%B3%95&amp;variant=zh" target="_blank" rel="external">网络社区划分算法</a></li>
 </ul>
 ]]></content>
     
