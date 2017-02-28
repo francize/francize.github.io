@@ -333,52 +333,25 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
     <entry>
       <title><![CDATA[使用MapReduce框架度量簇集差异性]]></title>
       <url>http://www.shesong.org/2016/10/03/%E4%BD%BF%E7%94%A8MapReduce%E6%A1%86%E6%9E%B6%E5%BA%A6%E9%87%8F%E7%B0%87%E9%9B%86%E5%B7%AE%E5%BC%82%E6%80%A7/</url>
-      <content type="html"><![CDATA[<h2 id="问题定义">1 问题定义</h2>
-<ul>
-<li><strong>簇集</strong>：给定一个非空集合<span class="math inline">\(\mathbf{D}\)</span>，<span class="math inline">\(C_1,\,C_2,\cdots,C_k\)</span>为集合<span class="math inline">\(\mathbf{D}\)</span>的划分，即对于任意的<span class="math inline">\(1\leq i,j\leq k\)</span>有<span class="math inline">\(C_i\bigcap C_j=\emptyset\)</span>，且<span class="math inline">\(\bigcup_{i=1}^kC_i=\mathbf{D}\)</span>，则由这样一组<strong>子集</strong>组成的集合被定义为集合<span class="math inline">\(\mathbf{D}\)</span>的簇集<span class="math inline">\(\mathcal{C}\)</span>，<span class="math inline">\(\mathcal{C}=\{C_1,\,C_2,\cdots,C_k\}\)</span>。</li>
-<li><strong>元素的差异数</strong>：对于非空集合<span class="math inline">\(\mathbf{D}\)</span>的两个簇集<span class="math inline">\(\mathcal{C}_p=\{C_{p_1},\,C_{p_2},\cdots,C_{p_k}\}\)</span>和<span class="math inline">\(\mathcal{C}_q=\{C_{q_1},\,C_{q_2},\cdots,C_{q_m}\}\)</span>，给定一个元素<span class="math inline">\(u\in\mathbf{D}\)</span>，若<span class="math inline">\(u\in C_{p_x}\)</span>和<span class="math inline">\(u\in C_{q_y}\)</span>（其中<span class="math inline">\(C_{p_x}\in \mathcal{C}_p,C_{q_y}\in \mathcal{C}_q\)</span>），对于任意的<span class="math inline">\(v\)</span>若满足<span class="math inline">\(v\in C_{p_x}\)</span>但<span class="math inline">\(v\notin C_{q_y}\)</span>，我们说集合<span class="math inline">\(C_{p_x}\)</span>和<span class="math inline">\(C_{q_y}\)</span>之间存在差异。我们定义对于给定的<span class="math inline">\(u\)</span>，统计上述元素<span class="math inline">\(v\)</span>出现的次数，该次数即为元素<span class="math inline">\(u\)</span>的差异数，记为<span class="math inline">\(\Delta(u)\)</span>，其计算公式如下：<span class="math display">\[\begin{align}\Delta(u)=|C_{p_x}-C_{q_y}|+|C_{q_y}-C_{p_x}|=|C_{p_x}|+|C_{q_y}|-2\times|C_{p_x}\bigcap C_{q_y}| \end{align}\]</span></li>
-<li><strong>簇集的差异率</strong>：簇集的差异率（记为<span class="math inline">\(d(\mathcal{C},\mathcal{C}’)\)</span>）即为集合<span class="math inline">\(\mathbf{D}\)</span>中所有元素的差异数之和<span class="math display">\[\begin{align}d(\mathcal{C},\mathcal{C}’)=\frac{\sum\limits_{i=1}^n\Delta(u_i)/2}{\binom{n}{2}}=\frac{\sum\limits_{i=1}^n\Delta(u_i)}{n\times (n-1)}\end{align}\]</span></li>
+      <content type="html"><![CDATA[<h2 id="1-问题定义"><a href="#1-问题定义" class="headerlink" title="1 问题定义"></a>1 问题定义</h2><ul>
+<li><strong>簇集</strong>：给定一个非空集合$\mathbf{D}$，$C_1,\,C_2,\cdots,C_k$为集合$\mathbf{D}$的划分，即对于任意的$1\leq i,j\leq k$有$C_i\bigcap C_j=\emptyset$，且$\bigcup_{i=1}^kC_i=\mathbf{D}$，则由这样一组<strong>子集</strong>组成的集合被定义为集合$\mathbf{D}$的簇集$\mathcal{C}$，$\mathcal{C}=\{C_1,\,C_2,\cdots,C_k\}$。</li>
+<li><strong>元素的差异数</strong>：对于非空集合$\mathbf{D}$的两个簇集$\mathcal{C}_p=\{C_{p_1},\,C_{p_2},\cdots,C_{p_k}\}$和$\mathcal{C}_q=\{C_{q_1},\,C_{q_2},\cdots,C_{q_m}\}$，给定一个元素$u\in\mathbf{D}$，若$u\in C_{p_x}$和$u\in C_{q_y}$（其中$C_{p_x}\in \mathcal{C}_p,C_{q_y}\in \mathcal{C}_q$），对于任意的$v$若满足$v\in C_{p_x}$但$v\notin C_{q_y}$，我们说集合$C_{p_x}$和$C_{q_y}$之间存在差异。我们定义对于给定的$u$，统计上述元素$v$出现的次数，该次数即为元素$u$的差异数，记为$\Delta(u)$，其计算公式如下：$$\begin{align}\Delta(u)=|C_{p_x}-C_{q_y}|+|C_{q_y}-C_{p_x}|=|C_{p_x}|+|C_{q_y}|-2\times|C_{p_x}\bigcap C_{q_y}| \end{align}$$</li>
+<li><strong>簇集的差异率</strong>：簇集的差异率（记为$d(\mathcal{C}_p,\mathcal{C}_q)$）即为集合$\mathbf{D}$中所有元素的差异数之和$$\begin{align}d(\mathcal{C}_p,\mathcal{C}_q)=\frac{\sum\limits_{i=1}^n\Delta(u_i)/2}{\binom{n}{2}}=\frac{\sum\limits_{i=1}^n\Delta(u_i)}{n\times (n-1)}\end{align}$$</li>
 </ul>
 <hr>
-<h2 id="算法描述">2 算法描述</h2>
-<div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/27/58b441645de64.png">
-
-</div>
-<p>该算法只有一个MapReduce阶段，其输入必须仅仅是一个文本文件，该文件包含了所有的数据集，其数据集格式如上图所示，<span class="math inline">\(p\)</span>和<span class="math inline">\(q\)</span>指代不同的簇集，每一行表示该簇集中每个集合包含的元素。</p>
-<h3 id="mapper">2.1 Mapper</h3>
-<p>Mapper阶段主要对簇集中的元素分组并分发各组元素到各个Reducer，这也意味着有且仅有一个Mapper。好的分组策略可以平衡各个Reducer的计算工作负载，同时尽可能减少数据传输。我们用<span class="math inline">\(M(\mathcal{C})\)</span>代表簇集<span class="math inline">\(\mathcal{C}\)</span>中的最大集合，<span class="math inline">\(g(u)\)</span>表示每个元素<span class="math inline">\(u\)</span>的组号。显然，为了利用MapReduce框架的特性，组号应至少作为复合key的一部分。</p>
-<p>现在考虑一种极端的情形，如果集合<span class="math inline">\(M(\mathcal{C})\)</span>中的每一个元素都不在同一组，而不同的reduce函数只能处理一组，这就意味着这个最大的集合会分发到很多个Reducer中，亦即增加了数据传输。</p>
-<p>为了避免这种情况，集合<span class="math inline">\(M(\mathcal{C})\)</span>中的元素应尽可能的被分在同一组我们设计了一个策略：令<span class="math inline">\(C_I\)</span>、<span class="math inline">\(C_D\)</span>和<span class="math inline">\(C_C\)</span>分别表示集合<span class="math inline">\(M(\mathcal{C}_p)\)</span>和<span class="math inline">\(M(\mathcal{C}_q)\)</span>的交集、对称差集和补集： <span class="math display">\[\begin{align}
-C_I=M(\mathcal{C}_p)\bigcap M(\mathcal{C}_q)
-\end{align}\]</span> <span class="math display">\[\begin{align}
-C_D=M(\mathcal{C}_p)\bigcup M(\mathcal{C}_q)\setminus C_I
-\end{align}\]</span> <span class="math display">\[\begin{align}
-C_C=\mathbf{D}\setminus M(\mathcal{C}_p)\bigcup M(\mathcal{C}_q)
-\end{align}\]</span> 首先我们令<span class="math inline">\(C_I\)</span>中的元素都在同一组，其组号为0。<span class="math inline">\(g_1\)</span>和<span class="math inline">\(g_2\)</span>分别表示<span class="math inline">\(C_D\)</span>和<span class="math inline">\(C_C\)</span>分组的个数，<span class="math inline">\(\phi(u_i)\)</span>表示集合中各个元素的下标。完整的分组策略如下： <span class="math display">\[\begin{align}
-g(v_i) = 
-\begin{cases}
-    0 &amp; \text{if} \  u_i \in C_I \\
-    H_1(u_i) = 1 + \phi(u_i) \bmod g_1 &amp; \text{if}\  u_i \in C_D\\
-    H_2(u_i) = 1 + g_1 + \phi(u_i) \bmod g_2 &amp; \text{if} \  u_i \in C_C
-\end{cases}
-\end{align}\]</span></p>
-<p>我们上面说了组号应至少作为复合key的一部分，那另一部分是什么呢？我们为了计算差异数，至少要判别元素原先是属于哪个簇集，也就意味着复合key的另一部分必须是簇集的标志。更进一步，集合中的元素被分成了多少组，则该集合就应该被分发多少次。同时，Mapper输出的value是有形式如<span class="math inline">\([u_i:g(u_i)]\)</span>（元素：元素的组号）组成的元组。</p>
-<p>如上图所示，集合<span class="math inline">\(\mathbf{D}=\{1,2,3,4,5,6,7,8,9\}\)</span>，依据上述分组策略，我们有<span class="math inline">\(M(\mathcal{C}_p)=\{1,2,3,4,6\}\)</span>，<span class="math inline">\(M(\mathcal{C}_q)=\{1,2,3,4,8\}\)</span>，元素<span class="math inline">\((1,2,3,4)\)</span>被分在组0，元素<span class="math inline">\((6,8)\)</span>被分在组1，元素<span class="math inline">\((5,7,9)\)</span>被分在组2。由于集合<span class="math inline">\(\{1,2,3,4,6\}\)</span>中元素<span class="math inline">\((1,2,3,4)\)</span>在组0而元素<span class="math inline">\((6)\)</span>在组1，所以该集合会被分发两次。</p>
-<h3 id="shuffle-and-sort">2.2 Shuffle and Sort</h3>
-<p>由上一节可知Mapper的输出为一系列元组形式如$(g(u_j):p|q), [u_i:g(u_i)]^+<span class="math inline">\(，这些元组首先按复合key的\)</span>g(u_j)<span class="math inline">\(其次再是簇集的标志\)</span>p<span class="math inline">\(或\)</span>q$来排升序。其次重定义Paritioner根据公式 <span class="math inline">\(r=g(u_j)\pmod R\)</span>来将元组划分到不同的Reducer中。最后在GroupComparator中只比较复合key的<span class="math inline">\(g(u_j)\)</span>而忽略比较簇集的标志，以保证每一个Reducer接收同样的key。</p>
-<h3 id="reducer">2.3 Reducer</h3>
-<p>在Redcuer中，由于每个value中各个元素后都附带着该元素所在的组号，而当前Reducer对应的复合key只包含一个组号<span class="math inline">\(g\)</span>，所以我们只需要遍历一次所有的value（sort阶段后有序）并仅需计算组号是<span class="math inline">\(g\)</span>的元素的差异数即可。</p>
+<h2 id="2-算法描述"><a href="#2-算法描述" class="headerlink" title="2 算法描述"></a>2 算法描述</h2><p><img src="https://ooo.0o0.ooo/2017/02/27/58b441645de64.png" alt=""></p>
+<p>该算法只有一个MapReduce阶段，其输入必须仅仅是一个文本文件，该文件包含了所有的数据集，其数据集格式如上图所示，$p$和$q$指代不同的簇集，每一行表示该簇集中每个集合包含的元素。</p>
+<h3 id="2-1-Mapper"><a href="#2-1-Mapper" class="headerlink" title="2.1 Mapper"></a>2.1 Mapper</h3><p>Mapper阶段主要对簇集中的元素分组并分发各组元素到各个Reducer，这也意味着有且仅有一个Mapper。好的分组策略可以平衡各个Reducer的计算工作负载，同时尽可能减少数据传输。我们用$M(\mathcal{C})$代表簇集$\mathcal{C}$中的最大集合，$g(u)$表示每个元素$u$的组号。显然，为了利用MapReduce框架的特性，组号应至少作为复合key的一部分。</p>
+<p>现在考虑一种极端的情形，如果集合$M(\mathcal{C})$中的每一个元素都不在同一组，而不同的reduce函数只能处理一组，这就意味着这个最大的集合会分发到很多个Reducer中，亦即增加了数据传输。</p>
+<p>为了避免这种情况，集合$M(\mathcal{C})$中的元素应尽可能的被分在同一组我们设计了一个策略：令$C_I$、$C_D$和$C_C$分别表示集合$M(\mathcal{C}_p)$和$M(\mathcal{C}_q)$的交集、对称差集和补集：<br>$$\begin{align}<br>C_I=M(\mathcal{C}_p)\bigcap M(\mathcal{C}_q)<br>\end{align}$$<br>$$\begin{align}<br>C_D=M(\mathcal{C}_p)\bigcup M(\mathcal{C}_q)\setminus C_I<br>\end{align}$$<br>$$\begin{align}<br>C_C=\mathbf{D}\setminus M(\mathcal{C}_p)\bigcup M(\mathcal{C}_q)<br>\end{align}$$<br>首先我们令$C_I$中的元素都在同一组，其组号为0。$g_1$和$g_2$分别表示$C_D$和$C_C$分组的个数，$\phi(u_i)$表示集合中各个元素的下标。完整的分组策略如下：<br>$$\begin{align}<br>g(v_i) =<br>\begin{cases}<br>    0 &amp; \text{if}   u_i \in C_I \\<br>    H_1(u_i) = 1 + \phi(u_i) \bmod g_1 &amp; \text{if}  u_i \in C_D\\<br>    H_2(u_i) = 1 + g_1 + \phi(u_i) \bmod g_2 &amp; \text{if}   u_i \in C_C<br>\end{cases}<br>\end{align}$$</p>
+<p>我们上面说了组号应至少作为复合key的一部分，那另一部分是什么呢？我们为了计算差异数，至少要判别元素原先是属于哪个簇集，也就意味着复合key的另一部分必须是簇集的标志。更进一步，集合中的元素被分成了多少组，则该集合就应该被分发多少次。同时，Mapper输出的value是有形式如$[u_i:g(u_i)]$（元素：元素的组号）组成的元组。</p>
+<p>如上图所示，集合$\mathbf{D}=\{1,2,3,4,5,6,7,8,9\}$，依据上述分组策略，我们有$M(\mathcal{C}_p)=\{1,2,3,4,6\}$，$M(\mathcal{C}_q)=\{1,2,3,4,8\}$，元素$(1,2,3,4)$被分在组0，元素$(6,8)$被分在组1，元素$(5,7,9)$被分在组2。由于集合$\{1,2,3,4,6\}$中元素$(1,2,3,4)$在组0而元素$(6)$在组1，所以该集合会被分发两次。</p>
+<h3 id="2-2-Shuffle-and-Sort"><a href="#2-2-Shuffle-and-Sort" class="headerlink" title="2.2 Shuffle and Sort"></a>2.2 Shuffle and Sort</h3><p>由上一节可知Mapper的输出为一系列元组形式如$\left\langle (g(u_j):p|q), [u_i:g(u_i)]^+\right\rangle $，这些元组首先按复合key的$g(u_j)$其次再是簇集的标志$p$或$q$来排升序。其次重定义Paritioner根据公式 $r=g(u_j)\pmod R$来将元组划分到不同的Reducer中。最后在GroupComparator中只比较复合key的$g(u_j)$而忽略比较簇集的标志，以保证每一个Reducer接收同样的key。</p>
+<h3 id="2-3-Reducer"><a href="#2-3-Reducer" class="headerlink" title="2.3 Reducer"></a>2.3 Reducer</h3><p>在Redcuer中，由于每个value中各个元素后都附带着该元素所在的组号，而当前Reducer对应的复合key只包含一个组号$g$，所以我们只需要遍历一次所有的value（sort阶段后有序）并仅需计算组号是$g$的元素的差异数即可。</p>
 <hr>
-<h2 id="伪代码和源码">3 伪代码和源码</h2>
-<h3 id="伪代码">3.1 伪代码</h3>
-<div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/28/58b4dc817e317.png">
-
-</div>
+<h2 id="3-伪代码和源码"><a href="#3-伪代码和源码" class="headerlink" title="3 伪代码和源码"></a>3 伪代码和源码</h2><h3 id="3-1-伪代码"><a href="#3-1-伪代码" class="headerlink" title="3.1 伪代码"></a>3.1 伪代码</h3><p><img src="https://ooo.0o0.ooo/2017/02/28/58b4dc817e317.png" alt=""></p>
 <p>注意我们在自定义了一个全局Counter（org.apache.hadoop.mapreduce.Counter in Hadoop API）来统计各个Reducer中计算得到的差异数，所以Reducer可以不必输出。</p>
-<h3 id="源码">3.2 源码</h3>
-<p>相关代码可参考<img src="https://github.com/francize/FastMeasureClusterings" alt="https://github.com/francize/FastMeasureClusterings"></p>
+<h3 id="3-2-源码"><a href="#3-2-源码" class="headerlink" title="3.2 源码"></a>3.2 源码</h3><p>相关代码可参考<img src="https://github.com/francize/FastMeasureClusterings" alt="https://github.com/francize/FastMeasureClusterings"></p>
 ]]></content>
       
         <categories>
