@@ -373,11 +373,12 @@ g(v_i) =
 <h2 id="伪代码和源码">3 伪代码和源码</h2>
 <h3 id="伪代码">3.1 伪代码</h3>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/28/58b4dc817e317.png" alt="DCSPesudoCode.png">
-<p class="caption">DCSPesudoCode.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/28/58b4dc817e317.png">
+
 </div>
 <p>注意我们在自定义了一个全局Counter（org.apache.hadoop.mapreduce.Counter in Hadoop API）来统计各个Reducer中计算得到的差异数，所以Reducer可以不必输出。</p>
 <h3 id="源码">3.2 源码</h3>
+<p>相关代码可参考<img src="https://github.com/francize/FastMeasureClusterings" alt="https://github.com/francize/FastMeasureClusterings"></p>
 ]]></content>
       
         <categories>

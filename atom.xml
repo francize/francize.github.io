@@ -353,7 +353,7 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
     <link href="http://www.shesong.org/2016/10/03/%E4%BD%BF%E7%94%A8MapReduce%E6%A1%86%E6%9E%B6%E5%BA%A6%E9%87%8F%E7%B0%87%E9%9B%86%E5%B7%AE%E5%BC%82%E6%80%A7/"/>
     <id>http://www.shesong.org/2016/10/03/使用MapReduce框架度量簇集差异性/</id>
     <published>2016-10-03T08:33:41.000Z</published>
-    <updated>2017-02-28T02:17:01.892Z</updated>
+    <updated>2017-02-28T02:44:17.456Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题定义">1 问题定义</h2>
 <ul>
@@ -395,11 +395,12 @@ g(v_i) =
 <h2 id="伪代码和源码">3 伪代码和源码</h2>
 <h3 id="伪代码">3.1 伪代码</h3>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/28/58b4dc817e317.png" alt="DCSPesudoCode.png">
-<p class="caption">DCSPesudoCode.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/28/58b4dc817e317.png">
+
 </div>
 <p>注意我们在自定义了一个全局Counter（org.apache.hadoop.mapreduce.Counter in Hadoop API）来统计各个Reducer中计算得到的差异数，所以Reducer可以不必输出。</p>
 <h3 id="源码">3.2 源码</h3>
+<p>相关代码可参考<img src="https://github.com/francize/FastMeasureClusterings" alt="https://github.com/francize/FastMeasureClusterings"></p>
 ]]></content>
     
     <summary type="html">
