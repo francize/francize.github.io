@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2017-03-02T01:33:41.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shesong.org/about/index.html</loc>
+    
+    <lastmod>2017-02-28T16:26:04.278Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shesong.org/2016/10/03/%E4%BD%BF%E7%94%A8MapReduce%E6%A1%86%E6%9E%B6%E5%BA%A6%E9%87%8F%E7%B0%87%E9%9B%86%E5%B7%AE%E5%BC%82%E6%80%A7/</loc>
     
     <lastmod>2017-02-28T02:46:36.069Z</lastmod>
@@ -16,23 +30,9 @@
   </url>
   
   <url>
-    <loc>http://www.shesong.org/2017/02/22/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E7%BB%BC%E8%BF%B0%E7%AE%80%E4%BB%8B/</loc>
-    
-    <lastmod>2017-02-26T07:23:47.904Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shesong.org/tags/index.html</loc>
     
     <lastmod>2017-02-15T15:22:04.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shesong.org/about/index.html</loc>
-    
-    <lastmod>2017-02-15T09:22:16.053Z</lastmod>
     
   </url>
   

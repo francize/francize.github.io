@@ -160,7 +160,10 @@
 </blockquote>
 <p>模块度[9]不仅仅作为优化的目标函数提出，它也是目前是最流行的用来衡量社区结果好坏的标准之一（它的提出被称作社区发现研究历史上的里程碑)。我们知道，社区是节点有意识地紧密联系所造成的，它内部边的紧密程度总比一个随机的网络图来的紧密一些，模块度的定义就是基于此，它表示所有被划分到同一个社区的边所占的比例，再减除掉完全随机情况时被划分到同一个社区的边所占的比例： <span class="math display">\[ \begin{align}
 Q=\frac{1}{2M}\sum_{ij}(a_{i,j}-\frac{k_ik_j}{2M})\delta(C_i,C_j)=\frac{1}{2M}\sum_{ij}b_{ij}\delta(C_i,C_j)
-\end{align} \]</span>其中<span class="math inline">\(\mathbf{A}=(a_{ij})\)</span>是网络的邻接矩阵，<span class="math inline">\(M\)</span>是整个图中边的数目，<span class="math inline">\(k_i\)</span> 是顶点<span class="math inline">\(i\)</span>的度数，<span class="math inline">\(C_i\)</span>表示节点<span class="math inline">\(i\)</span>所属的社区，如果两个节点属于同一个社区，则<span class="math inline">\(\delta\)</span>取值1，否则为0。注意公式（1） 的意义，<span class="math inline">\(\frac{a_{ij}}{2M}\)</span>是两个顶点之间连接的概率，如果我们保持一个网络的度分布但对其连边进行随机洗牌，任意一对节点在洗牌后存在连接的概率为<span class="math inline">\(\frac{k_ik_j}{(2M)^2}\)</span>。上式中括号表达的就是节点之间的实际连边概率高于期待值的程度。另<span class="math inline">\(\mathbf{B}=(b_{ij})_{N\times N}\)</span>也称为<strong>模块度矩阵</strong>（Modularity matrix）。</p>
+\end{align} \]</span>其中<span class="math inline">\(\mathbf{A}=(a_{ij})\)</span>是网络的邻接矩阵，<span class="math inline">\(M\)</span>是整个图中边的数目，<span class="math inline">\(k_i\)</span> 是顶点<span class="math inline">\(i\)</span>的度数，<span class="math inline">\(C_i\)</span>表示节点<span class="math inline">\(i\)</span>所属的社区，如果两个节点属于同一个社区，则<span class="math inline">\(\delta\)</span>取值1，否则为0。注意公式（1） 的意义，<span class="math inline">\(\frac{a_{ij}}{2M}\)</span>是两个顶点之间连接的概率，如果我们保持一个网络的度分布但对其连边进行随机洗牌，任意一对节点在洗牌后存在连接的概率为<span class="math inline">\(\frac{k_ik_j}{2M}\)</span>。上式中括号表达的就是节点之间的实际连边概率高于期待值的程度。另<span class="math inline">\(\mathbf{B}=(b_{ij})_{N\times N}\)</span>也称为<strong>模块度矩阵</strong>（Modularity matrix）。</p>
+<blockquote>
+<p>modularity在large-scale network中有一个缺陷：resolution limit。在large network中，基于modularity的方法找不到那些small community，即便这些small community的结构都很明显。[22]</p>
+</blockquote>
 <p>公式还可以写成另一种形式： <span class="math display">\[ \begin{align}
 Q=\sum_{i=1}^{n_c}(e_{ii}-a_i^2)
 \end{align} \]</span>其中 <span class="math inline">\(e_{ij}=\sum\limits_{vw}\frac{a_{vw}}{2M}\delta(C_i, C_j)\)</span>，且 <span class="math inline">\(e_{ii}\)</span> 是每个社团内区<span class="math inline">\(i\)</span>内部顶点之间的连边数占整个网络边数的比例，<span class="math inline">\(a_i=\frac{k_i}{2M}=\sum_je_{ij}\)</span>意味着一端与社团 <span class="math inline">\(i\)</span> 中顶点相连的连边的比例，<span class="math inline">\(n_c\)</span> 是整个网络中社区的数量。</p>
@@ -355,6 +358,7 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
 <li>[19]: <a href="http://iopscience.iop.org/article/10.1088/1742-5468/2005/09/P09008/meta" target="_blank" rel="external">Danon, Leon, et al. “Comparing community structure identification.” Journal of Statistical Mechanics: Theory and Experiment 2005.09 (2005): P09008.</a></li>
 <li>[20]: <a href="http://wiki.swarma.net/index.php?title=%E7%BD%91%E7%BB%9C%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86%E7%AE%97%E6%B3%95&amp;variant=zh" target="_blank" rel="external">网络社区划分算法</a></li>
 <li>[21]: <a href="https://arxiv.org/pdf/1012.2726v1.pdf" target="_blank" rel="external">Cooper, Kathryn, and Mauricio Barahona. “Role-based similarity in directed networks.” arXiv preprint arXiv:1012.2726 (2010).</a></li>
+<li>[22]: <a href="http://www.pnas.org/content/104/1/36.short" target="_blank" rel="external">Fortunato, Santo, and Marc Barthelemy. “Resolution limit in community detection.” Proceedings of the National Academy of Sciences 104.1 (2007): 36-41.</a></li>
 </ul>
 
 
