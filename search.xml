@@ -188,12 +188,12 @@
 <tr class="odd">
 <td align="left">h-Neighborhood</td>
 <td>The set of all vertices <span class="math inline">\(j\)</span> with distance less than or equal to <span class="math inline">\(h\)</span> from <span class="math inline">\(i\)</span></td>
-<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\}\)</span> time and space [2]</td>
+<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">(Absolute) Hop Plot</td>
 <td>The number of pairs <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(d_{i,j}\leq h\)</span> to any parameter <span class="math inline">\(h\)</span></td>
-<td align="right"><span class="math inline">\(P(h)=\mid\{(i,j)\in V^2 \mid d_{i,j}\leq h\}\mid\)</span></td>
+<td align="right"><span class="math inline">\({\small P(h)=\mid\{(i,j)\in V^2 \mid d_{i,j}\leq h\}\mid}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">(Relative) Hop Plot</td>

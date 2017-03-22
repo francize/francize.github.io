@@ -129,7 +129,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-22T15:56:32.807Z</updated>
+    <updated>2017-03-22T15:59:28.009Z</updated>
     
     <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
 <table>
@@ -209,12 +209,12 @@
 <tr class="odd">
 <td align="left">h-Neighborhood</td>
 <td>The set of all vertices <span class="math inline">\(j\)</span> with distance less than or equal to <span class="math inline">\(h\)</span> from <span class="math inline">\(i\)</span></td>
-<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\}\)</span> time and space [2]</td>
+<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">(Absolute) Hop Plot</td>
 <td>The number of pairs <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(d_{i,j}\leq h\)</span> to any parameter <span class="math inline">\(h\)</span></td>
-<td align="right"><span class="math inline">\(P(h)=\mid\{(i,j)\in V^2 \mid d_{i,j}\leq h\}\mid\)</span></td>
+<td align="right"><span class="math inline">\({\small P(h)=\mid\{(i,j)\in V^2 \mid d_{i,j}\leq h\}\mid}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">(Relative) Hop Plot</td>
