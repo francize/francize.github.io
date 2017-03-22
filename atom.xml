@@ -129,13 +129,13 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-22T15:52:39.473Z</updated>
+    <updated>2017-03-22T15:53:54.312Z</updated>
     
     <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
 <table>
 <colgroup>
-<col width="36%">
-<col width="53%">
+<col width="27%">
+<col width="62%">
 <col width="10%">
 </colgroup>
 <thead>
@@ -268,8 +268,10 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Notes</strong>:<br>
-&gt; For arbitrary edge weights, the problem of finding a geodesic path is <strong><span class="math inline">\(\mathcal{NP}\)</span>-hard</strong> [7], but for more special (but also more common) cases the distance can be calculated in <strong>polynomial</strong> time by solving the <strong>all-pairs shortestpath problem</strong> (<strong>APSP</strong>) [2].</p>
+<p><strong>Notes</strong>:</p>
+<blockquote>
+<p>For arbitrary edge weights, the problem of finding a geodesic path is <strong><span class="math inline">\(\mathcal{NP}\)</span>-hard</strong> [7], but for more special (but also more common) cases the distance can be calculated in <strong>polynomial</strong> time by solving the <strong>all-pairs shortestpath problem</strong> (<strong>APSP</strong>) [2].</p>
+</blockquote>
 <hr>
 <h1 id="model-network-topology-1">1 Model (Network Topology) [1]</h1>
 <h2 id="regular-network">1.1 Regular Network</h2>
@@ -734,8 +736,8 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
       &lt;h1 id=&quot;相关术语&quot;&gt;0 相关术语&lt;/h1&gt;
 &lt;table&gt;
 &lt;colgroup&gt;
-&lt;col width=&quot;36%&quot;&gt;
-&lt;col width=&quot;53%&quot;&gt;
+&lt;col width=&quot;27%&quot;&gt;
+&lt;col width=&quot;62%&quot;&gt;
 &lt;col width=&quot;10%&quot;&gt;
 &lt;/colgroup&gt;
 &lt;thead&gt;
