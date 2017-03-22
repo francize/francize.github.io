@@ -110,138 +110,138 @@
       
     </div>
     <h1 id="相关术语">0 相关术语</h1>
-<table style="width:35%;">
+<table>
 <colgroup>
-<col width="11%">
-<col width="12%">
-<col width="11%">
+<col width="36%">
+<col width="53%">
+<col width="10%">
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Terms</th>
-<th align="center">Interpretation</th>
+<th>Interpretation</th>
 <th align="right">Notation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Regular Network</td>
-<td align="center">Each Vertices has exactly the same number of neighbors.</td>
+<td>Each Vertices has exactly the same number of neighbors.</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Random Network</td>
-<td align="center">A theoretical construct which contains links that are chosen completely at random with equal probability.</td>
+<td>A theoretical construct which contains links that are chosen completely at random with equal probability.</td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
 <td align="left">Geodesic Path(测地路径) or Shortest Path(最短路径)</td>
-<td align="center">A geodesic path is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices. [6]</td>
+<td>A geodesic path is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices. [6]</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Geodesic Distance(测地距离) or Hop Distance(跳跃距离)</td>
-<td align="center">连接顶点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(j\)</span> 的最短路径上的边的数目</td>
+<td>连接顶点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(j\)</span> 的最短路径上的边的数目</td>
 <td align="right"><span class="math inline">\(d_{i,j}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">Eccentricity</td>
-<td align="center">The maximal distance bewteen vertex <span class="math inline">\(i\)</span> and vertex <span class="math inline">\(j\)</span></td>
+<td>The maximal distance bewteen vertex <span class="math inline">\(i\)</span> and vertex <span class="math inline">\(j\)</span></td>
 <td align="right"><span class="math inline">\(\varepsilon_{i,j}=\max\{d_{i,j}\}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Strength(强度)</td>
-<td align="center">如果网络 <span class="math inline">\(G\)</span> 是无向加权网络，其权值矩阵 <span class="math inline">\(\mathbf{W}=(w_{ij})\)</span>，则顶点 <span class="math inline">\(i\)</span> 的强度定义为 <span class="math inline">\(s_i\)</span></td>
+<td>如果网络 <span class="math inline">\(G\)</span> 是无向加权网络，其权值矩阵 <span class="math inline">\(\mathbf{W}=(w_{ij})\)</span>，则顶点 <span class="math inline">\(i\)</span> 的强度定义为 <span class="math inline">\(s_i\)</span></td>
 <td align="right"><span class="math inline">\(s_i=\sum\limits_{j=1}^Nw_{ij}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">Density(密度)</td>
-<td align="center">网络中实际存在的边数 <span class="math inline">\(M\)</span> 与最大可能的边数之比</td>
+<td>网络中实际存在的边数 <span class="math inline">\(M\)</span> 与最大可能的边数之比</td>
 <td align="right"><span class="math inline">\(\rho=\frac{M}{\frac{1}{2}N(N-1)}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Diameter(直径)</td>
-<td align="center">The diameter of a (undirected) network is the length (in number of edges) of the longest geodesic path between any two vertices. [6]</td>
+<td>The diameter of a (undirected) network is the length (in number of edges) of the longest geodesic path between any two vertices. [6]</td>
 <td align="right"><span class="math inline">\(D=\max\limits_{i,j}d_{i,j},\,\, O(n^2)\)</span> time [2]</td>
 </tr>
 <tr class="odd">
 <td align="left">Radius(半径)</td>
-<td align="center">The minimal eccentricity of all vertices</td>
+<td>The minimal eccentricity of all vertices</td>
 <td align="right"><span class="math inline">\(rad=\min\limits_{i,j} \varepsilon_{i,j},\,\, O(n^2)\)</span> time [2]</td>
 </tr>
 <tr class="even">
 <td align="left">Characteristic path length(特征路径长度) or Mean Geodesic Distance</td>
-<td align="center">任意两个节点之间的距离的平均值.</td>
+<td>任意两个节点之间的距离的平均值.</td>
 <td align="right"><span class="math inline">\(\ell=\frac{1}{\frac{1}{2}n(n-1)}\sum\limits_{i\geq j}d_{i,j},\,\, O(n^2)\)</span> time [2]</td>
 </tr>
 <tr class="odd">
 <td align="left">The Average Degree</td>
-<td align="center">网络中所有节点 <span class="math inline">\(i\)</span> 的度 <span class="math inline">\(k_i\)</span> 的平局值.</td>
+<td>网络中所有节点 <span class="math inline">\(i\)</span> 的度 <span class="math inline">\(k_i\)</span> 的平局值.</td>
 <td align="right"><span class="math inline">\(\left\langle k\right\rangle=\frac{1}{n}\sum \limits_ik_i\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Pivotal vertices(关键节点)</td>
-<td align="center">A node is said to be pivotal if it lies on all shortest paths between two other nodes in the network.</td>
+<td>A node is said to be pivotal if it lies on all shortest paths between two other nodes in the network.</td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
 <td align="left">h-Neighborhood</td>
-<td align="center">The set of all vertices <span class="math inline">\(j\)</span> with distance less than or equal to <span class="math inline">\(h\)</span> from <span class="math inline">\(i\)</span></td>
+<td>The set of all vertices <span class="math inline">\(j\)</span> with distance less than or equal to <span class="math inline">\(h\)</span> from <span class="math inline">\(i\)</span></td>
 <td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\},\,\, O(n^2)\)</span> time and space [2]</td>
 </tr>
 <tr class="even">
 <td align="left">(Absolute) Hop Plot</td>
-<td align="center">The number of pairs <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(d_{i,j}\leq h\)</span> to any parameter <span class="math inline">\(h\)</span></td>
+<td>The number of pairs <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(d_{i,j}\leq h\)</span> to any parameter <span class="math inline">\(h\)</span></td>
 <td align="right"><span class="math inline">\(P(h)=\mid\{(i,j)\in V^2 \mid d_{i,j}\leq h\}\mid\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">(Relative) Hop Plot</td>
-<td align="center">The fraction of pairs with a distance less than or equal to <span class="math inline">\(h\)</span></td>
+<td>The fraction of pairs with a distance less than or equal to <span class="math inline">\(h\)</span></td>
 <td align="right"><span class="math inline">\(p(h)=\frac{P(h)}{n^2}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Effective Diameter(有效直径)</td>
-<td align="center">This is the minimum number of hops in which some fraction (say <span class="math inline">\(r=90\%\)</span>) [8] of all connected pairs of vertices can reach each other. [9]</td>
+<td>This is the minimum number of hops in which some fraction (say <span class="math inline">\(r=90\%\)</span>) [8] of all connected pairs of vertices can reach each other. [9]</td>
 <td align="right"><span class="math inline">\(diam_{eff}=\min\{h\mid P(h)\geq rn^2\},\\\,\,O(\log diam(G))\)</span> time [2]</td>
 </tr>
 <tr class="odd">
 <td align="left">Clustering Coefficient(聚类系数)</td>
-<td align="center">Measures the extent to which my friends are friends with one another.</td>
+<td>Measures the extent to which my friends are friends with one another.</td>
 <td align="right"><span class="math inline">\(C\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Communities</td>
-<td align="center">Groups of vertices that have a high density of edges within them, with a lower density of edges between groups.</td>
+<td>Groups of vertices that have a high density of edges within them, with a lower density of edges between groups.</td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
 <td align="left">Resilience</td>
-<td align="center">The resilience of a graph is a measure of its robustness to node or edge failures. [14]</td>
+<td>The resilience of a graph is a measure of its robustness to node or edge failures. [14]</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Distribution function</td>
-<td align="center">The probability that a vertex chosen uniformly at random has degree <span class="math inline">\(k\)</span>.</td>
+<td>The probability that a vertex chosen uniformly at random has degree <span class="math inline">\(k\)</span>.</td>
 <td align="right"><span class="math inline">\(p_k\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">Scale-Free(无标度)</td>
-<td align="center">Refers to any functional form <span class="math inline">\(f(k)\)</span> that remains unchanged to within a multiplicative factor under a rescaling of the independent variable <span class="math inline">\(k\)</span>, where <span class="math inline">\(f(k)=p_k\propto k^{-\alpha}\)</span> for some constant exponenet <span class="math inline">\(\alpha\)</span> It’s synonymous with “<strong>power-law</strong>”.</td>
+<td>Refers to any functional form <span class="math inline">\(f(k)\)</span> that remains unchanged to within a multiplicative factor under a rescaling of the independent variable <span class="math inline">\(k\)</span>, where <span class="math inline">\(f(k)=p_k\propto k^{-\alpha}\)</span> for some constant exponenet <span class="math inline">\(\alpha\)</span> It’s synonymous with “<strong>power-law</strong>”.</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Component</td>
-<td align="center">The component to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph.</td>
+<td>The component to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph.</td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
 <td align="left">Betweenness Centrality(介数中心性)</td>
-<td align="center">The betweenness centrality of a vertex <span class="math inline">\(i\)</span> is the number of geodesic paths between other vertices that run through <span class="math inline">\(i\)</span>.</td>
+<td>The betweenness centrality of a vertex <span class="math inline">\(i\)</span> is the number of geodesic paths between other vertices that run through <span class="math inline">\(i\)</span>.</td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left">Closeness Centrality(紧密度中心性)</td>
-<td align="center">Closeness centrality measures the mean distance from a vertex to other vertices.</td>
+<td>Closeness centrality measures the mean distance from a vertex to other vertices.</td>
 <td align="right"></td>
 </tr>
 </tbody>
