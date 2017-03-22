@@ -129,7 +129,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-22T16:00:36.245Z</updated>
+    <updated>2017-03-22T16:05:42.510Z</updated>
     
     <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
 <table>
@@ -224,7 +224,7 @@
 <tr class="even">
 <td align="left">Effective Diameter(有效直径)</td>
 <td>This is the minimum number of hops in which some fraction (say <span class="math inline">\(r=90\%\)</span>) [8] of all connected pairs of vertices can reach each other. [9]</td>
-<td align="right"><span class="math inline">\(diam_{eff}=\min\{h\mid P(h)\geq rn^2\}\)</span></td>
+<td align="right"><span class="math inline">\({\small\min\{h\mid P(h)\geq rn^2\}}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">Clustering Coefficient(聚类系数)</td>
