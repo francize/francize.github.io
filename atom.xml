@@ -129,9 +129,149 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-22T15:39:55.533Z</updated>
+    <updated>2017-03-22T15:50:37.082Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="model-network-topology-1">1 Model (Network Topology) [1]</h1>
+    <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
+<table style="width:35%;">
+<colgroup>
+<col width="11%">
+<col width="12%">
+<col width="11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Terms</th>
+<th align="center">Interpretation</th>
+<th align="right">Notation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regular Network</td>
+<td align="center">Each Vertices has exactly the same number of neighbors.</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Random Network</td>
+<td align="center">A theoretical construct which contains links that are chosen completely at random with equal probability.</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Geodesic Path(测地路径) or Shortest Path(最短路径)</td>
+<td align="center">A geodesic path is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices. [6]</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Geodesic Distance(测地距离) or Hop Distance(跳跃距离)</td>
+<td align="center">连接顶点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(j\)</span> 的最短路径上的边的数目</td>
+<td align="right"><span class="math inline">\(d_{i,j}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Eccentricity</td>
+<td align="center">The maximal distance bewteen vertex <span class="math inline">\(i\)</span> and vertex <span class="math inline">\(j\)</span></td>
+<td align="right"><span class="math inline">\(\varepsilon_{i,j}=\max\{d_{i,j}\}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Strength(强度)</td>
+<td align="center">如果网络 <span class="math inline">\(G\)</span> 是无向加权网络，其权值矩阵 <span class="math inline">\(\mathbf{W}=(w_{ij})\)</span>，则顶点 <span class="math inline">\(i\)</span> 的强度定义为 <span class="math inline">\(s_i\)</span></td>
+<td align="right"><span class="math inline">\(s_i=\sum\limits_{j=1}^Nw_{ij}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Density(密度)</td>
+<td align="center">网络中实际存在的边数 <span class="math inline">\(M\)</span> 与最大可能的边数之比</td>
+<td align="right"><span class="math inline">\(\rho=\frac{M}{\frac{1}{2}N(N-1)}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Diameter(直径)</td>
+<td align="center">The diameter of a (undirected) network is the length (in number of edges) of the longest geodesic path between any two vertices. [6]</td>
+<td align="right"><span class="math inline">\(D=\max\limits_{i,j}d_{i,j},\,\, O(n^2)\)</span> time [2]</td>
+</tr>
+<tr class="odd">
+<td align="left">Radius(半径)</td>
+<td align="center">The minimal eccentricity of all vertices</td>
+<td align="right"><span class="math inline">\(rad=\min\limits_{i,j} \varepsilon_{i,j},\,\, O(n^2)\)</span> time [2]</td>
+</tr>
+<tr class="even">
+<td align="left">Characteristic path length(特征路径长度) or Mean Geodesic Distance</td>
+<td align="center">任意两个节点之间的距离的平均值.</td>
+<td align="right"><span class="math inline">\(\ell=\frac{1}{\frac{1}{2}n(n-1)}\sum\limits_{i\geq j}d_{i,j},\,\, O(n^2)\)</span> time [2]</td>
+</tr>
+<tr class="odd">
+<td align="left">The Average Degree</td>
+<td align="center">网络中所有节点 <span class="math inline">\(i\)</span> 的度 <span class="math inline">\(k_i\)</span> 的平局值.</td>
+<td align="right"><span class="math inline">\(\left\langle k\right\rangle=\frac{1}{n}\sum \limits_ik_i\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Pivotal vertices(关键节点)</td>
+<td align="center">A node is said to be pivotal if it lies on all shortest paths between two other nodes in the network.</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">h-Neighborhood</td>
+<td align="center">The set of all vertices <span class="math inline">\(j\)</span> with distance less than or equal to <span class="math inline">\(h\)</span> from <span class="math inline">\(i\)</span></td>
+<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\},\,\, O(n^2)\)</span> time and space [2]</td>
+</tr>
+<tr class="even">
+<td align="left">(Absolute) Hop Plot</td>
+<td align="center">The number of pairs <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(d_{i,j}\leq h\)</span> to any parameter <span class="math inline">\(h\)</span></td>
+<td align="right"><span class="math inline">\(P(h)=\mid\{(i,j)\in V^2 \mid d_{i,j}\leq h\}\mid\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">(Relative) Hop Plot</td>
+<td align="center">The fraction of pairs with a distance less than or equal to <span class="math inline">\(h\)</span></td>
+<td align="right"><span class="math inline">\(p(h)=\frac{P(h)}{n^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Effective Diameter(有效直径)</td>
+<td align="center">This is the minimum number of hops in which some fraction (say <span class="math inline">\(r=90\%\)</span>) [8] of all connected pairs of vertices can reach each other. [9]</td>
+<td align="right"><span class="math inline">\(diam_{eff}=\min\{h\mid P(h)\geq rn^2\},\\\,\,O(\log diam(G))\)</span> time [2]</td>
+</tr>
+<tr class="odd">
+<td align="left">Clustering Coefficient(聚类系数)</td>
+<td align="center">Measures the extent to which my friends are friends with one another.</td>
+<td align="right"><span class="math inline">\(C\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Communities</td>
+<td align="center">Groups of vertices that have a high density of edges within them, with a lower density of edges between groups.</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Resilience</td>
+<td align="center">The resilience of a graph is a measure of its robustness to node or edge failures. [14]</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Distribution function</td>
+<td align="center">The probability that a vertex chosen uniformly at random has degree <span class="math inline">\(k\)</span>.</td>
+<td align="right"><span class="math inline">\(p_k\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Scale-Free(无标度)</td>
+<td align="center">Refers to any functional form <span class="math inline">\(f(k)\)</span> that remains unchanged to within a multiplicative factor under a rescaling of the independent variable <span class="math inline">\(k\)</span>, where <span class="math inline">\(f(k)=p_k\propto k^{-\alpha}\)</span> for some constant exponenet <span class="math inline">\(\alpha\)</span> It’s synonymous with “<strong>power-law</strong>”.</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Component</td>
+<td align="center">The component to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph.</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Betweenness Centrality(介数中心性)</td>
+<td align="center">The betweenness centrality of a vertex <span class="math inline">\(i\)</span> is the number of geodesic paths between other vertices that run through <span class="math inline">\(i\)</span>.</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Closeness Centrality(紧密度中心性)</td>
+<td align="center">Closeness centrality measures the mean distance from a vertex to other vertices.</td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>:<br>
+&gt; For arbitrary edge weights, the problem of finding a geodesic path is <strong><span class="math inline">\(\mathcal{NP}\)</span>-hard</strong> [7], but for more special (but also more common) cases the distance can be calculated in <strong>polynomial</strong> time by solving the <strong>all-pairs shortestpath problem</strong> (<strong>APSP</strong>) [2].</p>
+<hr>
+<h1 id="model-network-topology-1">1 Model (Network Topology) [1]</h1>
 <h2 id="regular-network">1.1 Regular Network</h2>
 <ul>
 <li>全局耦合网络(globally coupled network): 任意两个点之间都有边直接相连</li>
@@ -148,10 +288,17 @@
 <h2 id="scale-free-network">1.4 Scale-Free Network</h2>
 <p>该网络的连接度分布函数具有幂律形式，现称为BA模型 [5]。该模型具有以下特征：</p>
 <ul>
-<li>增长 (growth) 特性：即网络的规模是不断扩大的。<br>
-&gt; WWW上每天都有大量新的网页产生</li>
-<li>优先连接 (preferential attachment) 特性：即新的节点更倾向于与那些具有较高连接度的“大”节点相连接。这种现象也称为“富者更富 (rich get richer)”或“马太效应 (Matthew effect)”。 &gt; 新发表的文章更倾向于引用一些已被广泛引用的重要文献。</li>
+<li>增长 (growth) 特性：即网络的规模是不断扩大的。</li>
 </ul>
+<blockquote>
+<p>WWW上每天都有大量新的网页产生</p>
+</blockquote>
+<ul>
+<li>优先连接 (preferential attachment) 特性：即新的节点更倾向于与那些具有较高连接度的“大”节点相连接。这种现象也称为“富者更富 (rich get richer)”或“马太效应 (Matthew effect)”。</li>
+</ul>
+<blockquote>
+<p>新发表的文章更倾向于引用一些已被广泛引用的重要文献。</p>
+</blockquote>
 <hr>
 <h1 id="properties">2 Properties</h1>
 <h2 id="small-world-effect">2.1 Small-World Effect</h2>
@@ -184,11 +331,17 @@ C = \frac{1}{n}\sum_i C_i,\quad C_i = \frac{\text{number of triangles connected 
 <h2 id="degree-distributions">2.3 Degree Distributions</h2>
 <p>The way of presenting degree data is to make a plot of the cumulative distribution function(累积度分布) <span class="math display">\[ \begin{align}
 P_k=\sum_{k&#39;=k}^\infty p_{k&#39;}
-\end{align} \]</span> which is the probability that the degree is greater than or equal to <span class="math inline">\(k\)</span>. &gt; Such a plot has the advantage that all the original data are representd and also reduces the noise in the tail.</p>
+\end{align} \]</span> which is the probability that the degree is greater than or equal to <span class="math inline">\(k\)</span>.</p>
+<blockquote>
+<p>Such a plot has the advantage that all the original data are representd and also reduces the noise in the tail.</p>
+</blockquote>
 <p>A network appears to have power-law degree destributions if its cumulative degree distribution indicated by their approximately straight-line forms on the doubly logarithmic scales.</p>
 <h2 id="community-structure">2.4 <a href="#cs">Community</a> Structure</h2>
-<p>The distribution of edges is not only globally, but also <strong>locally inhomogeneous</strong>, with high <strong>concentrations</strong> of edges within special groups of vertices, and low concentrations between these groups. This feature of real networks is called <strong>community structure</strong>, or <strong>clustering</strong>. &gt; <strong>Clustering和Community Detection区别</strong> [19]<br>
-&gt; 聚类问题和网络社区划分问题虽然存在内在的一致性，但是在本质上二者并不完全等同。聚类分析问题中的每一个数据点是孤立存在的，只存在与其它数据点的距离信息或者相似度信息；而网络中的每一个节点具备聚类分析问题所不具备的网络拓扑结构性质。网络中的每一个节点不仅受到其邻居的影响，而且还要受到其它节点经过拓扑性质传递给它的影响，这也正是基于网络拓扑结构性质相似度构造方法优于基于节点局部信息相似度构造方法的原因所在。</p>
+<p>The distribution of edges is not only globally, but also <strong>locally inhomogeneous</strong>, with high <strong>concentrations</strong> of edges within special groups of vertices, and low concentrations between these groups. This feature of real networks is called <strong>community structure</strong>, or <strong>clustering</strong>.</p>
+<blockquote>
+<p><strong>Clustering和Community Detection区别</strong>： [19]<br>
+聚类问题和网络社区划分问题虽然存在内在的一致性，但是在本质上二者并不完全等同。聚类分析问题中的每一个数据点是孤立存在的，只存在与其它数据点的距离信息或者相似度信息；而网络中的每一个节点具备聚类分析问题所不具备的网络拓扑结构性质。网络中的每一个节点不仅受到其邻居的影响，而且还要受到其它节点经过拓扑性质传递给它的影响，这也正是基于网络拓扑结构性质相似度构造方法优于基于节点局部信息相似度构造方法的原因所在。</p>
+</blockquote>
 <h2 id="network-resilience">2.5 Network <a href="#Resilience">Resilience</a></h2>
 <p>There are a variety of different ways in which vertices can be removed. For example, one could remove vertices at random from a network, or one could target some specific class of vertices, such as those with the highest degrees.</p>
 <p>The work[11] study the effect of vertex deletion:</p>
@@ -273,7 +426,7 @@ Each vertex of the graph is represented with a low-dimensional vector in which m
 </ul></li>
 <li>在工业界的其他应用包括：精准营销，改善搜索/帮助推荐，网络系统安全</li>
 </ul>
-<p>ppt下载链接 <a href="http://pan.baidu.com/s/1pLay8UR" class="uri" target="_blank" rel="external">http://pan.baidu.com/s/1pLay8UR</a>{:target=“_blank“}</p>
+<p>ppt下载链接 <a href="http://pan.baidu.com/s/1pLay8UR" class="uri" target="_blank" rel="external">http://pan.baidu.com/s/1pLay8UR</a></p>
 <h3 id="研究现状">3.6.1 研究现状</h3>
 <p>目前流行的网络聚类方法是社区发现，已有的社区发现方法主要用来发现类内链接紧密、类间链接稀疏的网络结构(以下称该类结构为“<strong>传统社区</strong>”)。社区结构对深入理解网络拓扑结构、挖掘网络潜在模式、预测网络行为都具有十分重要的意义。而实际网络的结构比较复杂，人们预先并不知道网络中存在什么结构。</p>
 <p>传统社区用于发现网络中<strong>紧密链接的聚类结构</strong>，根据节点链接紧密特性定义聚类中节点的相似性。当网络中不存在社区结构或存在其它结构时，传统社区发现方法不能有效识别网络的真实结构。</p>
@@ -292,9 +445,10 @@ Each vertex of the graph is represented with a low-dimensional vector in which m
 </ul>
 <hr>
 <h3 id="复杂网络上的社区发现">3.6.2 复杂网络上的社区发现</h3>
+<h4 id="社区发现分类">3.6.2.0 社区发现分类</h4>
 <div class="figure">
-<img src="https://ooo.0o0.ooo/2017/02/25/58b14aea858ce.png" alt="复杂网络上的社区发现.png">
-<p class="caption">复杂网络上的社区发现.png</p>
+<img src="https://ooo.0o0.ooo/2017/02/25/58b14aea858ce.png">
+
 </div>
 <h4 id="传统算法-traditional-methods">3.6.2.1 传统算法 (Traditional methods)</h4>
 <h5 id="图分割-graph-partitioning">3.6.2.1.1 图分割 (Graph partitioning)</h5>
@@ -328,7 +482,7 @@ Each vertex of the graph is represented with a low-dimensional vector in which m
 <li><em>分裂法（Divisive algorithms）</em>：找出相互关联最弱的节点，并删除他们之间的边，通过这样的反复操作将网络划分为越来越小的组件，连通的网络构成社区。</li>
 </ul></li>
 <li><strong>划分聚类（Partitional clustering）</strong>像k-means就很好，可以使用上面的相似度来聚类 。[44]</li>
-<li><strong>谱聚类（Spectral clustering）</strong>图分割中的如 Ratio Cut和Normalized Cut其实和谱聚类是等价的（见参考3），所以谱聚类也能用在社区发现上。</li>
+<li><strong>谱聚类（Spectral clustering）</strong>图分割中的如 Ratio Cut和Normalized Cut其实和谱聚类是等价的，所以谱聚类也能用在社区发现上。</li>
 <li><strong>局部聚类</strong></li>
 </ul>
 <h4 id="分裂方法divisive-algorithms">3.6.2.2 分裂方法（Divisive algorithms）</h4>
@@ -354,8 +508,13 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <li><strong>贪心策略（Greedy techniques）</strong> 有两个比较经典的算法，分别是
 <ul>
 <li>Fast greedy算法（CNN算法）[51]</li>
-<li>Multilevel算法（Fast-Unfolding算法）[52] 该算法优点如下：（1）计算速度很快，可用于大规模网络。（2）是一种自下而上的凝聚过程，不会出现对小规模社团的探测遗漏现象，即解决了分辨率问题。（3）可应用于大规模的加权网络。 然而，在实际情况下，在顶点的直接邻近内的封闭社区可能是不准确的并且产生虚假伪分区。 因此，不清楚某些中间分区是否可以对应于图的有意义的分层级别。 此外，算法的结果取决于在顶点上的顺序扫描的顺序。 &gt; Fast-Unfolding算法可以Spark中实现，已有现成的代码。[53]</li>
+<li>Multilevel算法（Fast-Unfolding算法）[52] 该算法优点如下：（1）计算速度很快，可用于大规模网络。（2）是一种自下而上的凝聚过程，不会出现对小规模社团的探测遗漏现象，即解决了分辨率问题。（3）可应用于大规模的加权网络。 然而，在实际情况下，在顶点的直接邻近内的封闭社区可能是不准确的并且产生虚假伪分区。 因此，不清楚某些中间分区是否可以对应于图的有意义的分层级别。 此外，算法的结果取决于在顶点上的顺序扫描的顺序。</li>
 </ul></li>
+</ul>
+<blockquote>
+<p>Fast-Unfolding算法可以Spark中实现，已有现成的代码。[53]</p>
+</blockquote>
+<ul>
 <li><strong>模拟退火（Simulated annealing）</strong></li>
 <li><strong>极值优化（Extremal optimization）</strong></li>
 <li><strong>谱优化（Spectral optimization）</strong></li>
@@ -391,7 +550,7 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <tr class="odd">
 <td>Q modularity</td>
 <td>最大化Q-modularity</td>
-<td><span class="math inline">\(n_1^2\)</span></td>
+<td><span class="math inline">\(O(n_1^2)\)</span></td>
 <td>无向无权多分量</td>
 <td>不适合大网络</td>
 </tr>
@@ -447,7 +606,7 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <tr class="odd">
 <td>Role-based community</td>
 <td>划分出在流中地位类似的节点</td>
-<td><span class="math inline">\(n_1^3\)</span></td>
+<td><span class="math inline">\(O(n_1^3)\)</span></td>
 <td>有向有权单分量</td>
 <td>结果不稳定</td>
 </tr>
@@ -508,63 +667,63 @@ I_{norm}(\mathcal{X},\mathcal{Y})=\frac{2I(X;Y)}{H(X)+H(Y)}
 \end{align} \]</span> 所谓两个事件相关性的量化度量，就是在了解其中一个<span class="math inline">\(Y\)</span>的前提下，对消除另一个<span class="math inline">\(X\)</span>不确定性所提供的信息量。 规范化的互信息定义为 <span class="math display">\[ \begin{align}
 NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
 \end{align} \]</span> 我们将划分当做一个结点落在社区的概率分布，然后计算社区划分结果和真实情况的NMI值，具体例子见参考《社会计算:社区发现和社会媒体挖掘》[56].</p>
-<p>[1]: <a href="http://vdisk.weibo.com/s/ztDcAsY3JGuzD" target="_blank" rel="external">汪小帆, 李翔, and 陈关荣. 复杂网络理论及其应用. 清华大学出版社有限公司, 2006.</a>{:target=“_blank“}</p>
-<p>[2]: <a href="http://link.springer.com/book/10.1007/b106453" target="_blank" rel="external">Brandes, Ulrik, and Thomas Erlebach. Network analysis: methodological foundations. Vol. 3418. Springer Science &amp; Business Media, 2005.</a>{:target=“_blank“}</p>
-<p>[3]: <a href="http://link.springer.com/chapter/10.1007/978-1-4612-0619-4_7" target="_blank" rel="external">Bollobás, Béla. “Random graphs.” Modern Graph Theory. Springer New York, 1998. 215-252.</a>{:target=“_blank“}</p>
-<p>[4]: <a href="http://www.nature.com/nature/journal/v393/n6684/abs/393440a0.html" target="_blank" rel="external">Watts, Duncan J., and Steven H. Strogatz. “Collective dynamics of ‘small-world’networks.” nature 393.6684 (1998): 440-442.</a>{:target=“_blank“}</p>
-<p>[5]: <a href="http://science.sciencemag.org/content/286/5439/509" target="_blank" rel="external">Barabási, Albert-László, and Réka Albert. “Emergence of scaling in random networks.” science 286.5439 (1999): 509-512.</a>{:target=“_blank“}</p>
-<p>[6]: <a href="http://epubs.siam.org/doi/abs/10.1137/s003614450342480" target="_blank" rel="external">Newman, Mark EJ. “The structure and function of complex networks.” SIAM review 45.2 (2003): 167-256.</a>{:target=“_blank“}</p>
-<p>[7]: <a href="http://dl.acm.org/citation.cfm?id=578533" target="_blank" rel="external">Gary, Michael R., and David S. Johnson. “Computers and Intractability: A Guide to the Theory of NP-completeness.” (1979).</a>{:target=“_blank“}</p>
-<p>[8]: <a href="http://repository.cmu.edu/compsci/565/" target="_blank" rel="external">Palmer, Christopher R., et al. “The connectivity and fault-tolerance of the Internet topology.” (2001).</a>{:target=“_blank“}</p>
-<p>[9]: <a href="http://ieeexplore.ieee.org/abstract/document/965863/" target="_blank" rel="external">Tauro, Sudhir Leslie, et al. “A simple conceptual model for the internet topology.” Global Telecommunications Conference, 2001. GLOBECOM’01. IEEE. Vol. 3. IEEE, 2001.</a>{:target=“_blank“}</p>
-<p>[10]: <a href="http://www.jstor.org/stable/pdf/2786545.pdf" target="_blank" rel="external">Travers, Jeffrey, and Stanley Milgram. “An experimental study of the small world problem.” Sociometry (1969): 425-443.</a>{:target=“_blank“}</p>
-<p>[11]: <a href="http://www.nature.com/nature/journal/v406/n6794/abs/406378A0.html" target="_blank" rel="external">Albert, Réka, Hawoong Jeong, and Albert-László Barabási. “Error and attack tolerance of complex networks.” nature 406.6794 (2000): 378-382.</a>{:target=“_blank“}</p>
-<p>[12]: <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.87.198701" target="_blank" rel="external">Latora, Vito, and Massimo Marchiori. “Efficient behavior of small-world networks.” Physical review letters 87.19 (2001): 198701.</a>{:target=“_blank“}</p>
-<p>[13]: <a href="http://link.springer.com/article/10.1140%2Fepjb%2Fe2003-00095-5?LI=true" target="_blank" rel="external">Latora, Vito, and Massimo Marchiori. “Economic small-world behavior in weighted networks.” The European Physical Journal B-Condensed Matter and Complex Systems 32.2 (2003): 249-263.</a>{:target=“_blank“}</p>
-<p>[14]: <a href="http://dl.acm.org/citation.cfm?id=1132954" target="_blank" rel="external">Chakrabarti, Deepayan, and Christos Faloutsos. “Graph mining: Laws, generators, and algorithms.” ACM computing surveys (CSUR) 38.1 (2006): 2.</a>{:target=“_blank“}</p>
-<p>[15]: <a href="http://cs.brynmawr.edu/Courses/cs380/spring2013/section02/slides/05_Centrality.pdf" target="_blank" rel="external">Network Centrality Based on materials by Lada Adamic, UMichigan</a>{:target=“_blank“}</p>
-<p>[16]: <a href="http://www.jstor.org/stable/3033543" target="_blank" rel="external">Freeman, Linton C. “A set of measures of centrality based on betweenness.” Sociometry (1977): 35-41.</a>{:target=“_blank“}</p>
-<p>[17]: <a href="http://www.sci.unich.it/~francesc/teaching/network/closeness.html" target="_blank" rel="external">Closeness Centrality</a>{:target=“_blank“}</p>
-<p>[18]: <a href="https://en.wikipedia.org/wiki/Centrality" target="_blank" rel="external">Centrality - Wikipedia</a>{:target=“_blank“}</p>
-<p>[19]: <a href="http://f.wanfangdata.com.cn/download/Thesis_Y2734231.aspx" target="_blank" rel="external">姜雅文. 复杂网络社区发现若干问题研究. Diss. 北京交通大学, 2014.</a>{:target=“_blank“}</p>
-<p>[20]: <a href="http://dl.acm.org/citation.cfm?id=1541882" target="_blank" rel="external">Chandola, Varun, Arindam Banerjee, and Vipin Kumar. “Anomaly detection: A survey.” ACM computing surveys (CSUR) 41.3 (2009): 15.</a>{:target=“_blank“}</p>
-<p>[21]: <a href="http://dl.acm.org/citation.cfm?id=1772756" target="_blank" rel="external">Leskovec Jure, Daniel Huttenlocher, and Jon Kleinberg. “Predicting positive and negative links in online social networks.” Proceedings of the 19th international conference on World wide web. ACM, 2010.</a>{:target=“_blank“}</p>
-<p>[22]: <a href="https://arxiv.org/abs/1011.4071v1" target="_blank" rel="external">Backstrom, Lars, and Jure Leskovec. “Supervised random walks: predicting and recommending links in social networks.” Proceedings of the fourth ACM international conference on Web search and data mining. ACM, 2011.</a>{:target=“_blank“}</p>
-<p>[23]: <a href="http://dl.acm.org/citation.cfm?id=608330" target="_blank" rel="external">Mirza, Batul J., Benjamin J. Keller, and Naren Ramakrishnan. “Studying recommendation algorithms by graph analysis.” Journal of Intelligent Information Systems 20.2 (2003): 131-160.</a>{:target=“_blank“}</p>
-<p>[24]: <a href="http://www-cs-students.stanford.edu/~taherh/papers/topic-sensitive-pagerank.pdf" target="_blank" rel="external">Haveliwala, Taher H. “Topic-sensitive pagerank.” Proceedings of the 11th international conference on World Wide Web. ACM, 2002.</a>{:target=“_blank“}</p>
-<p>[25]: <a href="http://www.sciencedirect.com/science/article/pii/S0020025513003149" target="_blank" rel="external">Durand, Guillaume, Nabil Belacel, and François LaPlante. “Graph theory based model for learning path recommendation.” Information Sciences 251 (2013): 10-21.</a>{:target=“_blank“}</p>
-<p>[26]: <a href="http://dl.acm.org/citation.cfm?id=2507163" target="_blank" rel="external">McAuley, Julian, and Jure Leskovec. “Hidden factors and hidden topics: understanding rating dimensions with review text.” Proceedings of the 7th ACM conference on Recommender systems. ACM, 2013.</a>{:target=“_blank“}</p>
-<p>[27]: <a href="http://dl.acm.org/citation.cfm?id=2556259" target="_blank" rel="external">Yu, Xiao, et al. “Personalized entity recommendation: A heterogeneous information network approach.” Proceedings of the 7th ACM international conference on Web search and data mining. ACM, 2014.</a>{:target=“_blank“}</p>
-<p>[28]: <a href="https://arxiv.org/abs/1609.08264v1" target="_blank" rel="external">Kang, Zhao, et al. “Top-N Recommendation on Graphs.” Proceedings of the 25th ACM International on Conference on Information and Knowledge Management. ACM, 2016.</a>{:target=“_blank“}</p>
-<p>[29]: <a href="http://dl.acm.org/citation.cfm?id=2959185" target="_blank" rel="external">Christakopoulou, Evangelia, and George Karypis. “Local Item-Item Models For Top-N Recommendation.” Proceedings of the 10th ACM Conference on Recommender Systems. ACM, 2016.</a>{:target=“_blank“}</p>
-<p>[30]: <a href="http://dl.acm.org/citation.cfm?id=2623732" target="_blank" rel="external">Perozzi, Bryan, Rami Al-Rfou, and Steven Skiena. “Deepwalk: Online learning of social representations.” Proceedings of the 20th ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2014.</a>{:target=“_blank“}</p>
-<p>[31]: <a href="https://arxiv.org/abs/1506.05163v1" target="_blank" rel="external">Henaff, Mikael, Joan Bruna, and Yann LeCun. “Deep convolutional networks on graph-structured data.” arXiv preprint arXiv:1506.05163 (2015).</a>{:target=“_blank“}</p>
-<p>[32]: <a href="https://arxiv.org/abs/1101.3291" target="_blank" rel="external">Bhagat, Smriti, Graham Cormode, and S. Muthukrishnan. “Node classification in social networks.” Social network data analytics. Springer US, 2011. 115-148.</a>{:target=“_blank“}</p>
-<p>[33]: <a href="http://web.eecs.umich.edu/~dkoutra/papers/fabp_pkdd2011.pdf" target="_blank" rel="external">Koutra, Danai, et al. “Unifying guilt-by-association approaches: Theorems and fast algorithms.” Joint European Conference on Machine Learning and Knowledge Discovery in Databases. Springer Berlin Heidelberg, 2011.</a>{:target=“_blank“}</p>
-<p>[34]: <a href="http://dl.acm.org/citation.cfm?id=2741093" target="_blank" rel="external">Tang, Jian, et al. “Line: Large-scale information network embedding.” Proceedings of the 24th International Conference on World Wide Web. ACM, 2015.</a>{:target=“_blank“}</p>
-<p>[35]: <a href="https://arxiv.org/abs/1607.00653" target="_blank" rel="external">Grover, Aditya, and Jure Leskovec. “node2vec: Scalable Feature Learning for Networks.”</a>{:target=“_blank“}</p>
-<p>[36]: <a href="http://dl.acm.org/citation.cfm?id=2806512" target="_blank" rel="external">Cao, Shaosheng, Wei Lu, and Qiongkai Xu. “Grarep: Learning graph representations with global structural information.” Proceedings of the 24th ACM International on Conference on Information and Knowledge Management. ACM, 2015.</a>{:target=“_blank“}</p>
-<p>[37]: <a href="http://www.sciencedirect.com/science/article/pii/S0370157309002841" target="_blank" rel="external">Fortunato, Santo. “Community detection in graphs.” Physics reports 486.3 (2010): 75-174.</a>{:target=“_blank“}</p>
-<p>[38]: <a href="http://ieeexplore.ieee.org/abstract/document/6771089/" target="_blank" rel="external">Kernighan, Brian W., and Shen Lin. “An efficient heuristic procedure for partitioning graphs.” The Bell system technical journal 49.2 (1970): 291-307.</a>{:target=“_blank“}</p>
-<p>[39]: <a href="http://epubs.siam.org/doi/abs/10.1137/0603056?journalCode=sjamdu" target="_blank" rel="external">Barnes, Earl R. “An algorithm for partitioning the nodes of a graph.” SIAM Journal on Algebraic Discrete Methods 3.4 (1982): 541-550.</a>{:target=“_blank“}</p>
-<p>[40]: <a href="http://dl.acm.org/citation.cfm?id=347121" target="_blank" rel="external">Flake, Gary William, Steve Lawrence, and C. Lee Giles. “Efficient identification of web communities.” Proceedings of the sixth ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2000.</a>{:target=“_blank“}</p>
-<p>[41]: <a href="http://ieeexplore.ieee.org/abstract/document/989932/" target="_blank" rel="external">Flake, Gary William, et al. “Self-organization and identification of web communities.” Computer 35.3 (2002): 66-70.</a>{:target=“_blank“}</p>
-<p>[42]: <a href="http://link.springer.com/chapter/10.1007/978-94-011-5412-3_12" target="_blank" rel="external">Pothen, Alex. “Graph partitioning algorithms with applications to scientific computing.” Parallel Numerical Algorithms. Springer Netherlands, 1997. 323-368.</a>{:target=“_blank“}</p>
-<p>[43]: <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf" target="_blank" rel="external">Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. The elements of statistical learning. Vol. 1. Springer, Berlin: Springer series in statistics, 2001.</a>{:target=“_blank“}</p>
-<p>[44]: <a href="https://projecteuclid.org/euclid.bsmsp/1200512992" target="_blank" rel="external">MacQueen, James. “Some methods for classification and analysis of multivariate observations.” Proceedings of the fifth Berkeley symposium on mathematical statistics and probability. Vol. 1. No. 14. 1967.</a>{:target=“_blank“}</p>
-<p>[45]: <a href="http://www.pnas.org/content/99/12/7821.short" target="_blank" rel="external">Girvan, Michelle, and Mark EJ Newman. “Community structure in social and biological networks.” Proceedings of the national academy of sciences 99.12 (2002): 7821-7826.</a>{:target=“_blank“}</p>
-<p>[46]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.69.026113" target="_blank" rel="external">Newman, Mark EJ, and Michelle Girvan. “Finding and evaluating community structure in networks.” Physical review E 69.2 (2004): 026113.</a>{:target=“_blank“}</p>
-<p>[47]: <a href="http://www.cnki.com.cn/Article/CJFDTotal-JSJA201208000.htm" target="_blank" rel="external">柴变芳, 贾彩燕, and 于剑. “基于统计推理的社区发现模型综述.” 计算机科学 2012 年 08 (2012): 1-7+.</a>{:target=“_blank“}</p>
-<p>[48]: <a href="http://cdmd.cnki.com.cn/Article/CDMD-10004-1015611891.htm" target="_blank" rel="external">柴变芳. 基于生成模型的大规模网络广义社区发现方法研究. Diss. 北京交通大学, 2015.</a>{:target=“_blank“}</p>
-<p>[49]: <a href="http://www.mapequation.org/assets/publications/RosvallBergstromPNAS2008Full.pdf" target="_blank" rel="external">Rosvall, Martin, and Carl T. Bergstrom. “Maps of random walks on complex networks reveal community structure.” Proceedings of the National Academy of Sciences 105.4 (2008): 1118-1123.</a>{:target=“_blank“}</p>
-<p>[50]: <a href="https://arxiv.org/abs/0906.1405" target="_blank" rel="external">Rosvall, Martin, Daniel Axelsson, and Carl T. Bergstrom. “The map equation.” The European Physical Journal Special Topics 178.1 (2009): 13-23.</a>{:target=“_blank“}</p>
-<p>[51]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.066111" target="_blank" rel="external">Clauset, Aaron, Mark EJ Newman, and Cristopher Moore. “Finding community structure in very large networks.” Physical review E 70.6 (2004): 066111.</a>{:target=“_blank“}</p>
-<p>[52]: <a href="https://arxiv.org/abs/0803.0476v2" target="_blank" rel="external">Blondel, Vincent D., et al. “Fast unfolding of communities in large networks.” Journal of statistical mechanics: theory and experiment 2008.10 (2008): P10008.</a>{:target=“_blank“}</p>
-<p>[53]: <a href="http://bbs.pinggu.org/thread-3614747-1-1.html" target="_blank" rel="external">基于GraphX的社区发现算法FastUnfolding分布式实现</a>{:target=“_blank“}</p>
-<p>[54]: <a href="http://www.pnas.org/content/103/23/8577.short" target="_blank" rel="external">Newman, Mark EJ. “Modularity and community structure in networks.” Proceedings of the national academy of sciences 103.23 (2006): 8577-8582.</a>{:target=“_blank“}</p>
-<p>[55]: <a href="http://www.nature.com/nature/journal/v435/n7043/abs/nature03607.html" target="_blank" rel="external">Palla, Gergely, et al. “Uncovering the overlapping community structure of complex networks in nature and society.” Nature 435.7043 (2005): 814-818.</a>{:target=“_blank“}</p>
-<p>[56]: <a href="https://github.com/rexwong/dp/wiki/%E7%A4%BE%E4%BC%9A%E8%AE%A1%E7%AE%97-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%AA%92%E4%BD%93%E6%8C%96%E6%8E%98" target="_blank" rel="external">LeiTang, and HuanLin. 社会计算:社区发现和社会媒体挖掘. 机械工业出版社, 2013.</a>{:target=“_blank“}</p>
-<p>[57]: <a href="http://iopscience.iop.org/article/10.1088/1742-5468/2005/09/P09008/meta" target="_blank" rel="external">Danon, Leon, et al. “Comparing community structure identification.” Journal of Statistical Mechanics: Theory and Experiment 2005.09 (2005): P09008.</a>{:target=“_blank“}</p>
+<p>[1]: <a href="http://vdisk.weibo.com/s/ztDcAsY3JGuzD" target="_blank" rel="external">汪小帆, 李翔, and 陈关荣. 复杂网络理论及其应用. 清华大学出版社有限公司, 2006.</a></p>
+<p>[2]: <a href="http://link.springer.com/book/10.1007/b106453" target="_blank" rel="external">Brandes, Ulrik, and Thomas Erlebach. Network analysis: methodological foundations. Vol. 3418. Springer Science &amp; Business Media, 2005.</a></p>
+<p>[3]: <a href="http://link.springer.com/chapter/10.1007/978-1-4612-0619-4_7" target="_blank" rel="external">Bollobás, Béla. “Random graphs.” Modern Graph Theory. Springer New York, 1998. 215-252.</a></p>
+<p>[4]: <a href="http://www.nature.com/nature/journal/v393/n6684/abs/393440a0.html" target="_blank" rel="external">Watts, Duncan J., and Steven H. Strogatz. “Collective dynamics of ‘small-world’networks.” nature 393.6684 (1998): 440-442.</a></p>
+<p>[5]: <a href="http://science.sciencemag.org/content/286/5439/509" target="_blank" rel="external">Barabási, Albert-László, and Réka Albert. “Emergence of scaling in random networks.” science 286.5439 (1999): 509-512.</a></p>
+<p>[6]: <a href="http://epubs.siam.org/doi/abs/10.1137/s003614450342480" target="_blank" rel="external">Newman, Mark EJ. “The structure and function of complex networks.” SIAM review 45.2 (2003): 167-256.</a></p>
+<p>[7]: <a href="http://dl.acm.org/citation.cfm?id=578533" target="_blank" rel="external">Gary, Michael R., and David S. Johnson. “Computers and Intractability: A Guide to the Theory of NP-completeness.” (1979).</a></p>
+<p>[8]: <a href="http://repository.cmu.edu/compsci/565/" target="_blank" rel="external">Palmer, Christopher R., et al. “The connectivity and fault-tolerance of the Internet topology.” (2001).</a></p>
+<p>[9]: <a href="http://ieeexplore.ieee.org/abstract/document/965863/" target="_blank" rel="external">Tauro, Sudhir Leslie, et al. “A simple conceptual model for the internet topology.” Global Telecommunications Conference, 2001. GLOBECOM’01. IEEE. Vol. 3. IEEE, 2001.</a></p>
+<p>[10]: <a href="http://www.jstor.org/stable/pdf/2786545.pdf" target="_blank" rel="external">Travers, Jeffrey, and Stanley Milgram. “An experimental study of the small world problem.” Sociometry (1969): 425-443.</a></p>
+<p>[11]: <a href="http://www.nature.com/nature/journal/v406/n6794/abs/406378A0.html" target="_blank" rel="external">Albert, Réka, Hawoong Jeong, and Albert-László Barabási. “Error and attack tolerance of complex networks.” nature 406.6794 (2000): 378-382.</a></p>
+<p>[12]: <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.87.198701" target="_blank" rel="external">Latora, Vito, and Massimo Marchiori. “Efficient behavior of small-world networks.” Physical review letters 87.19 (2001): 198701.</a></p>
+<p>[13]: <a href="http://link.springer.com/article/10.1140%2Fepjb%2Fe2003-00095-5?LI=true" target="_blank" rel="external">Latora, Vito, and Massimo Marchiori. “Economic small-world behavior in weighted networks.” The European Physical Journal B-Condensed Matter and Complex Systems 32.2 (2003): 249-263.</a></p>
+<p>[14]: <a href="http://dl.acm.org/citation.cfm?id=1132954" target="_blank" rel="external">Chakrabarti, Deepayan, and Christos Faloutsos. “Graph mining: Laws, generators, and algorithms.” ACM computing surveys (CSUR) 38.1 (2006): 2.</a></p>
+<p>[15]: <a href="http://cs.brynmawr.edu/Courses/cs380/spring2013/section02/slides/05_Centrality.pdf" target="_blank" rel="external">Network Centrality Based on materials by Lada Adamic, UMichigan</a></p>
+<p>[16]: <a href="http://www.jstor.org/stable/3033543" target="_blank" rel="external">Freeman, Linton C. “A set of measures of centrality based on betweenness.” Sociometry (1977): 35-41.</a></p>
+<p>[17]: <a href="http://www.sci.unich.it/~francesc/teaching/network/closeness.html" target="_blank" rel="external">Closeness Centrality</a></p>
+<p>[18]: <a href="https://en.wikipedia.org/wiki/Centrality" target="_blank" rel="external">Centrality - Wikipedia</a></p>
+<p>[19]: <a href="http://f.wanfangdata.com.cn/download/Thesis_Y2734231.aspx" target="_blank" rel="external">姜雅文. 复杂网络社区发现若干问题研究. Diss. 北京交通大学, 2014.</a></p>
+<p>[20]: <a href="http://dl.acm.org/citation.cfm?id=1541882" target="_blank" rel="external">Chandola, Varun, Arindam Banerjee, and Vipin Kumar. “Anomaly detection: A survey.” ACM computing surveys (CSUR) 41.3 (2009): 15.</a></p>
+<p>[21]: <a href="http://dl.acm.org/citation.cfm?id=1772756" target="_blank" rel="external">Leskovec Jure, Daniel Huttenlocher, and Jon Kleinberg. “Predicting positive and negative links in online social networks.” Proceedings of the 19th international conference on World wide web. ACM, 2010.</a></p>
+<p>[22]: <a href="https://arxiv.org/abs/1011.4071v1" target="_blank" rel="external">Backstrom, Lars, and Jure Leskovec. “Supervised random walks: predicting and recommending links in social networks.” Proceedings of the fourth ACM international conference on Web search and data mining. ACM, 2011.</a></p>
+<p>[23]: <a href="http://dl.acm.org/citation.cfm?id=608330" target="_blank" rel="external">Mirza, Batul J., Benjamin J. Keller, and Naren Ramakrishnan. “Studying recommendation algorithms by graph analysis.” Journal of Intelligent Information Systems 20.2 (2003): 131-160.</a></p>
+<p>[24]: <a href="http://www-cs-students.stanford.edu/~taherh/papers/topic-sensitive-pagerank.pdf" target="_blank" rel="external">Haveliwala, Taher H. “Topic-sensitive pagerank.” Proceedings of the 11th international conference on World Wide Web. ACM, 2002.</a></p>
+<p>[25]: <a href="http://www.sciencedirect.com/science/article/pii/S0020025513003149" target="_blank" rel="external">Durand, Guillaume, Nabil Belacel, and François LaPlante. “Graph theory based model for learning path recommendation.” Information Sciences 251 (2013): 10-21.</a></p>
+<p>[26]: <a href="http://dl.acm.org/citation.cfm?id=2507163" target="_blank" rel="external">McAuley, Julian, and Jure Leskovec. “Hidden factors and hidden topics: understanding rating dimensions with review text.” Proceedings of the 7th ACM conference on Recommender systems. ACM, 2013.</a></p>
+<p>[27]: <a href="http://dl.acm.org/citation.cfm?id=2556259" target="_blank" rel="external">Yu, Xiao, et al. “Personalized entity recommendation: A heterogeneous information network approach.” Proceedings of the 7th ACM international conference on Web search and data mining. ACM, 2014.</a></p>
+<p>[28]: <a href="https://arxiv.org/abs/1609.08264v1" target="_blank" rel="external">Kang, Zhao, et al. “Top-N Recommendation on Graphs.” Proceedings of the 25th ACM International on Conference on Information and Knowledge Management. ACM, 2016.</a></p>
+<p>[29]: <a href="http://dl.acm.org/citation.cfm?id=2959185" target="_blank" rel="external">Christakopoulou, Evangelia, and George Karypis. “Local Item-Item Models For Top-N Recommendation.” Proceedings of the 10th ACM Conference on Recommender Systems. ACM, 2016.</a></p>
+<p>[30]: <a href="http://dl.acm.org/citation.cfm?id=2623732" target="_blank" rel="external">Perozzi, Bryan, Rami Al-Rfou, and Steven Skiena. “Deepwalk: Online learning of social representations.” Proceedings of the 20th ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2014.</a></p>
+<p>[31]: <a href="https://arxiv.org/abs/1506.05163v1" target="_blank" rel="external">Henaff, Mikael, Joan Bruna, and Yann LeCun. “Deep convolutional networks on graph-structured data.” arXiv preprint arXiv:1506.05163 (2015).</a></p>
+<p>[32]: <a href="https://arxiv.org/abs/1101.3291" target="_blank" rel="external">Bhagat, Smriti, Graham Cormode, and S. Muthukrishnan. “Node classification in social networks.” Social network data analytics. Springer US, 2011. 115-148.</a></p>
+<p>[33]: <a href="http://web.eecs.umich.edu/~dkoutra/papers/fabp_pkdd2011.pdf" target="_blank" rel="external">Koutra, Danai, et al. “Unifying guilt-by-association approaches: Theorems and fast algorithms.” Joint European Conference on Machine Learning and Knowledge Discovery in Databases. Springer Berlin Heidelberg, 2011.</a></p>
+<p>[34]: <a href="http://dl.acm.org/citation.cfm?id=2741093" target="_blank" rel="external">Tang, Jian, et al. “Line: Large-scale information network embedding.” Proceedings of the 24th International Conference on World Wide Web. ACM, 2015.</a></p>
+<p>[35]: <a href="https://arxiv.org/abs/1607.00653" target="_blank" rel="external">Grover, Aditya, and Jure Leskovec. “node2vec: Scalable Feature Learning for Networks.”</a></p>
+<p>[36]: <a href="http://dl.acm.org/citation.cfm?id=2806512" target="_blank" rel="external">Cao, Shaosheng, Wei Lu, and Qiongkai Xu. “Grarep: Learning graph representations with global structural information.” Proceedings of the 24th ACM International on Conference on Information and Knowledge Management. ACM, 2015.</a></p>
+<p>[37]: <a href="http://www.sciencedirect.com/science/article/pii/S0370157309002841" target="_blank" rel="external">Fortunato, Santo. “Community detection in graphs.” Physics reports 486.3 (2010): 75-174.</a></p>
+<p>[38]: <a href="http://ieeexplore.ieee.org/abstract/document/6771089/" target="_blank" rel="external">Kernighan, Brian W., and Shen Lin. “An efficient heuristic procedure for partitioning graphs.” The Bell system technical journal 49.2 (1970): 291-307.</a></p>
+<p>[39]: <a href="http://epubs.siam.org/doi/abs/10.1137/0603056?journalCode=sjamdu" target="_blank" rel="external">Barnes, Earl R. “An algorithm for partitioning the nodes of a graph.” SIAM Journal on Algebraic Discrete Methods 3.4 (1982): 541-550.</a></p>
+<p>[40]: <a href="http://dl.acm.org/citation.cfm?id=347121" target="_blank" rel="external">Flake, Gary William, Steve Lawrence, and C. Lee Giles. “Efficient identification of web communities.” Proceedings of the sixth ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2000.</a></p>
+<p>[41]: <a href="http://ieeexplore.ieee.org/abstract/document/989932/" target="_blank" rel="external">Flake, Gary William, et al. “Self-organization and identification of web communities.” Computer 35.3 (2002): 66-70.</a></p>
+<p>[42]: <a href="http://link.springer.com/chapter/10.1007/978-94-011-5412-3_12" target="_blank" rel="external">Pothen, Alex. “Graph partitioning algorithms with applications to scientific computing.” Parallel Numerical Algorithms. Springer Netherlands, 1997. 323-368.</a></p>
+<p>[43]: <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/printings/ESLII_print10.pdf" target="_blank" rel="external">Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. The elements of statistical learning. Vol. 1. Springer, Berlin: Springer series in statistics, 2001.</a></p>
+<p>[44]: <a href="https://projecteuclid.org/euclid.bsmsp/1200512992" target="_blank" rel="external">MacQueen, James. “Some methods for classification and analysis of multivariate observations.” Proceedings of the fifth Berkeley symposium on mathematical statistics and probability. Vol. 1. No. 14. 1967.</a></p>
+<p>[45]: <a href="http://www.pnas.org/content/99/12/7821.short" target="_blank" rel="external">Girvan, Michelle, and Mark EJ Newman. “Community structure in social and biological networks.” Proceedings of the national academy of sciences 99.12 (2002): 7821-7826.</a></p>
+<p>[46]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.69.026113" target="_blank" rel="external">Newman, Mark EJ, and Michelle Girvan. “Finding and evaluating community structure in networks.” Physical review E 69.2 (2004): 026113.</a></p>
+<p>[47]: <a href="http://www.cnki.com.cn/Article/CJFDTotal-JSJA201208000.htm" target="_blank" rel="external">柴变芳, 贾彩燕, and 于剑. “基于统计推理的社区发现模型综述.” 计算机科学 2012 年 08 (2012): 1-7+.</a></p>
+<p>[48]: <a href="http://cdmd.cnki.com.cn/Article/CDMD-10004-1015611891.htm" target="_blank" rel="external">柴变芳. 基于生成模型的大规模网络广义社区发现方法研究. Diss. 北京交通大学, 2015.</a></p>
+<p>[49]: <a href="http://www.mapequation.org/assets/publications/RosvallBergstromPNAS2008Full.pdf" target="_blank" rel="external">Rosvall, Martin, and Carl T. Bergstrom. “Maps of random walks on complex networks reveal community structure.” Proceedings of the National Academy of Sciences 105.4 (2008): 1118-1123.</a></p>
+<p>[50]: <a href="https://arxiv.org/abs/0906.1405" target="_blank" rel="external">Rosvall, Martin, Daniel Axelsson, and Carl T. Bergstrom. “The map equation.” The European Physical Journal Special Topics 178.1 (2009): 13-23.</a></p>
+<p>[51]: <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.066111" target="_blank" rel="external">Clauset, Aaron, Mark EJ Newman, and Cristopher Moore. “Finding community structure in very large networks.” Physical review E 70.6 (2004): 066111.</a></p>
+<p>[52]: <a href="https://arxiv.org/abs/0803.0476v2" target="_blank" rel="external">Blondel, Vincent D., et al. “Fast unfolding of communities in large networks.” Journal of statistical mechanics: theory and experiment 2008.10 (2008): P10008.</a></p>
+<p>[53]: <a href="http://bbs.pinggu.org/thread-3614747-1-1.html" target="_blank" rel="external">基于GraphX的社区发现算法FastUnfolding分布式实现</a></p>
+<p>[54]: <a href="http://www.pnas.org/content/103/23/8577.short" target="_blank" rel="external">Newman, Mark EJ. “Modularity and community structure in networks.” Proceedings of the national academy of sciences 103.23 (2006): 8577-8582.</a></p>
+<p>[55]: <a href="http://www.nature.com/nature/journal/v435/n7043/abs/nature03607.html" target="_blank" rel="external">Palla, Gergely, et al. “Uncovering the overlapping community structure of complex networks in nature and society.” Nature 435.7043 (2005): 814-818.</a></p>
+<p>[56]: <a href="https://github.com/rexwong/dp/wiki/%E7%A4%BE%E4%BC%9A%E8%AE%A1%E7%AE%97-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%AA%92%E4%BD%93%E6%8C%96%E6%8E%98" target="_blank" rel="external">LeiTang, and HuanLin. 社会计算:社区发现和社会媒体挖掘. 机械工业出版社, 2013.</a></p>
+<p>[57]: <a href="http://iopscience.iop.org/article/10.1088/1742-5468/2005/09/P09008/meta" target="_blank" rel="external">Danon, Leon, et al. “Comparing community structure identification.” Journal of Statistical Mechanics: Theory and Experiment 2005.09 (2005): P09008.</a></p>
 <p>[58]: <a href="http://www.pnas.org/content/104/1/36.short" target="_blank" rel="external">Fortunato, Santo, and Marc Barthelemy. “Resolution limit in community detection.” Proceedings of the National Academy of Sciences 104.1 (2007): 36-41.</a></p>
 <p>[59]: <a href="http://dl.acm.org/citation.cfm?id=1772755" target="_blank" rel="external">Leskovec, Jure, Kevin J. Lang, and Michael Mahoney. “Empirical comparison of algorithms for network community detection.” Proceedings of the 19th international conference on World wide web. ACM, 2010.</a></p>
 <p>[60]: <a href="https://arxiv.org/abs/0908.1062v2" target="_blank" rel="external">Lancichinetti, Andrea, and Santo Fortunato. “Community detection algorithms: a comparative analysis.” Physical review E 80.5 (2009): 056117.</a></p>
@@ -572,10 +731,14 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
     
     <summary type="html">
     
-      &lt;h1 id=&quot;model-network-topology-1&quot;&gt;1 Model (Network Topology) [1]&lt;/h1&gt;
-&lt;h2 id=&quot;regular-network&quot;&gt;1.1 Regular Network&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;全局耦合网络(g
+      &lt;h1 id=&quot;相关术语&quot;&gt;0 相关术语&lt;/h1&gt;
+&lt;table style=&quot;width:35%;&quot;&gt;
+&lt;colgroup&gt;
+&lt;col width=&quot;11%&quot;&gt;
+&lt;col width=&quot;12%&quot;&gt;
+&lt;col width=&quot;11%&quot;&gt;
+&lt;/colgroup&gt;
+&lt;th
     
     </summary>
     
