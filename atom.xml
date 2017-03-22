@@ -129,7 +129,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-22T15:53:54.312Z</updated>
+    <updated>2017-03-22T15:56:32.807Z</updated>
     
     <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
 <table>
@@ -184,17 +184,17 @@
 <tr class="even">
 <td align="left">Diameter(直径)</td>
 <td>The diameter of a (undirected) network is the length (in number of edges) of the longest geodesic path between any two vertices. [6]</td>
-<td align="right"><span class="math inline">\(D=\max\limits_{i,j}d_{i,j},\,\, O(n^2)\)</span> time [2]</td>
+<td align="right"><span class="math inline">\(D=\max\limits_{i,j}d_{i,j}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">Radius(半径)</td>
 <td>The minimal eccentricity of all vertices</td>
-<td align="right"><span class="math inline">\(rad=\min\limits_{i,j} \varepsilon_{i,j},\,\, O(n^2)\)</span> time [2]</td>
+<td align="right"><span class="math inline">\(rad=\min\limits_{i,j} \varepsilon_{i,j}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Characteristic path length(特征路径长度) or Mean Geodesic Distance</td>
 <td>任意两个节点之间的距离的平均值.</td>
-<td align="right"><span class="math inline">\(\ell=\frac{1}{\frac{1}{2}n(n-1)}\sum\limits_{i\geq j}d_{i,j},\,\, O(n^2)\)</span> time [2]</td>
+<td align="right"><span class="math inline">\(\ell=\frac{1}{\frac{1}{2}n(n-1)}\sum\limits_{i\geq j}d_{i,j}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">The Average Degree</td>
@@ -209,7 +209,7 @@
 <tr class="odd">
 <td align="left">h-Neighborhood</td>
 <td>The set of all vertices <span class="math inline">\(j\)</span> with distance less than or equal to <span class="math inline">\(h\)</span> from <span class="math inline">\(i\)</span></td>
-<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\},\,\, O(n^2)\)</span> time and space [2]</td>
+<td align="right"><span class="math inline">\(N_h(i)=\{j\in V \mid d_{i,j}\leq h\}\)</span> time and space [2]</td>
 </tr>
 <tr class="even">
 <td align="left">(Absolute) Hop Plot</td>
@@ -224,7 +224,7 @@
 <tr class="even">
 <td align="left">Effective Diameter(有效直径)</td>
 <td>This is the minimum number of hops in which some fraction (say <span class="math inline">\(r=90\%\)</span>) [8] of all connected pairs of vertices can reach each other. [9]</td>
-<td align="right"><span class="math inline">\(diam_{eff}=\min\{h\mid P(h)\geq rn^2\},\\\,\,O(\log diam(G))\)</span> time [2]</td>
+<td align="right"><span class="math inline">\(diam_{eff}=\min\{h\mid P(h)\geq rn^2\}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left">Clustering Coefficient(聚类系数)</td>
