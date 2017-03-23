@@ -515,80 +515,82 @@ Q=\frac{1}{2M}\sum_{ij}\sum_r\left[a_{ij}-\frac{k_ik_j}{2m}\right]S_{ir}S_{jr}=\
 <li><strong>判别模型（Blockmodeling, model selection and information theory）</strong> &gt; 赫赫有名的<strong>infomap</strong>这个方法是从编码的角度给了社区一个良好的解释，发现了网络的一种最优的二级编码就发现了对应的社区结构。思想是相当绝妙的，效果也很好。[49] [50]</li>
 </ul>
 <h4 id="总结">3.6.2.7 总结</h4>
-<p>记<span class="math inline">\(n_1=\mid V\mid\)</span>，<span class="math inline">\(n_2=\mid E\mid\)</span></p>
+<p>The networks have <span class="math inline">\(N\)</span> vetices and <span class="math inline">\(E\)</span> edges, and for each method the scale of networks means: S stands for small scale (<span class="math inline">\(&lt;10^4\)</span> vetices), M stands for medium scale (<span class="math inline">\(10^4-10^6\)</span> vetices), L stands for large scale (<span class="math inline">\(10^6-10^9\)</span> vetices).</p>
 <table>
 <thead>
 <tr class="header">
-<th>算法</th>
-<th>优化目标</th>
-<th>计算复杂度</th>
-<th>适用情况</th>
-<th>局限</th>
+<th>Algorithm</th>
+<th align="center">Dense Network</th>
+<th align="center">Sparse Network</th>
+<th align="center">Scale</th>
+<th align="center">Directed</th>
+<th align="center">Weighted</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Q modularity</td>
-<td>最大化Q-modularity</td>
-<td><span class="math inline">\(O(n_1^2)\)</span></td>
-<td>无向无权多分量</td>
-<td>不适合大网络</td>
+<td>Edge betweenness</td>
+<td align="center"><span class="math inline">\(O(E^2N)\)</span></td>
+<td align="center"><span class="math inline">\(O(E^2N)\)</span></td>
+<td align="center">S</td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 <tr class="even">
-<td>Edge-Betweenness</td>
-<td>最小化社区间连边的betweenness</td>
-<td><span class="math inline">\(O(n_1n_2^2)\)</span></td>
-<td>有向有权多分量</td>
-<td>慢</td>
+<td>Fastgreedy</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(O(N\log^2 N)\)</span></td>
+<td align="center">M</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 <tr class="odd">
-<td>Leading Eigenvector</td>
-<td>对拉普拉斯矩阵第二小特征根对应特征向量的聚类</td>
-<td><span class="math inline">\(O(n_1^2)\)</span></td>
-<td>无向无权多分量</td>
-<td></td>
+<td>Infomap</td>
+<td align="center"><span class="math inline">\(O(E)\)</span></td>
+<td align="center"></td>
+<td align="center">L</td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 <tr class="even">
-<td>Fast Greedy</td>
-<td>使用社区合并算法来快速搜索最大Q-modularity</td>
-<td><span class="math inline">\(O(n_2\log^2 n_1)\)</span></td>
-<td>无向有权多分量</td>
-<td>不适合小网络</td>
+<td>Label propagation</td>
+<td align="center"><span class="math inline">\(O(E)\)</span></td>
+<td align="center"></td>
+<td align="center">L</td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 <tr class="odd">
-<td>Multi Level</td>
-<td>使用社区展开算法来快速搜索最大Q-modularity</td>
-<td><span class="math inline">\(O(n_1\log n_1)\)</span></td>
-<td>无向有权多分量</td>
-<td>不适合小网络</td>
+<td>Leading eigenvector</td>
+<td align="center"><span class="math inline">\(O(N(E+N))\)</span></td>
+<td align="center"><span class="math inline">\(O(N^2)\)</span></td>
+<td align="center">L</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td>Walk Trap</td>
-<td>最大化社区间的流距离</td>
-<td><span class="math inline">\(O(n_1^2\log n_1)\)</span></td>
-<td>无向有权多分量</td>
-<td></td>
+<td>Multilevel</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(O(N\log N)\)</span></td>
+<td align="center">L</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 <tr class="odd">
-<td>Label Propagation</td>
-<td>每个节点取邻居中最流行的标签，迭代式收敛</td>
-<td><span class="math inline">\(O(n_2)\)</span></td>
-<td>无向有权多分量</td>
-<td>结果不稳定</td>
+<td>Spinglass</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(O(N^{3.2})\)</span></td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td>Info map</td>
-<td>最小化随机流的编码长度</td>
-<td><span class="math inline">\(O(n_2)\)</span></td>
-<td>有向有权单分量</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Role-based community</td>
-<td>划分出在流中地位类似的节点</td>
-<td><span class="math inline">\(O(n_1^3)\)</span></td>
-<td>有向有权单分量</td>
-<td>结果不稳定</td>
+<td>Walktrap</td>
+<td align="center"><span class="math inline">\(O(EN^2)\)</span></td>
+<td align="center"><span class="math inline">\(O(N^2\log N)\)</span></td>
+<td align="center">M</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
 </tr>
 </tbody>
 </table>
