@@ -129,7 +129,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-23T02:42:10.431Z</updated>
+    <updated>2017-03-23T08:19:19.130Z</updated>
     
     <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
 <table>
@@ -358,7 +358,7 @@ P_k=\sum_{k&#39;=k}^\infty p_{k&#39;}
 <h3 id="betweenness-centrality-16">2.7.1 <a href="#bc">Betweenness Centrality</a> [16]</h3>
 <p>Betweenness centrality can be viewed as a measure of network resilience - it tells us how many geodesic paths will get longer when a vertex is removed from the network. 顶点 <span class="math inline">\(i\)</span>的介数定义为 <span class="math display">\[ \begin{align}
 BC_i=\sum_{s\neq i\neq t}\frac{n_{st}^i}{g_{st}}
-\end{align} \]</span> 其中，<span class="math inline">\(g_{st}\)</span>为从顶点<span class="math inline">\(s\)</span>到顶点<span class="math inline">\(t\)</span>的最短路径的书面，<span class="math inline">\(n_{st}^i\)</span>是从顶点<span class="math inline">\(s\)</span>到顶点<span class="math inline">\(t\)</span>的<span class="math inline">\(g_{st}\)</span>条最短路径中经过顶点<span class="math inline">\(i\)</span>的最短路径的数目。</p>
+\end{align} \]</span> 其中，<span class="math inline">\(g_{st}\)</span>为从顶点<span class="math inline">\(s\)</span>到顶点<span class="math inline">\(t\)</span>的最短路径的数目，<span class="math inline">\(n_{st}^i\)</span>是从顶点<span class="math inline">\(s\)</span>到顶点<span class="math inline">\(t\)</span>的<span class="math inline">\(g_{st}\)</span>条最短路径中经过顶点<span class="math inline">\(i\)</span>的最短路径的数目。</p>
 <p>Latora and Marchiori [12] [13] have considered the <em>harmonic mean distance</em> between a vertex and all others can be viewed as a measure of network resilience, indicating how much effect on path length the removal of a vertex will have.</p>
 <h3 id="closeness-centrality-17">2.7.2 <a href="#cc">Closeness Centrality</a> [17]</h3>
 <p>The <a href="#mgd">mean geodesic distance</a> for vertex <span class="math inline">\(i\)</span> is: <span class="math display">\[ \begin{align}
