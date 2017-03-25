@@ -716,14 +716,16 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
       
         <categories>
             
-            <category> Complex Network </category>
+            <category> 调研 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> 调研 </tag>
+            <tag> Complex Network </tag>
+            
+            <tag> Community Detection </tag>
             
         </tags>
         

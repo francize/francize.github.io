@@ -129,7 +129,7 @@
     <link href="http://www.shesong.org/2017/02/22/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E8%B0%83%E7%A0%94/"/>
     <id>http://www.shesong.org/2017/02/22/复杂网络调研/</id>
     <published>2017-02-22T03:10:08.000Z</published>
-    <updated>2017-03-23T08:19:19.130Z</updated>
+    <updated>2017-03-24T06:33:49.003Z</updated>
     
     <content type="html"><![CDATA[<h1 id="相关术语">0 相关术语</h1>
 <table>
@@ -749,10 +749,12 @@ NMI(X;Y)=\frac{I(X;Y)}{\sqrt{H(X)H(Y)}}
     
     </summary>
     
-      <category term="Complex Network" scheme="http://www.shesong.org/categories/Complex-Network/"/>
+      <category term="调研" scheme="http://www.shesong.org/categories/%E8%B0%83%E7%A0%94/"/>
     
     
-      <category term="调研" scheme="http://www.shesong.org/tags/%E8%B0%83%E7%A0%94/"/>
+      <category term="Complex Network" scheme="http://www.shesong.org/tags/Complex-Network/"/>
+    
+      <category term="Community Detection" scheme="http://www.shesong.org/tags/Community-Detection/"/>
     
   </entry>
   
